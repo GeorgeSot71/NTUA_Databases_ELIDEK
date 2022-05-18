@@ -1,4 +1,7 @@
+DROP DATABASE elidek;
+
 CREATE DATABASE elidek;
+
 USE elidek;
 
 CREATE TABLE project (

@@ -172,7 +172,8 @@ CREATE TRIGGER same_researcher_evaluator BEFORE INSERT ON works_on_project
 		FOR EACH ROW
         BEGIN
 			IF NEW.researcher_id  NOT IN (SELECT researcher_id
-																FROM project INNER JOIN employee_relation ON project.abbreviation = employee_relation.abbreviation)
+																FROM employee_relation INNER JOIN project p ON p.abbreviation = employee_relation.abbreviation
+                                                                WHERE p.project_id = NEW.project_id )
 																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'This operation is not allowed.It is not good ' ;
 			END IF;
 		END;$$
@@ -185,11 +186,29 @@ DELIMITER ;
     VALUES(13);
     INSERT INTO organization
     VALUES('EMP');
+     INSERT INTO organization
+    VALUES('EKPA');
 	INSERT INTO project
     VALUES(123,'EMP');
+    INSERT INTO project
+    VALUES(1234,'EKPA');
     INSERT INTO employee_relation
+    VALUES(13,'EMP');
+   /* INSERT INTO employee_relation
     VALUES(12,'EMP');
     INSERT INTO works_on_project
-    VALUES(123,12); 
-     INSERT INTO evaluate_project
-    VALUES(123,13);
+    VALUES(123,13); */
+    /*INSERT INTO evaluate_project
+    VALUES(123,13); */
+    INSERT INTO works_on_project
+    VALUES(123,13) ;
+    INSERT INTO works_on_project
+    VALUES(1234,13) ; 
+    
+
+    
+  SELECT *
+  FROM employee_relation INNER JOIN  project ON project.abbreviation = employee_relation.abbreviation
+    
+    
+	

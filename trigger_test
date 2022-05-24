@@ -93,7 +93,6 @@ CREATE TABLE project (
     end_date DATE NOT NULL, */
     abbreviation VARCHAR(30) NOT NULL,
    /* duration VARCHAR(50),
-    funding_program_id INT NOT NULL,
     executive_id INT NOT NULL,
     program_id INT NOT NULL, 
     scientific_inspector_id INT NOT NULL,*/
@@ -102,7 +101,7 @@ CREATE TABLE project (
         REFERENCES organization(abbreviation) /*,
     FOREIGN KEY (executive_id)
         REFERENCES executive(executive_id),
-    FOREIGN KEY (funding_program_id)
+    FOREIGN KEY (program_id)
         REFERENCES program(program_id), 
     FOREIGN KEY (scientific_inspector_id)
         REFERENCES researcher(researcher_id)  */
@@ -113,7 +112,7 @@ CREATE TABLE deliverable (
     summary TEXT NOT NULL,
     delivery_date DATE NOT NULL,
     project_id INT NOT NULL,
-    PRIMARY KEY (title),
+    PRIMARY KEY (title, project_id),
     FOREIGN KEY (project_id)
         REFERENCES project(project_id)
 )ENGINE=INNODB;
@@ -133,6 +132,7 @@ CREATE TABLE evaluate_project(
     /* evaluation_date DATE NOT NULL,
     grade INT NOT NULL,
     */
+    PRIMARY KEY (project_id, researcher_id),
     FOREIGN KEY (project_id)
         REFERENCES project(project_id),
     FOREIGN KEY (researcher_id)
@@ -151,7 +151,7 @@ DELIMITER $$
 CREATE TRIGGER same_evaluator_researcher BEFORE INSERT ON evaluate_project
     FOR EACH ROW
     BEGIN
-		IF NEW.researcher_id = (SELECT researcher_id
+		IF NEW.researcher_id IN (SELECT researcher_id
 											    FROM works_on_project
                                                 WHERE works_on_project.project_id = NEW.project_id) 
                                                 THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'This operation is not allowed. You cannot add an evaluator that almost works on priject ' ;
@@ -161,7 +161,7 @@ CREATE TRIGGER same_evaluator_researcher BEFORE INSERT ON evaluate_project
 CREATE TRIGGER same_researcher_evaluator BEFORE INSERT ON works_on_project
     FOR EACH ROW
     BEGIN
-		IF NEW.researcher_id = (SELECT researcher_id
+		IF NEW.researcher_id IN (SELECT researcher_id
 											    FROM evaluate_project
                                                 WHERE evaluate_project.project_id = NEW.project_id) 
                                                 THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'This operation is not allowed.We cannot add a researcher that is almost evaluator in the same project ' ;
@@ -181,14 +181,15 @@ DELIMITER ;
 
 	INSERT INTO researcher 
     VALUES(12);
+	INSERT INTO researcher 
+    VALUES(13);
     INSERT INTO organization
     VALUES('EMP');
-    /*INSERT INTO employee_relation
-    VALUES(12,'EMP'); */
 	INSERT INTO project
     VALUES(123,'EMP');
+    INSERT INTO employee_relation
+    VALUES(12,'EMP');
     INSERT INTO works_on_project
-    VALUES(123,12);
-    /*INSERT INTO evaluate_project
-    VALUES(123,12); */
-    
+    VALUES(123,12); 
+     INSERT INTO evaluate_project
+    VALUES(123,13);

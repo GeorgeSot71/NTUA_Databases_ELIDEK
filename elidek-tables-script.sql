@@ -21,8 +21,8 @@ CREATE TABLE executive (
 CREATE TABLE researcher (
     researcher_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
-    age INT,
     surname VARCHAR(30) NOT NULL,
+    age INT CHECK (age>=0),
     birthday DATE NOT NULL,
     sex VARCHAR(10) NOT NULL,
     PRIMARY KEY (researcher_id)
@@ -44,14 +44,14 @@ CREATE TABLE organization (
 CREATE TABLE phone (
     abbreviation VARCHAR(30) NOT NULL,
     phone_number BIGINT NOT NULL,
+    PRIMARY KEY (abbreviation, phone_number),
     FOREIGN KEY (abbreviation)
         REFERENCES organization(abbreviation)
-    /* https://dev.mysql.com/doc/refman/8.0/en/example-foreign-keys.html */
 )ENGINE=INNODB;
 
 CREATE TABLE university (
     abbreviation VARCHAR(30) NOT NULL,
-    budget DECIMAL(13,2) NOT NULL,
+    budget DECIMAL(13,2) NOT NULL CHECK (budget>0),
     PRIMARY KEY (abbreviation),
     FOREIGN KEY (abbreviation)
         REFERENCES organization(abbreviation)
@@ -59,8 +59,8 @@ CREATE TABLE university (
 
 CREATE TABLE scientific_center (
     abbreviation VARCHAR(30) NOT NULL,
-    budget_ministry DECIMAL(13,2) NOT NULL,
-    budget_private DECIMAL(13,2) NOT NULL,
+    budget_ministry DECIMAL(13,2) NOT NULL CHECK (budget_ministry>0),
+    budget_private DECIMAL(13,2) NOT NULL CHECK (budget_private>0),
     PRIMARY KEY (abbreviation),
     FOREIGN KEY (abbreviation)
         REFERENCES organization(abbreviation)
@@ -68,7 +68,7 @@ CREATE TABLE scientific_center (
 
 CREATE TABLE company (
     abbreviation VARCHAR(30) NOT NULL,
-    private_funding DECIMAL(13,2) NOT NULL,
+    private_funding DECIMAL(13,2) NOT NULL CHECK (private_funding>0),
     PRIMARY KEY (abbreviation),
     FOREIGN KEY (abbreviation)
         REFERENCES organization(abbreviation)
@@ -78,6 +78,7 @@ CREATE TABLE employee_relation (
     researcher_id INT NOT NULL,
     abbreviation VARCHAR(30) NOT NULL,
     start_working_date DATE NOT NULL,
+    PRIMARY KEY (researcher_id, abbreviation),
     FOREIGN KEY (researcher_id)
         REFERENCES researcher(researcher_id),
     FOREIGN KEY (abbreviation)
@@ -92,8 +93,6 @@ CREATE TABLE project (
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     abbreviation VARCHAR(30) NOT NULL,
-    duration VARCHAR(50),
-    funding_program_id INT NOT NULL,
     executive_id INT NOT NULL,
     program_id INT NOT NULL,
     scientific_inspector_id INT NOT NULL,
@@ -102,7 +101,7 @@ CREATE TABLE project (
         REFERENCES organization(abbreviation),
     FOREIGN KEY (executive_id)
         REFERENCES executive(executive_id),
-    FOREIGN KEY (funding_program_id)
+    FOREIGN KEY (program_id)
         REFERENCES program(program_id),
     FOREIGN KEY (scientific_inspector_id)
         REFERENCES researcher(researcher_id)
@@ -113,7 +112,7 @@ CREATE TABLE delivered (
     summary TEXT NOT NULL,
     delivery_date DATE NOT NULL,
     project_id INT NOT NULL,
-    PRIMARY KEY (title),
+    PRIMARY KEY (title,project_id),
     FOREIGN KEY (project_id)
         REFERENCES project(project_id)
 )ENGINE=INNODB;
@@ -121,6 +120,7 @@ CREATE TABLE delivered (
 CREATE TABLE works_on_project(
     project_id INT NOT NULL,
     researcher_id INT NOT NULL,
+    PRIMARY KEY (project_id, researcher_id),
     FOREIGN KEY (project_id)
 		REFERENCES project(project_id),
     FOREIGN KEY (researcher_id)
@@ -130,8 +130,9 @@ CREATE TABLE works_on_project(
 CREATE TABLE evaluate_project(
     project_id INT NOT NULL,
     researcher_id INT NOT NULL,
+    grade numeric(2,2) NOT NULL CHECK (grade>=0.0 AND grade<=10.0),
     evaluation_date DATE NOT NULL,
-    grade INT NOT NULL,
+    PRIMARY KEY (project_id,researcher_id),
     FOREIGN KEY (project_id)
         REFERENCES project(project_id),
     FOREIGN KEY (researcher_id)
@@ -141,6 +142,7 @@ CREATE TABLE evaluate_project(
 CREATE TABLE scientific_field (
     project_id INT NOT NULL,
     scientific_field_name VARCHAR(50) NOT NULL,
+    PRIMARY KEY (project_id,scientific_field_name),
     FOREIGN KEY (project_id)
         REFERENCES project(project_id)
 )ENGINE=INNODB;

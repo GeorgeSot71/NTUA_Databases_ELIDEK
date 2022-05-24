@@ -108,7 +108,7 @@ CREATE TABLE project (
         REFERENCES researcher(researcher_id)
 )ENGINE=INNODB;
 
-CREATE TABLE deliverable (
+CREATE TABLE delivered (
     title VARCHAR(30) NOT NULL,
     summary TEXT NOT NULL,
     delivery_date DATE NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE deliverable (
 CREATE TABLE works_on_project(
     project_id INT NOT NULL,
     researcher_id INT NOT NULL,
-    FOREIGN KEY (project_id) 
+    FOREIGN KEY (project_id)
 		REFERENCES project(project_id),
     FOREIGN KEY (researcher_id)
 		REFERENCES researcher(researcher_id)

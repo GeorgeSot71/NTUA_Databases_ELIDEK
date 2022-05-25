@@ -46,7 +46,7 @@ CREATE TABLE phone (
     phone_number BIGINT NOT NULL,
     PRIMARY KEY (abbreviation, phone_number),
     FOREIGN KEY (abbreviation)
-        REFERENCES organization(abbreviation)
+        REFERENCES organization(abbreviation) ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE university (
@@ -54,7 +54,7 @@ CREATE TABLE university (
     budget DECIMAL(13,2) NOT NULL CHECK (budget>0),
     PRIMARY KEY (abbreviation),
     FOREIGN KEY (abbreviation)
-        REFERENCES organization(abbreviation)
+        REFERENCES organization(abbreviation) ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE scientific_center (
@@ -63,7 +63,7 @@ CREATE TABLE scientific_center (
     budget_private DECIMAL(13,2) NOT NULL CHECK (budget_private>0),
     PRIMARY KEY (abbreviation),
     FOREIGN KEY (abbreviation)
-        REFERENCES organization(abbreviation)
+        REFERENCES organization(abbreviation) ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE company (
@@ -71,7 +71,7 @@ CREATE TABLE company (
     private_funding DECIMAL(13,2) NOT NULL CHECK (private_funding>0),
     PRIMARY KEY (abbreviation),
     FOREIGN KEY (abbreviation)
-        REFERENCES organization(abbreviation)
+        REFERENCES organization(abbreviation) ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE employee_relation (
@@ -80,9 +80,9 @@ CREATE TABLE employee_relation (
     start_working_date DATE NOT NULL,
     PRIMARY KEY (researcher_id, abbreviation),
     FOREIGN KEY (researcher_id)
-        REFERENCES researcher(researcher_id),
+        REFERENCES researcher(researcher_id) ON DELETE CASCADE,
     FOREIGN KEY (abbreviation)
-        REFERENCES organization(abbreviation)
+        REFERENCES organization(abbreviation) ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE project (
@@ -98,13 +98,13 @@ CREATE TABLE project (
     scientific_inspector_id INT NOT NULL,
     PRIMARY KEY (project_id),
     FOREIGN KEY (abbreviation)
-        REFERENCES organization(abbreviation),
+        REFERENCES organization(abbreviation) ON DELETE CASCADE,
     FOREIGN KEY (executive_id)
-        REFERENCES executive(executive_id),
+        REFERENCES executive(executive_id) ON DELETE CASCADE,
     FOREIGN KEY (program_id)
-        REFERENCES program(program_id),
+        REFERENCES program(program_id) ON DELETE CASCADE,
     FOREIGN KEY (scientific_inspector_id)
-        REFERENCES researcher(researcher_id),
+        REFERENCES researcher(researcher_id) ON DELETE CASCADE,
     CONSTRAINT project_duration_check CHECK ((DATEDIFF(end_date,start_date)>=365) AND DATEDIFF(end_date,start_date)<=1460)
 )ENGINE=INNODB;
 
@@ -115,7 +115,7 @@ CREATE TABLE delivered (
     project_id INT NOT NULL,
     PRIMARY KEY (title,project_id),
     FOREIGN KEY (project_id)
-        REFERENCES project(project_id)
+        REFERENCES project(project_id) ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE works_on_project(
@@ -123,9 +123,9 @@ CREATE TABLE works_on_project(
     researcher_id INT NOT NULL,
     PRIMARY KEY (project_id, researcher_id),
     FOREIGN KEY (project_id)
-		REFERENCES project(project_id),
+		REFERENCES project(project_id) ON DELETE CASCADE,
     FOREIGN KEY (researcher_id)
-		REFERENCES researcher(researcher_id)
+		REFERENCES researcher(researcher_id) ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE evaluate_project(
@@ -135,9 +135,9 @@ CREATE TABLE evaluate_project(
     evaluation_date DATE NOT NULL,
     PRIMARY KEY (project_id,researcher_id),
     FOREIGN KEY (project_id)
-        REFERENCES project(project_id),
+        REFERENCES project(project_id) ON DELETE CASCADE,
     FOREIGN KEY (researcher_id)
-        REFERENCES researcher(researcher_id)
+        REFERENCES researcher(researcher_id) ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE scientific_field (
@@ -145,5 +145,5 @@ CREATE TABLE scientific_field (
     scientific_field_name VARCHAR(50) NOT NULL,
     PRIMARY KEY (project_id,scientific_field_name),
     FOREIGN KEY (project_id)
-        REFERENCES project(project_id)
+        REFERENCES project(project_id) ON DELETE CASCADE
 )ENGINE=INNODB;

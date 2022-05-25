@@ -89,7 +89,7 @@ CREATE TABLE project (
     project_id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
     summary TEXT NOT NULL,
-    funding DECIMAL(13,2) NOT NULL,
+    funding DECIMAL(7,2) NOT NULL CHECK (funding > 100000 AND funding < 1000000) ,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     abbreviation VARCHAR(30) NOT NULL,
@@ -104,7 +104,8 @@ CREATE TABLE project (
     FOREIGN KEY (program_id)
         REFERENCES program(program_id),
     FOREIGN KEY (scientific_inspector_id)
-        REFERENCES researcher(researcher_id)
+        REFERENCES researcher(researcher_id),
+    CONSTRAINT project_duration_check CHECK ((DATEDIFF(end_date,start_date)>=365) AND DATEDIFF(end_date,start_date)<=1460)
 )ENGINE=INNODB;
 
 CREATE TABLE delivered (
@@ -130,7 +131,7 @@ CREATE TABLE works_on_project(
 CREATE TABLE evaluate_project(
     project_id INT NOT NULL,
     researcher_id INT NOT NULL,
-    grade numeric(2,2) NOT NULL CHECK (grade>=0.0 AND grade<=10.0),
+    grade numeric(2,2) NOT NULL CHECK (grade>=0 AND grade<=10),
     evaluation_date DATE NOT NULL,
     PRIMARY KEY (project_id,researcher_id),
     FOREIGN KEY (project_id)

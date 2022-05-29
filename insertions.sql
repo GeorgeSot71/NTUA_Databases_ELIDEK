@@ -815,27 +815,26 @@ CREATE TABLE `university` (
   CONSTRAINT `university_ibfk_1` FOREIGN KEY (`abbreviation`) REFERENCES `organization` (`abbreviation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '53017.88');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '33027.71');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '96049.70');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '201880.06');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '38496.95');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '27686.31');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '35368.93');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '40606.56');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '5588.69');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '141679.93');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '239428.53');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '51456.68');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '53753.38');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '234082.04');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '74430.88');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '167335.99');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '300606.12');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '5114.05');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '128979.04');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('', '83111.34');
-
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('HeLtd', '53017.88');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('HSJ', '33027.71');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('JSP', '96049.70');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('JohnGr', '201880.06');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KeInc', '38496.95');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KHH', '27686.31');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KoBr', '35368.93');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KRD', '40606.56');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LCK', '5588.69');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LeLtd', '141679.93');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LMH', '239428.53');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LoSw', '51456.68');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MaSt', '53753.38');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MuWi', '234082.04');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MuLtd', '74430.88');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('CoGl', '167335.99');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('CoKo', '300606.12');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('WJ', '5114.05');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('OFad', '128979.04');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('PacoG', '83111.34');
 
 #
 # TABLE STRUCTURE FOR: works_on_project

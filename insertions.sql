@@ -406,6 +406,7 @@ INSERT INTO `organization` (`abbreviation`, `name`, `post_code`, `road`, `town`)
 # TABLE STRUCTURE FOR: phone
 #
 
+
 DROP TABLE IF EXISTS `phone`;
 
 CREATE TABLE `phone` (
@@ -415,56 +416,56 @@ CREATE TABLE `phone` (
   CONSTRAINT `phone_ibfk_1` FOREIGN KEY (`abbreviation`) REFERENCES `organization` (`abbreviation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Adams and Sons', '696');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Ankunding, Rutherford and Coll', '22893');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Block, Mraz and Kuphal', '451970');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Boehm Group', '0');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Brown, Herzog and Kihn', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Carroll-Moore', '64');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Casper-Herman', '475');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Corkery Group', '0');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Cronin Inc', '50869');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Cronin-Durgan', '6791895804');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Daniel Ltd', '2347448418');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Emmerich Inc', '666537');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Fahey, Connelly and McLaughlin', '3389922370');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Fisher and Sons', '987670');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Gorczany, Torp and Mraz', '320211');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Grady-Ernser', '5396233979');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Greenholt Inc', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Haley, Turner and Pollich', '4592707693');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Hane-Heidenreich', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Hegmann-Rath', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Heidenreich Ltd', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Hickle, Shanahan and Johnson', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Johnson, Shanahan and Parisian', '0');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Johnston Group', '356');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Kertzmann Inc', '9783664267');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Kertzmann, Hudson and Hodkiewi', '27');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Kohler-Bruen', '457');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Kohler, Ritchie and DuBuque', '363');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Labadie, Cronin and Koch', '915');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Leffler Ltd', '20');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Littel, Mertz and Haley', '548');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Lowe-Swaniawski', '0');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Marvin-Stoltenberg', '756');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Murazik-Willms', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Murray Ltd', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('O\'Connell-Gleason', '912882');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Okuneva, Collins and O\'Kon', '0');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Olson, Jacobson and White', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Ortiz-Fadel', '1290251837');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Pacocha-Glover', '383863');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Pfeffer, Stamm and Monahan', '51');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Ruecker Inc', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Runolfsson-Bashirian', '236');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Rutherford LLC', '1');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Ryan Group', '645');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Senger, Gislason and Kuvalis', '929');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Stehr-Kovacek', '788074');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Stehr, Lemke and Bayer', '20');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Stokes-Maggio', '570');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Yost, Mueller and Purdy', '1');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Aas', '6929726700 ');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('ARC', '694339253');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('BKM', '6962827015');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('BG', '6958028761 ');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('BHK', '6910765806');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('CaMo', '6941574592');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('CaHe', '6970587334');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('CGr', '6980618836');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('CrInc', '6928255520');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('CrDu', '6994337609 ');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('DaLtd', '6971627285');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('EmInc', '6945363200');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('FCM', '6977587521');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('FaS', '6977587521');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('GTM', '6977587521');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('GrEr', '6950316387');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('GrInc', '6955583121');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('HTP', '6976748429');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('HaHe', '6938252868');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('HeRa', '6994117265');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('HeLtd', '6965511603');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('HSJ', '6974301055');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('JSP', '6916140285');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('JohnGr', '6948433933');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('KeInc', '6957299780');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('KHH', '6997738314');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('KoBr', '6991096946');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('KRD', '6985583889');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('LCK', '6940016569');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('LeLtd', '6911582664');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('LMH', '6951026428');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('LoSw', '6907712409');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('MaSt', '6975821190');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('MuWi', '6985163967');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('MuLtd', '6925863976');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('CoGl', '6917027491');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('CoKo', '6923307476');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('WJ', '6912624139');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('OFad', '6961097574');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('PacoG', '6956515646');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('StM', '6962619219');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('RuInc', '6971394008');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('RunBa', '6944883635');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('RLLC', '6945771431');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('RyanG', '6933579805');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('GK', '6965817628');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('SteKo', '6989826369');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('LeBa, Lemke and Bayer', '6938416022');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('St.M', '6931965897');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('MuPu, Mueller and Purdy', '6907881919');
 
 
 #

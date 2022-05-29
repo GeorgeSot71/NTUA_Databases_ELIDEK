@@ -30,7 +30,7 @@ INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GrEr', '45360
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GrInc', '3359083.05');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HTP', '516644.11');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HaHe', '3742370.49');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('Hera', '3631175.45');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HeRa', '3631175.45');
 
 
 #

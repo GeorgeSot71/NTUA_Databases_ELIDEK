@@ -22,7 +22,6 @@ CREATE TABLE researcher (
     researcher_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     surname VARCHAR(30) NOT NULL,
-    age INT CHECK (age>=0),
     birthday DATE NOT NULL,
     sex VARCHAR(10) NOT NULL,
     PRIMARY KEY (researcher_id)

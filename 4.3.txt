@@ -1,0 +1,31 @@
+#include <avr/io.h>
+
+char led;
+
+int main() {
+	DDRA = 0x00;
+	DDRB = 0xFF;
+	PORTA = 0xFF;
+    led = 0x01;
+	while (1) {
+		if((PINA&0x01)==0x01) { // left rotation with step 1
+			if(led == 0x80) {led = 0x01;}
+			else led = led<<1;
+		}	
+		if((PINA&0x02)==0x02) { // right rotation with step 1
+			if(led == 0x01) {led = 0x80;}
+			else led = led>>1;
+		}
+		if((PINA&0x04)==0x04) { // left rotation with step 2
+			if(led == 0x80) led = 0x02;
+			else if(led == 0x40) led = 0x01;
+			else led = led<<2;
+		}
+		if((PINA&0x08)==0x08) {
+			led = 0x80; // move to msb
+		}
+		PORTB = led;
+    }
+	return 0;
+}
+

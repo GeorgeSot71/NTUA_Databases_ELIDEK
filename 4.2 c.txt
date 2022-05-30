@@ -1,0 +1,25 @@
+#include <avr/io.h>
+
+char A,B,C,D,F0,F1;
+
+int main(void)
+{
+      DDRA = 0xFF;
+	DDRB = 0x00;
+	PORTB = 0xFF;
+	F0 = F1 = 0x00;
+	
+    while (1) {
+		A = PINB&0x01;
+		B = (PINB&0x02)>>1;
+		C = (PINB&0x04)>>2;
+		D = (PINB&0x08)>>3;
+		
+		F0 = (A&B&C)|(~B&~C&~D);
+		F1 = ((A&B&C)|D)>>1;
+		
+		PORTA = (F0|F1);
+		
+    }
+}
+

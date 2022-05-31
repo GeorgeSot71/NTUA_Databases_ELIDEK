@@ -4,7 +4,7 @@ USE elidek;
 
 CREATE TABLE program(
     program_id INT NOT NULL AUTO_INCREMENT,
-    program_name VARCHAR(30) NOT NULL,
+    program_name VARCHAR(100) NOT NULL,
     address VARCHAR(30) NOT NULL,
     PRIMARY KEY (program_id)
 )ENGINE=INNODB;
@@ -49,7 +49,7 @@ CREATE TABLE phone (
 )ENGINE=INNODB;
 
 CREATE TABLE university (
-    abbreviation VARCHAR(30) NOT NULL,
+    abbreviation VARCHAR(50) NOT NULL,
     budget DECIMAL(13,2) NOT NULL CHECK (budget>0),
     PRIMARY KEY (abbreviation),
     FOREIGN KEY (abbreviation)
@@ -57,7 +57,7 @@ CREATE TABLE university (
 )ENGINE=INNODB;
 
 CREATE TABLE scientific_center (
-    abbreviation VARCHAR(30) NOT NULL,
+    abbreviation VARCHAR(50) NOT NULL,
     budget_ministry DECIMAL(13,2) NOT NULL CHECK (budget_ministry>0),
     budget_private DECIMAL(13,2) NOT NULL CHECK (budget_private>0),
     PRIMARY KEY (abbreviation),
@@ -86,7 +86,7 @@ CREATE TABLE employee_relation (
 
 CREATE TABLE project (
     project_id INT NOT NULL AUTO_INCREMENT,
-    title VARCHAR(30) NOT NULL,
+    title VARCHAR(100) NOT NULL,
     summary TEXT NOT NULL,
     funding DECIMAL(7,2) NOT NULL CHECK (funding > 100000 AND funding < 1000000) ,
     start_date DATE NOT NULL,
@@ -108,7 +108,7 @@ CREATE TABLE project (
 )ENGINE=INNODB;
 
 CREATE TABLE delivered (
-    title VARCHAR(30) NOT NULL,
+    title VARCHAR(100) NOT NULL,
     project_id INT NOT NULL,
     summary TEXT NOT NULL,
     delivery_date DATE NOT NULL,

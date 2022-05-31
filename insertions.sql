@@ -1091,6 +1091,30 @@ INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (4
 INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (49, 'Sociology');
 INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (50, 'Medicine');
 INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (50, 'Chemistry');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (51, 'History');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (52, 'Sociology');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (52, 'History');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (53, 'Art');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (53, 'Engineering Sciences');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (54, 'History');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (55, 'Physics');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (55, 'Computer Science');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (56, 'Engineering Sciences');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (56, 'Medicine');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (57, 'Physics');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (57, 'Art');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (58, 'Chemistry');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (58, 'Physics');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (59, 'Chemistry');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (60, 'Mathematics');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (61, 'Mathematics');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (61, 'Computer Science');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (62, 'Computer Science');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (63, 'Mathematics');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (63, 'Physics');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (64, 'Computer Science');
+INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (65, 'Physics');
+
 
 #
 # TABLE STRUCTURE FOR: university

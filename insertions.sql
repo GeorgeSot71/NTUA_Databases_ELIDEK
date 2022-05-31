@@ -1011,7 +1011,7 @@ INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (45, 47);
 INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (46, 48);
 INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (47, 49);
 INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (48, 50);
-INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (49, 51);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (49, 1);
 INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (50, 2);
 INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (1, 53);
 INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (2, 54);

@@ -1,0 +1,21 @@
+
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('HeLtd', '530017.88');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('HSJ', '332027.71');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('JSP', '960049.70');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('JohnGr', '201880.06');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KeInc', '380496.95');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KHH', '270686.31');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KoBr', '350368.93');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KRD', '400606.56');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LCK', '550088.69');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LeLtd', '141679.93');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LMH', '239428.53');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LoSw', '510456.68');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MaSt', '537053.38');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MuWi', '234082.04');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MuLtd', '740430.88');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('CoGl', '167335.99');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('CoKo', '300606.12');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('WJ', '500114.05');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('OFad', '128979.04');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('PacoG', '830111.34');

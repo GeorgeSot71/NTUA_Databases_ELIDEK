@@ -1,0 +1,34 @@
+
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (1, '1st Call for Action "200 Years since the Greek Revolution"', '180 Kilback Villages');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (2, '1st Call for Action “Science and Society” “Research, Innovation and Dissemination Hubs', '46966 Ferry Overpass');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (3, '1st Call for Action "Always Strive for Excellence" , Theodore Papazoglou', '4085 Jermain Prairie Suite 154');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (4, '1st Call for Action  "Interventions to address the economic and social effects of the COVID-19 pandemic"', '3716 Rutherford Road Suite 473');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (5, 'The emerging landscape of digital work in Humanities ', '16873 Hahn Garden Suite 534');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (6, '1st Call for Research Projects to Support Faculty Members & Researchers', '1203 Tristian Coves');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (7, '1st supply of high value research equipment', '0374 Juanita Harbor');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (8, '1st Call for H.F.R.I. Scholarships to PhD Candidates', '20049 Frami Lights Suite 605');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (9, '2nd Call for Action “Research, Innovation and Dissemination Hubs', '91813 Eldon Passage Apt. 069');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (10, 'Fieldwork for data in Greece in the context of the “Wave 10” of the European Social Survey', '070 Corbin Garden Apt. 471');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (11, '1st Call for H.F.R.I. research projects to support Postdoctoral Researchers', '6694 Bashirian Mews Apt. 964');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (12, 'Promote Research and Innovation', '42629 Ardella Mews Suite 325');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (13, '2nd Call for Research Projects to Support Faculty Members & Researchers', '412 Colin Fall');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (14, '2nd Call for Action "200 Years since the Greek Revolution"', '8665 Schneider Ramp Suite 130');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (15, '2nd Call for Action "Always Strive for Excellence" , Theodore Papazoglou', '9303 Angelina Shoal');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (16, '2nd Call for Action "Interventions to address the economic and social effects of the COVID-19 pandemic"', '6415 Javier Junction');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (17, '2nd Call for the supply of high value research equipment', '1755 Laila Underpass Suite 167');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (18, '2nd Call for H.F.R.I. Scholarships to PhD Candidates', '169 Hessel Locks');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (19, '1st Call for H.F.R.I Scholarships to Undergraduate Students', '36077 Heidenreich Village');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (20, '3rd Call for Action "Interventions to address the economic and social effects of the COVID-19 pandemic"', '249 Dare Falls Suite 253');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (21, '3rd Call for Research Projects to Support Faculty Members & Researchers', '719 Dwight Stream');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (22, '3rd Call for Action "Always Strive for Excellence" , Theodore Papazoglou', '372 Schaden Circles');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (23, '2nd Call for H.F.R.I. research projects to support Postdoctoral Researchers', '769 Lesch Squares Suite 975');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (24, '2nd Call for H.F.R.I Scholarships to Undergraduate Students', '540 Kirsten Walks Apt. 666');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (25, '3rd Call for H.F.R.I. Scholarships to PhD Candidates', '12464 Purdy Meadow Apt. 017');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (26, '4th Call for Action "Interventions to address the economic and social effects of the COVID-19 pandemic"', '278 Andre Inlet Suite 089');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (27, '4th Call for H.F.R.I. Scholarships to PhD Candidates', '352 Felipa Freeway');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (28, '4th Call for Action "Always Strive for Excellence" , Theodore Papazoglou', '381 Althea Knoll Apt. 363');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (29, '3rd Call for Action "200 Years since the Greek Revolution"', '674 Jacobson Springs');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (30, '3rd Call for the supply of high value research equipment', '8246 Virginia Roads Suite 249');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (31, '3rd Call for H.F.R.I. research projects to support Postdoctoral Researchers', '813 Effertz Shore');
+INSERT INTO `program` (`program_id`, `program_name`, `address`) VALUES (32, '5th Call for H.F.R.I. Scholarships to PhD Candidates', '22365 Tate Heights');
+#

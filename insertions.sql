@@ -12,7 +12,7 @@ CREATE TABLE `company` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('AaS', '457087.26');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('ARC', '92571.05');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('ARC', '922571.05');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('BKM', '275387.32');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('BG', '480208.14');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('BHK', '430250.11');
@@ -20,15 +20,15 @@ INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CaMo', '35298
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CaHe', '644154.71');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CGr', '130446.70');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CrInc', '190260.87');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CrDu', '28248.29');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CrDu', '288248.29');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('DaLtd', '332232.82');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('EmInc', '102191.66');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('FCM', '42391.70');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('FCM', '423391.70');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('FaS', '406612.53');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GTM', '291231.21');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GrEr', '456009.61');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GrInc', '339083.05');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HTP', '51644.11');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HTP', '511644.11');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HaHe', '372370.49');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HeRa', '361175.45');
 
@@ -867,14 +867,14 @@ CREATE TABLE `scientific_center` (
 
 INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('StM', '344118.13', '390846.01');
 INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RuInc', '882819.05', '650854.50');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RunBa', '44897.49', '105802.96');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RunBa', '444897.49', '105802.96');
 INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RLLC', '313455.12', '57152.37');
 INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RyanG', '391593.04', '289355.33');
 INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('GK', '117597.30', '244442.10');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('SteKo', '37559.72', '276355.49');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('SteKo', '377559.72', '276355.49');
 INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('LeBa', '362546.43', '20530.20');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('St.M', '1377.78', '37897.54');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('Mupu', '29595.43', '23106.45');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('St.M', '133377.78', '37897.54');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('Mupu', '299595.43', '23106.45');
 
 
 #
@@ -977,26 +977,26 @@ CREATE TABLE `university` (
   CONSTRAINT `university_ibfk_1` FOREIGN KEY (`abbreviation`) REFERENCES `organization` (`abbreviation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('HeLtd', '53017.88');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('HSJ', '33027.71');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('JSP', '96049.70');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('HeLtd', '530017.88');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('HSJ', '332027.71');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('JSP', '960049.70');
 INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('JohnGr', '201880.06');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KeInc', '38496.95');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KHH', '27686.31');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KoBr', '35368.93');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KRD', '40606.56');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LCK', '5588.69');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KeInc', '380496.95');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KHH', '270686.31');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KoBr', '350368.93');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('KRD', '400606.56');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LCK', '550088.69');
 INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LeLtd', '141679.93');
 INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LMH', '239428.53');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LoSw', '51456.68');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MaSt', '53753.38');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('LoSw', '510456.68');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MaSt', '537053.38');
 INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MuWi', '234082.04');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MuLtd', '74430.88');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('MuLtd', '740430.88');
 INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('CoGl', '167335.99');
 INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('CoKo', '300606.12');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('WJ', '5114.05');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('WJ', '500114.05');
 INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('OFad', '128979.04');
-INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('PacoG', '83111.34');
+INSERT INTO `university` (`abbreviation`, `budget`) VALUES ('PacoG', '830111.34');
 
 #
 # TABLE STRUCTURE FOR: works_on_project

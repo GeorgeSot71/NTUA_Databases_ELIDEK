@@ -11,26 +11,26 @@ CREATE TABLE `company` (
   CONSTRAINT `company_ibfk_1` FOREIGN KEY (`abbreviation`) REFERENCES `organization` (`abbreviation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('AaS', '4571087.26');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('ARC', '921571.05');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('BKM', '2765387.32');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('BG', '4801208.14');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('BHK', '4306250.11');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CaMo', '3572986.77');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('AaS', '457087.26');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('ARC', '92571.05');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('BKM', '275387.32');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('BG', '480208.14');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('BHK', '430250.11');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CaMo', '352986.77');
 INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CaHe', '644154.71');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CGr', '1308446.70');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CrInc', '1920260.87');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CrDu', '284248.29');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('DaLtd', '3392232.82');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('EmInc', '1062191.66');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('FCM', '423891.70');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('FaS', '4067612.53');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GTM', '2919231.21');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GrEr', '4536009.61');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GrInc', '3359083.05');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HTP', '516644.11');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HaHe', '3742370.49');
-INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HeRa', '3631175.45');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CGr', '130446.70');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CrInc', '190260.87');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('CrDu', '28248.29');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('DaLtd', '332232.82');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('EmInc', '102191.66');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('FCM', '42391.70');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('FaS', '406612.53');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GTM', '291231.21');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GrEr', '456009.61');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('GrInc', '339083.05');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HTP', '51644.11');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HaHe', '372370.49');
+INSERT INTO `company` (`abbreviation`, `private_funding`) VALUES ('HeRa', '361175.45');
 
 
 #
@@ -715,16 +715,16 @@ CREATE TABLE `scientific_center` (
   CONSTRAINT `scientific_center_ibfk_1` FOREIGN KEY (`abbreviation`) REFERENCES `organization` (`abbreviation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('StM', '348440118.13', '3950846.01');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RuInc', '88682819.05', '65150854.50');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RunBa', '440985697.49', '105898902.96');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RLLC', '313357455.12', '57224152.37');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RyanG', '391592053.04', '289381055.33');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('GK', '117335597.30', '244480642.10');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('SteKo', '375504709.72', '271016355.49');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('LeBa', '362658546.43', '20536130.20');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('St.M', '1720377.78', '376254897.54');
-INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('Mupu', '295591295.43', '231820106.45');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('StM', '344118.13', '390846.01');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RuInc', '882819.05', '650854.50');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RunBa', '44897.49', '105802.96');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RLLC', '313455.12', '57152.37');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('RyanG', '391593.04', '289355.33');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('GK', '117597.30', '244442.10');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('SteKo', '37559.72', '276355.49');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('LeBa', '362546.43', '20530.20');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('St.M', '1377.78', '37897.54');
+INSERT INTO `scientific_center` (`abbreviation`, `budget_ministry`, `budget_private`) VALUES ('Mupu', '29595.43', '23106.45');
 
 
 #

@@ -1,4 +1,4 @@
-/* {Fields: Physics, Computer Science, Engineering Sciences, Mathematics, Environment, Chemistry, Medicine, Art, Sociology, Economics }
+/* {Fields: Physics, Computer Science, Engineering Sciences, Mathematics, Environment, Chemistry, Medicine, Art, Sociology, Economics } */
 INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (1, 'Physics');
 INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (2, 'Physics');
 INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES (3, 'Computer Science');

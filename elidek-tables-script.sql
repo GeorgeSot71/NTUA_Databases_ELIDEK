@@ -4,7 +4,7 @@ USE elidek;
 
 CREATE TABLE program(
     program_id INT NOT NULL AUTO_INCREMENT,
-    program_name VARCHAR(100) NOT NULL,
+    program_name VARCHAR(300) NOT NULL,
     address VARCHAR(30) NOT NULL,
     PRIMARY KEY (program_id)
 )ENGINE=INNODB;
@@ -23,7 +23,7 @@ CREATE TABLE researcher (
     name VARCHAR(30) NOT NULL,
     surname VARCHAR(30) NOT NULL,
     birthday DATE NOT NULL,
-    sex VARCHAR(10) NOT NULL,
+    sex VARCHAR(30) NOT NULL,
     PRIMARY KEY (researcher_id)
 )ENGINE=INNODB;
 
@@ -88,7 +88,7 @@ CREATE TABLE project (
     project_id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL,
     summary TEXT NOT NULL,
-    funding DECIMAL(7,2) NOT NULL CHECK (funding > 100000 AND funding < 1000000) ,
+    funding DECIMAL(10,2) NOT NULL CHECK (funding >= 100000 AND funding <= 1000000) ,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
     abbreviation VARCHAR(30) NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE works_on_project(
 CREATE TABLE evaluate_project(
     project_id INT NOT NULL,
     researcher_id INT NOT NULL,
-    grade numeric(2,2) NOT NULL CHECK (grade>=0 AND grade<=10),
+    grade DECIMAL(4,2) NOT NULL CHECK (grade>=0 AND grade<=10),
     evaluation_date DATE NOT NULL,
     PRIMARY KEY (project_id,researcher_id),
     FOREIGN KEY (project_id)

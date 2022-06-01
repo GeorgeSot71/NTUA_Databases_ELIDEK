@@ -100,4 +100,45 @@ INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`)
 INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (99, 'Amilia', 'Cox', '1985-06-14', 'Female');
 INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (100, 'Edward', 'Ball', '1993-05-27', 'Male');
 
+/* The extra researchers i added */
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (101, 'Elton', 'Padberg', '1970-01-01', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (102, 'Anibal', 'Rodriguez', '1972-05-24', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (103, 'Vivian', 'Hilpert', '1976-04-02', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (104, 'Lea', 'Metz', '1993-07-03', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (105, 'Kelton', 'Shanahan', '1978-06-04', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (106, 'Tyrel', 'Tremblay', '1986-03-06', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (107, 'Reba', 'Littel', '1992-07-05', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (108, 'Eldora', 'Fritsch', '1988-04-05', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (109, 'Thelma', 'Dach', '1989-07-02', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (110, 'Rashawn', 'Windler', '1991-11-16', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (111, 'Newton', 'Altenwerth', '1983-12-13', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (112, 'Nestor', 'Kihn', '1970-05-03', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (113, 'Jarvis', 'Fadel', '1972-04-14', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (114, 'Burdette', 'Bailey', '1979-03-15', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (115, 'Myrtie', 'Schowalter', '1972-04-06', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (116, 'Terrell', 'Green', '1983-05-03', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (117, 'Rachel', 'Stokes', '1990-09-15', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (118, 'Colby', 'Cremin', '1974-02-24', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (119, 'Marcos', 'Rosenbaum', '1966-06-17', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (120, 'Brody', 'Feil', '1973-04-11', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (121, 'Lilly', 'Williamson', '1978-11-15', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (122, 'Grayce', 'Johns', '1981-01-01', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (123, 'Andreane', 'Amore', '1993-02-15', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (124, 'Luther', 'Lubowitz', '1971-04-03', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (125, 'Emmie', 'Hyatt', '1969-12-24', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (126, 'Alphonso', 'Bernhard', '1968-04-22', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (127, 'Jaydon', 'Nikolaus', '1982-03-24', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (128, 'Ernestina', 'Schoen', '1984-01-14', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (129, 'Yazmin', 'Block', '1980-06-26', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (130, 'Angelica', 'Hane', '1990-03-12', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (131, 'Britney', 'Marvin', '1984-04-14', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (132, 'Austin', 'Kreiger', '1977-06-14', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (133, 'Keshawn', 'Conn', '1990-05-18', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (134, 'Lonnie', 'Schroeder', '1988-03-23', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (135, 'Dejon', 'Langosh', '1986-11-29', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (136, 'Leone', 'Christiansen', '1991-03-01', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (137, 'Isidro', 'Stamm', '1996-07-01', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (138, 'Otto', 'Bins', '1982-03-14', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (139, 'Tyrese', 'Wolff', '1978-04-13', 'Female');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (140, 'Bobby', 'Brakus', '1986-03-11', 'Male');
 #

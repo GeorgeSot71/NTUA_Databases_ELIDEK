@@ -68,6 +68,41 @@ INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (64, 'RyanG', '2017-08-13');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (65, 'RyanG', '2017-04-12');
 
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (66, 'KHH', '2015-10-11');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (67, 'KoBr', '2016-11-15');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (68, 'KRD', '2017-06-17');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (69, 'LCK', '2016-04-12');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (70, 'LeLtd', '2014-05-11');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (71, 'LMH', '2015-04-10');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (72, 'LoSw', '2014-08-08');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (73, 'MaSt', '2015-06-04');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (74, 'MuWi', '2017-01-03');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (75, 'MuLtd', '2017-02-29');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (76, 'CoGl', '2015-03-02');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (77, 'CoKo', '2016-11-28');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (78, 'WJ', '2017-06-18');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (79, 'OFad', '2015-05-02');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (80, 'PacoG', '2016-01-15');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (81, 'StM', '2016-01-09');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (82, 'RuInc', '2017-04-13');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (83, 'RunBa', '2016-06-08');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (84, 'RLLC', '2015-09-13');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (85, 'RyanG', '2017-02-12');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (86, 'GK', '2017-01-03');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (87, 'SteKo', '2016-12-03');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (88, 'LeBa', '2015-11-14');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (89, 'St.M', '2017-01-30');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (90, 'MuPu', '2016-10-01');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (91, 'AaS', '2016-12-27');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (92, 'AaS', '2017-04-19');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (93, 'AaS', '2017-08-24');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (94, 'AaS', '2015-11-20');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (95, 'RyanG', '2014-04-17');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (96, 'AaS', '2015-12-16');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (97, 'RyanG', '2010-11-10');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (98, 'AaS', '2014-11-02');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (99, 'AaS', '2017-11-09');
+INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (100, 'AaS', '2016-10-15');
 /*
 PARAKATW EINAI TA WORKS ON
 */

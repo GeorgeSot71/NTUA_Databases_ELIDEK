@@ -173,7 +173,7 @@ INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (65, 'RyanG', '2014-06-02');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (66, 'RyanG', '2017-04-08');
 /*THE LOOP*/
-INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (67, 'Aas', '2014-03-29');
+/* INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (67, 'Aas', '2014-03-29'); */
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (68, 'ARC', '2016-01-10');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (69, 'BKM', '2015-05-03');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (70, 'BG', '2016-12-27');

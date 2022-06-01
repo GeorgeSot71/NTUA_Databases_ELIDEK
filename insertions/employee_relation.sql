@@ -67,7 +67,6 @@ INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (63, 'RyanG', '2016-09-14');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (64, 'RyanG', '2017-08-13');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (65, 'RyanG', '2017-04-12');
-
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (66, 'AaS', '2015-10-11');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (67, 'AaS', '2016-11-15');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (68, 'AaS', '2017-06-17');
@@ -103,6 +102,7 @@ INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (98, 'AaS', '2014-11-02');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (99, 'AaS', '2017-11-09');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (100, 'AaS', '2016-10-15');
+
 /*
 PARAKATW EINAI TA WORKS ON
 */
@@ -156,7 +156,7 @@ INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (49, 'LeBa', '2015-11-14');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (50, 'St.M', '2017-01-30');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (51, 'MuPu', '2016-10-01');
-/* THE ADDED PROJECTS*/
+/* THE ADDED PROJECTS +15*/
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (52, 'Aas', '2014-03-29');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (53, 'Aas', '2016-01-10');
 INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES (54, 'Aas', '2015-05-03');

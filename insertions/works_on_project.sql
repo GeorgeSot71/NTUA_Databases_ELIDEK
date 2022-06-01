@@ -98,3 +98,17 @@ INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (97, 297);
 INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (98, 298);
 INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (99, 299);
 INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (100, 300);
+/* gia to query pou leei gia enan ergazomeno pou douleuei gia 5+ projects*/
+/* evala gia paradeigma 2 ergazomenous tou AaS na doulepsoun gia kapoia project tou Aas*/
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (66, 300);
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (67, 300);
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (68, 300);
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (69, 300);
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (70, 300);
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (71, 300);
+
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (69, 299);
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (70, 299);
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (71, 299);
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (72, 299);
+INSERT INTO 'works_on_project'('project_id', 'researcher_id') VALUES (73, 299);

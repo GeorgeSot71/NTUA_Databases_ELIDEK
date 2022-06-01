@@ -135,3 +135,23 @@ INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (97, 132);
 INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (98, 133);
 INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (99, 134);
 INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (100, 135);
+
+/* Gia to query (posoi ereunites douleuoun se panw apo 5 project)
+evala 3 na douleuoun se 6 project o kathenas
+*/
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (67, 136);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (68, 136);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (69, 136);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (70, 136);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (71, 136);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (72, 107);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (73, 108);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (74, 109);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (75, 110);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (76, 111);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (77, 112);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (78, 113);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (79, 114);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (80, 115);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (81, 116);
+INSERT INTO `works_on_project` (`project_id`, `researcher_id`) VALUES (82, 117);

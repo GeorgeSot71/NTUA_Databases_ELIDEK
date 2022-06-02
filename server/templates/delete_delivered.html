@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="delete-delivered">
+    <form class="p-2" class="form" method='POST' action= "/delete/delete_delivered">
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="title">Title of the deliverable</label>
+            <input type="text" class="form-control" name="title" placeholder="Title">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="project_name">Project Name</label>
+            <input type="text" class="form-control" name="project_name" placeholder="Project Name">
+        </div>
+        </div>
+        <div class="form-group my-4">
+            <button type="submit" class="btn btn-primary"> Remove Deliverable </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

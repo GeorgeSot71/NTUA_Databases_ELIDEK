@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="delete-organization">
+    <form class="p-2" class="form" method='POST' action= "/delete/delete_organization">
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="abbreviation">Organization Abbreviation</label>
+            <input type="text" class="form-control" name="abbreviation" placeholder="Abbreviation">
+        </div>
+        </div>
+        <div class="form-group my-4">
+            <button type="submit" class="btn btn-primary"> Remove Organization </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

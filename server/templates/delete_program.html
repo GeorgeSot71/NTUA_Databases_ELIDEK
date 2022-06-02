@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="delete-program">
+    <form class="p-2" class="form" method='POST' action= "/delete/delete_program">
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="program_name">Program name</label>
+            <input type="text" class="form-control" name="program_name" placeholder="Program name">
+        </div>
+        </div>
+        <div class="form-group my-4">
+            <button type="submit" class="btn btn-primary"> Remove Program </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

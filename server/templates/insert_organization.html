@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="insert-organization">
+    <form class="p-2" class="form" method='POST' action= "/insert/insert_organization">
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="abbreviation">Organization Abbreviation</label>
+            <input type="text" class="form-control" name="abbreviation" placeholder="Organization Abbreviation">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="name">Organization Name</label>
+            <input type="text" class="form-control" name="name" placeholder="Organization Name">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="postcode">Organization Postcode</label>
+            <input type="text" class="form-control" name="postcode" placeholder="Organization Postcode">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="road">Organization Adress</label>
+            <input type="text" class="form-control" name="road" placeholder="Organization Adress">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="town">Organization City</label>
+            <input type="text" class="form-control" name="town" placeholder="Organization City">
+        </div>
+        </div>
+        <div class="form-group my-4">
+            <button type="submit" class="btn btn-primary"> Register Program </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

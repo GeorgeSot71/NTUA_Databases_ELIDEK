@@ -163,3 +163,49 @@ def insert_scientific_field():
 @app.route("/insert/insert_researcher")
 def insert_researcher():
     return render_template('insert_researcher.html')
+
+# George added the following
+
+@app.route("/delete/delete_employee_relation")
+def delete_employee_relation():
+    return render_template('delete_employee_relation.html')
+    
+@app.route("/delete/delete_project")
+def delete_project():
+    return render_template('delete_project.html')
+
+@app.route("/delete/delete_delivered")
+def delete_delivered():
+    return render_template('delete_delivered.html')
+
+@app.route("/delete/delete_works_on_project")
+def delete_works_on_project():
+    return render_template('delete_works_on_project.html')
+
+@app.route("/delete/delete_evaluate_project")
+def delete_evaluate_project():
+    return render_template('delete_evaluate_project.html')
+
+@app.route("/delete/delete_scientific_field")
+def delete_scientific_field():
+    return render_template('delete_scientific_field.html')
+
+@app.route("/delete/delete_researcher")
+def delete_researcher():
+    return render_template('delete_researcher.html')
+
+@app.route("/delete/delete_phone", methods=["GET", "POST"])
+def delete_phone():
+    return render_template('delete_phone.html')
+
+@app.route("/delete/delete_organization", methods=["GET", "POST"]  )
+def delete_organization():
+    return render_template('delete_organization.html')
+
+@app.route("/delete/delete_program", methods=["GET", "POST"])
+def delete_program():
+        return render_template('delete_program.html')    
+
+@app.route("/delete/delete_executive", methods=["GET", "POST"])
+def delete_executive():
+        return render_template('delete_executive.html')

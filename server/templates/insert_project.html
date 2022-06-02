@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="insert-project">
+    <form class="p-2" class="form" method='POST' action= "/insert/insert_project">
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="title">Project Title</label>
+            <input type="text" class="form-control" name="title" placeholder="Project Title">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="<summary></summary>">Summary</label>
+            <input type="text" class="form-control" name="summary" placeholder="Summary">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="funding">Funding</label>
+            <input type="text" class="form-control" name="funding" placeholder="Funding">
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="start_date">Start Date</label>
+          <input type="date" class="form-control" name="start_date" placeholder="Date">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="end_date">End Date</label>
+          <input type="date" class="form-control" name="end_date" placeholder="Date">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="abbreviation">Organization Abbreviation</label>
+          <input type="text" class="form-control" name="abbreviation" placeholder="Abbreviation">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="executive_name">Executive Name</label>
+          <input type="text" class="form-control" name="executive_name" placeholder="Name">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="scientific_inspector_name">Scientific Inspector Name</label>
+          <input type="text" class="form-control" name="scientific_inspector_name" placeholder="Name">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="program_name">Program Name</label>
+          <input type="text" class="form-control" name="program_name" placeholder="Name">
+      </div>
+      <label for="type">Choose the scientific field:</label>
+      <select name="type" id="type">
+        <option value="Physics">Physics</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Engineering Sciences">Engineering Sciences</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Environment">Environment</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Medicine">Medicine</option>
+        <option value="Art">Art</option>
+        <option value="Sociology">Sociology</option>
+        <option value="Economics">Economics</option>
+      </select>
+        </div>
+        <div class="form-group my-4">
+            <button type="submit" class="btn btn-primary"> Register Project </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

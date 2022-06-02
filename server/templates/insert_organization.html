@@ -5,19 +5,22 @@
         <div class="form-row">
         <div class="form-group col-md-6">
             <label for="abbreviation">Organization Abbreviation</label>
-            <input type="text" class="form-control" name="abbreviation" placeholder="Organization Abbreviation">
+            <input type="text" class="form-control" name="abbreviation" placeholder="Abbreviation">
         </div>
         <div class="form-group col-md-6">
             <label for="name">Organization Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Organization Name">
+            <input type="text" class="form-control" name="name" placeholder="Name">
         </div>
         <div class="form-group col-md-6">
             <label for="postcode">Organization Postcode</label>
-            <input type="text" class="form-control" name="postcode" placeholder="Organization Postcode">
+            <input type="tel" id="postcode" name="postcode"
+                   pattern="[0-9]{5}"
+                   required>
+            <small>Format: 12345</small>
         </div>
         <div class="form-group col-md-6">
-            <label for="road">Organization Adress</label>
-            <input type="text" class="form-control" name="road" placeholder="Organization Adress">
+            <label for="road">Organization Address</label>
+            <input type="text" class="form-control" name="road" placeholder="Address">
         </div>
         <div class="form-group col-md-6">
             <label for="town">Organization City</label>
@@ -36,3 +39,7 @@
     </form>
 </div>
 {% endblock %}
+
+<input type="tel" id="phone" name="phone"
+       pattern="[0-9]{10}"
+       required>

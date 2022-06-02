@@ -5,15 +5,15 @@
         <div class="form-row">
         <div class="form-group col-md-6">
             <label for="title">Project Title</label>
-            <input type="text" class="form-control" name="title" placeholder="Project Title">
+            <input type="text" class="form-control" name="title" placeholder="Title">
         </div>
         <div class="form-group col-md-6">
-            <label for="<summary></summary>">Summary</label>
+            <label for="summary">Summary</label>
             <input type="text" class="form-control" name="summary" placeholder="Summary">
         </div>
         <div class="form-group col-md-6">
             <label for="funding">Funding</label>
-            <input type="text" class="form-control" name="funding" placeholder="Funding">
+            <input type="number" step="0.01" min="100000" max="1000000"class="form-control" name="funding" placeholder="Funding">
         </div>
       </div>
       <div class="form-group col-md-6">
@@ -31,10 +31,17 @@
       <div class="form-group col-md-6">
           <label for="executive_name">Executive Name</label>
           <input type="text" class="form-control" name="executive_name" placeholder="Name">
+      </div><div class="form-group col-md-6">
+          <label for="executive_surname">Executive Surname</label>
+          <input type="text" class="form-control" name="executive_surname" placeholder="Surname">
       </div>
       <div class="form-group col-md-6">
           <label for="scientific_inspector_name">Scientific Inspector Name</label>
           <input type="text" class="form-control" name="scientific_inspector_name" placeholder="Name">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="scientific_inspector_surname">Scientific Inspector Surname</label>
+          <input type="text" class="form-control" name="scientific_inspector_surname" placeholder="Surname">
       </div>
       <div class="form-group col-md-6">
           <label for="program_name">Program Name</label>

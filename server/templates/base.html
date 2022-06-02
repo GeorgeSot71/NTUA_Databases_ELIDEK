@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Elidek</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <nav class="menu" tabindex="0">
+      <header class="text">
+          <h1> ELIDEK </h1>
+      </header>
+        <ul>
+        <a href="/queries">
+            <li>View Statistics</li>
+        </a>
+        <a href="/insert">
+            <li>Insert entry into database</li>
+        </a>
+        <a href="/update">
+            <li>Update entry in database</li>
+        </a>
+        <a href="/delete">
+            <li>Delete entry from database</li>
+        </a>
+        </ul>
+    </nav>
+    {% block content %}{% endblock %}
+  </body>
+</html>

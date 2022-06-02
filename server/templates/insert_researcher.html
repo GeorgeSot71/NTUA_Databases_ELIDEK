@@ -1,16 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="insert-">
-    <form class="p-2" class="form" method='POST' action= "/insert/insert_program">
+<div id="insert-researcher">
+    <form class="p-2" class="form" method='POST' action= "/insert/insert_researcher">
         <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="program_name">Program name</label>
-            <input type="text" class="form-control" name="program_name" placeholder="Program name">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" placeholder="Name">
         </div>
         <div class="form-group col-md-6">
-            <label for="program_address">Program Address</label>
-            <input type="text" class="form-control" name="program_address" placeholder="Program Address">
+            <label for="surname">Surname</label>
+            <input type="text" class="form-control" name="surname" placeholder="Surname">
         </div>
+
+        <div class="form-group col-md-6">
+            <label for="birthday">Birth date</label>
+            <input type="date" class="form-control" name="birthday" placeholder="Birth date">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="sex">Gender</label>
+            <input type="text" class="form-control" name="sex" placeholder="Gender">
         </div>
         <div class="form-group my-4">
             <button type="submit" class="btn btn-primary"> Register Program </button>

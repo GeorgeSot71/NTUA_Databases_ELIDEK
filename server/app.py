@@ -76,8 +76,19 @@ def insert_program():
 
     return render_template('insert_program.html')
 
-@app.route("/insert/insert_executive")
+@app.route("/insert/insert_executive", methods=["GET", "POST"])
 def insert_executive():
+    rs = connection.cursor()
+    exec_name = str(request.form.get('exec_name'))
+    exec_surname = str(request.form.get('exec_surname'))
+    exec_sex = str(request.form.get('exec_sex'))
+    birthday = str(request.form.get('exec_birthday'))
+    if(exec_name == "None" or exec_surname == "None" or exec_sex == 'None' or birthday == ''):
+        return render_template('insert_executive.html')
+    queryString = "INSERT INTO `executive` (`name`, `surname`, `birthday`, `sex`) VALUES ('"+exec_name+"', '"+exec_surname+"', '"+birthday+"', '"+exec_sex+"');"
+    rs.execute(queryString)
+    connection.commit()
+
     return render_template('insert_executive.html')
 
 @app.route("/insert/insert_researcher")
@@ -88,9 +99,23 @@ def insert_researcher():
 def insert_organization():
     return render_template('insert_organization.html')
 
-@app.route("/insert/insert_phone")
+
+### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###
+@app.route("/insert/insert_phone", methods=["GET", "POST"])
 def insert_phone():
+    rs = connection.cursor()
+    org_abr = str(request.form.get('abbreviation'))
+    phone = str(request.form.get('phone'))
+    if(org_abr == "None" or phone == "None"):
+        return render_template('insert_phone.html')
+    queryString = "INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('"+org_abr+"', '"+phone+"');"
+    try:
+        rs.execute(queryString)
+        connection.commit()
+    except Exception as e:
+        print("Problem inserting into db: " + str(e))
     return render_template('insert_phone.html')
+### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###
 
 @app.route("/insert/insert_employee_relation")
 def insert_employee_relation():

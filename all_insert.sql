@@ -436,7 +436,7 @@ INSERT INTO `organization` (`abbreviation`, `name`, `post_code`, `road`, `town`)
 
 INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Aas', '6929726700');
 INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('Aas', '6925345808');
-INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('ARC', '694339253');
+INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('ARC', '6943359253');
 INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('BKM', '6962827015');
 INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('BKM', '6932123455');
 INSERT INTO `phone` (`abbreviation`, `phone_number`) VALUES ('BG', '6958028761');

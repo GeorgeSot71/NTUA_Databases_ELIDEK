@@ -1,4 +1,4 @@
-# NTUA Databases ELIDEK
+# NTUA Databases ΕΛΙΔΕΚ
 
 ## Dependencies
 - Αρχικά πρέπει να έχουμε εγκατεστημένο τον mysql-server (παρακάτω φαίνεται ένας σύντομος οδηγός εγκατάστασης)

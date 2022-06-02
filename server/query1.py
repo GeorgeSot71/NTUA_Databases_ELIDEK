@@ -36,7 +36,7 @@ def query1():
     )
     
 my_query1_1 = "SELECT  * FROM program;"   
-everything = " SELECT r.researcher_id,r.name,r.surname, p.project_id FROM program,researcher r, project p WHERE "
+everything = " SELECT r.researcher_id,r.name,r.surname, p.project_id FROM researcher r, project p WHERE "
 my_query1_2 = (
     everything
     + project_id

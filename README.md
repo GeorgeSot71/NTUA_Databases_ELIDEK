@@ -21,3 +21,7 @@ sudo apt install pip
 ```
 pip install flask
 ```
+- Για να ανοίξει ο server και να έχουμε πρόσβαση στο ui ανοίγουμε ένα terminal στο directory του αρχείου app.py και τρέχουμε την παρακάτω εντολή 
+```
+python3 -m flask run
+```

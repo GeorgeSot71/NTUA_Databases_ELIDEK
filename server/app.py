@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import mysql.connector, re
 from datetime import datetime
+
 app = Flask(__name__)
 
 connection = mysql.connector.connect(host='localhost',database='elidek',
@@ -62,7 +63,7 @@ def query7():
 def query8():
     return render_template('query8.html')
 
-
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_program", methods=["GET", "POST"])
 def insert_program():
     rs = connection.cursor()
@@ -75,7 +76,9 @@ def insert_program():
     connection.commit()
 
     return render_template('insert_program.html')
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_executive", methods=["GET", "POST"])
 def insert_executive():
     rs = connection.cursor()
@@ -90,17 +93,33 @@ def insert_executive():
     connection.commit()
 
     return render_template('insert_executive.html')
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-@app.route("/insert/insert_researcher")
-def insert_researcher():
-    return render_template('insert_researcher.html')
-
-@app.route("/insert/insert_organization")
+@app.route("/insert/insert_organization", methods=["GET", "POST"]  )
 def insert_organization():
+    rs = connection.cursor()
+    org_abr = str(request.form.get('abbreviation'))
+    org_name = str(request.form.get('name'))
+    org_postcode = str(request.form.get('postcode'))
+    org_address = str(request.form.get('road'))
+    org_town = str(request.form.get('town'))
+    org_type = str(request.form.get('type'))
+    org_budget1 = str(request.form.get('budget1'))
+    org_budget2 = str(request.form.get('budget2'))
+
+    if(org_abr == "None" or org_name == "None" or org_postcode == 'None' or org_address == "None" or org_town == "None" or org_type == "None" or org_budget1 == "None"):
+        return render_template('insert_organization.html')
+    if(org_type == "scientific_center" and org_budget2 == ""):
+        return "Missing Value: Please go back and specify the amount of private funds!"
+    queryString1 = "INSERT INTO `organization` (`abbreviation`, `name`, `post_code`, `road`, `town`) VALUES ('"+org_abr+"', '"+org_name+"', "+org_postcode+", '"+org_address+"', '"+org_town+"');"
+    rs.execute(queryString1)
+    #query2String = ""
+    #rs.execute(queryString2)
+    connection.commit()
+
     return render_template('insert_organization.html')
 
-
-### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_phone", methods=["GET", "POST"])
 def insert_phone():
     rs = connection.cursor()
@@ -112,10 +131,10 @@ def insert_phone():
     try:
         rs.execute(queryString)
         connection.commit()
-    except Exception as e:
-        print("Problem inserting into db: " + str(e))
+    except mysql.connector.errors.IntegrityError:
+        return "<h1>This organization abbreviation does not exist, go back and input an existing abbreviation</h1>"
     return render_template('insert_phone.html')
-### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###  ### TO DO ###
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
 @app.route("/insert/insert_employee_relation")
 def insert_employee_relation():
@@ -136,3 +155,11 @@ def insert_works_on_project():
 @app.route("/insert/insert_evaluate_project")
 def insert_evaluate_project():
     return render_template('insert_evaluate_project.html')
+
+@app.route("/insert/insert_scientific_field")
+def insert_scientific_field():
+    return render_template('insert_scientific_field.html')
+
+@app.route("/insert/insert_researcher")
+def insert_researcher():
+    return render_template('insert_researcher.html')

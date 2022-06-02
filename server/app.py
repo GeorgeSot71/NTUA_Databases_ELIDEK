@@ -212,7 +212,7 @@ def delete_executive():
         return render_template('delete_executive.html')
 
     
-#update
+#update (some of the following may not be needed)
 @app.route("/update/update_employee_relation")
 def update_employee_relation():
     return render_template('update_employee_relation.html')

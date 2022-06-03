@@ -155,6 +155,7 @@ def insert_phone():
     return render_template('insert_phone.html')
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_project", methods=["GET", "POST"])
 def insert_project():
     rs = connection.cursor()
@@ -170,11 +171,18 @@ def insert_project():
     scientific_inspector_surname = str(request.form.get('scientific_inspector_surname'))
     program_name = str(request.form.get('program_name'))
     project_field = str(request.form.get('type'))
+    eval_date = str(request.form.get('evaluation_date'))
+    eval_name = str(request.form.get('evaluator_name'))
+    eval_surname = str(request.form.get('evaluator_surname'))
+    eval_grade = str(request.form.get('evaluation_grade'))
 
-    if(project_title == '' or project_summary == '' or project_funds == '' or start_date == '' or end_date == "" or org_abr == "" or exec_name == "" or exec_surname == "" or project_field == "" or program_name == "" or scientific_inspector_name == "" or scientific_inspector_surname == ""):
+    #return eval_date+eval_name+eval_surname+eval_grade+project_title+project_summary+project_funds+start_date+end_date+org_abr +exec_name+ exec_surname +project_field + program_name + scientific_inspector_name + scientific_inspector_surname
+    #null input check
+    if(eval_date == '' or eval_name == '' or eval_surname == '' or eval_grade == '' or project_title == '' or project_summary == '' or project_funds == '' or start_date == '' or end_date == "" or org_abr == "" or exec_name == "" or exec_surname == "" or project_field == "" or program_name == "" or scientific_inspector_name == "" or scientific_inspector_surname == ""):
         return render_template('insert_project.html')
-    if(project_title == 'None' or project_summary == 'None' or project_funds == 'None' or start_date == 'None' or end_date == "None" or org_abr == "None" or exec_name == "None" or exec_surname == "None" or project_field == "None" or program_name == "None" or scientific_inspector_name == "None" or scientific_inspector_surname == "None"):
+    if(eval_date == 'None' or eval_name == 'None' or eval_surname == 'None' or eval_grade == 'None' or project_title == 'None' or project_summary == 'None' or project_funds == 'None' or start_date == 'None' or end_date == "None" or org_abr == "None" or exec_name == "None" or exec_surname == "None" or project_field == "None" or program_name == "None" or scientific_inspector_name == "None" or scientific_inspector_surname == "None"):
         return render_template('insert_project.html')
+
     #executive -> executive_id
     select1 = "SELECT executive_id FROM executive WHERE name='"+exec_name+"' AND surname='"+exec_surname+"';"
     rs.execute(select1)
@@ -192,6 +200,7 @@ def insert_project():
         return "There seems to be more than one researcher with the name you specified, please contant database administrators"
     if (len(inspector_results) <1):
         return "A researcher with the name you specified does not exist in the database, please contant database administrators"
+
     #progran name -> program_id
     select3 = "SELECT program_id FROM program WHERE program_name='"+program_name+"';"
     rs.execute(select3)
@@ -199,28 +208,76 @@ def insert_project():
     if (len(program_id) <  1):
         return "There is not a program with the name you specified, please contact database administrators"
 
-    #insert into program
-    insert1 = "INSERT INTO `project` ( `title`, `summary`, `funding`, `start_date`, `end_date`, `abbreviation`, `executive_id`, `program_id`, `scientific_inspector_id`) VALUES ('"+project_title+"', '"+project_summary+"', '"+project_funds+"', '"+start_date+"', '"+end_date+"', '"+org_abr+"', "+exec_results[0][0]+", "+program_id[0][0]+", "+inspector_results[0][0]+");"
-    rs.execute(insert1)
-    #insert into employee_relation and scientific field
-    insert1 = ""
-
+    #insert into project
+    insert1 = "INSERT INTO `project` ( `title`, `summary`, `funding`, `start_date`, `end_date`, `abbreviation`, `executive_id`, `program_id`, `scientific_inspector_id`) VALUES ('"+project_title+"', '"+project_summary+"', '"+project_funds+"', '"+start_date+"', '"+end_date+"', '"+org_abr+"', "+str(exec_results[0][0])+", "+str(program_id[0][0])+", "+str(inspector_results[0][0])+");"
     rs.execute(insert1)
     connection.commit()
 
-    return render_template('insert_project.html')
+    #get inserted project_id
+    get_project_id = "SELECT LAST_INSERT_ID();"
+    rs.execute(get_project_id)
+    project_id = rs.fetchall()
+    project_id = project_id[0][0]
+    #insert into works_on_project
+    insert2 = "INSERT INTO `works_on_project`(`project_id`, `researcher_id`) VALUES ("+str(project_id)+", "+str(inspector_results[0][0])+");"
+    rs.execute(insert2)
+    connection.commit()
 
-@app.route("/insert/insert_delivered")
+    #inser into scientific field
+    insert3 = "INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES ("+str(project_id)+", '"+project_field+"');"
+    rs.execute(insert3)
+    connection.commit()
+
+    #evaluation, get evaluator_id, insert into table
+    select4 = "SELECT researcher_id FROM researcher WHERE name='"+eval_name+"' AND surname='"+eval_surname+"';"
+    rs.execute(select4)
+    evaluator_results = rs.fetchall()
+    if (len(evaluator_results) >1):
+        return "There seems to be more than one evaluator (researcher) with the name you specified, please contant database administrators"
+    if (len(evaluator_results) <1):
+        return "An evaluator (researcher) with the name you specified does not exist in the database, please contant database administrators"
+
+    insert4 = "INSERT INTO `evaluate_project` (`project_id`, `researcher_id`, `grade`, `evaluation_date`) VALUES ("+str(project_id)+", "+str(evaluator_results[0][0])+", '"+eval_grade+"', '"+eval_date+"');"
+    rs.execute(insert4)
+    connection.commit()
+
+    return render_template('insert_project.html')
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/insert/insert_delivered", methods=["GET", "POST"])
 def insert_delivered():
+    rs = connection.cursor()
+
+    del_title = str(request.form.get('title'))
+    del_summary = str(request.form.get('summary'))
+    project_name = str(request.form.get('project_name'))
+    del_date = str(request.form.get('delivery_date'))
+
+    if(del_title == "None" or del_summary == "None" or project_name == "None" or del_date == "None"):
+        return render_template('insert_delivered.html')
+    if(del_title == "" or del_summary == "" or project_name == "" or del_date == ""):
+        return render_template('insert_delivered.html')
+
+    #get project_id using project_name
+    select = "SELECT project_id FROM project WHERE title='"+project_name+"';"
+    rs.execute(select)
+    project_id = rs.fetchall()
+    if(len(project_id)>1):
+        return "There seems to be more than one project the that title, please conantact database administrators"
+    if(len(project_id)<1):
+        return "There doesn't exist a project with the title you specified"
+
+    queryString = "INSERT INTO `delivered` (`title`, `summary`, `delivery_date`, `project_id`) VALUES ('"+del_title+"', '"+del_summary+"', '"+del_date+"', "+str(project_id[0][0])+");"
+    rs.execute(queryString)
+    connection.commit()
+
     return render_template('insert_delivered.html')
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
 @app.route("/insert/insert_works_on_project")
 def insert_works_on_project():
     return render_template('insert_works_on_project.html')
-
-@app.route("/insert/insert_evaluate_project")
-def insert_evaluate_project():
-    return render_template('insert_evaluate_project.html')
 
 @app.route("/insert/insert_scientific_field")
 def insert_scientific_field():

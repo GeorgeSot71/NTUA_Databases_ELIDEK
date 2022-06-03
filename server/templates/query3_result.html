@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="projects_and_researchers_per_field">
+<div class="query3_result">
     <h3>Projects and researchers working for that scientific field</h3>
     <table class="table table-sm table-borderless">
         <thead>
@@ -12,7 +12,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for project per projects %}
+        {% for projects in project %}
         <tr class="project-row">
             <td>{{ scientific_field }}</td>
             <td>{{ project.title }}</td>

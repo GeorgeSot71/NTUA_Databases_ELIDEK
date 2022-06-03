@@ -170,7 +170,7 @@ def insert_researcher():
 @app.route("/delete/delete_employee_relation")
 def delete_employee_relation():
     return render_template('delete_employee_relation.html')
-    
+
 @app.route("/delete/delete_project")
 def delete_project():
     return render_template('delete_project.html')
@@ -205,18 +205,18 @@ def delete_organization():
 
 @app.route("/delete/delete_program", methods=["GET", "POST"])
 def delete_program():
-        return render_template('delete_program.html')    
+        return render_template('delete_program.html')
 
 @app.route("/delete/delete_executive", methods=["GET", "POST"])
 def delete_executive():
         return render_template('delete_executive.html')
 
-    
+
 #update (some of the following may not be needed)
 @app.route("/update/update_employee_relation")
 def update_employee_relation():
     return render_template('update_employee_relation.html')
-    
+
 @app.route("/update/update_project")
 def update_project():
     return render_template('update_project.html')
@@ -225,25 +225,13 @@ def update_project():
 def update_delivered():
     return render_template('update_delivered.html')
 
-@app.route("/update/update_works_on_project")
-def update_works_on_project():
-    return render_template('update_works_on_project.html')
-
 @app.route("/update/update_evaluate_project")
 def update_evaluate_project():
     return render_template('update_evaluate_project.html')
 
-@app.route("/update/update_scientific_field")
-def update_scientific_field():
-    return render_template('update_scientific_field.html')
-
 @app.route("/update/update_researcher")
 def update_researcher():
     return render_template('update_researcher.html')
-
-@app.route("/update/update_phone", methods=["GET", "POST"])
-def update_phone():
-    return render_template('update_phone.html')
 
 @app.route("/update/update_organization", methods=["GET", "POST"]  )
 def update_organization():
@@ -251,7 +239,7 @@ def update_organization():
 
 @app.route("/update/update_program", methods=["GET", "POST"])
 def update_program():
-        return render_template('update_program.html')    
+        return render_template('update_program.html')
 
 @app.route("/update/update_executive", methods=["GET", "POST"])
 def update_executive():

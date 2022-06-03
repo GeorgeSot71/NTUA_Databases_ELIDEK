@@ -43,6 +43,24 @@
           <label for="scientific_inspector_surname">Scientific Inspector Surname</label>
           <input type="text" class="form-control" name="scientific_inspector_surname" placeholder="Surname">
       </div>
+
+      <div class="form-group col-md-6">
+          <label for="evaluator_name">Evaluator Name</label>
+          <input type="text" class="form-control" name="evaluator_name" placeholder="Name">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="evaluator_surname">Evaluator Surname</label>
+          <input type="text" class="form-control" name="evaluator_surname" placeholder="Surname">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="evaluation_date">Evaluation Date</label>
+          <input type="date" class="form-control" name="end_date" placeholder="Date">
+      </div>
+      <div class="form-group col-md-6">
+          <label for="evaluation_grade">Evaluation Grade</label>
+          <input type="number" step="0.01" min="0" max="10"class="form-control" name="evaluation_grade" placeholder="Grade">
+      </div>
+
       <div class="form-group col-md-6">
           <label for="program_name">Program Name</label>
           <input type="text" class="form-control" name="program_name" placeholder="Name">
@@ -60,9 +78,14 @@
         <option value="Sociology">Sociology</option>
         <option value="Economics">Economics</option>
       </select>
+        </div>
         <div class="form-group my-4">
             <button type="submit" class="btn btn-primary"> Register Project </button>
         </div>
     </form>
 </div>
 {% endblock %}
+
+researcher_id
+grade
+evaluation date

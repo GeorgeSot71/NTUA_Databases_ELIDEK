@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="update-program">
+    <form class="p-2" class="form" method='POST' action= "/update/update_program">
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="program_name">Program name</label>
+            <input type="text" class="form-control" name="program_name" placeholder="Program name">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="program_address">Program Address</label>
+            <input type="text" class="form-control" name="program_address" placeholder="Program Address">
+        </div>
+        </div>
+        <div class="form-group my-4">
+            <button type="submit" class="btn btn-primary">Update Program Adress</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

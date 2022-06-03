@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="update-executive">
+    <form class="p-2" class="form" method='POST' action= "/update/update_executive">
+        <div class="form-group col-md-6">
+            <label for="exec_name">Executive name</label>
+            <input type="text" class="form-control" name="exec_name" placeholder="Name">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="exec_surname">Executive Surname</label>
+            <input type="text" class="form-control" name="exec_surname" placeholder="Surname">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="exec_sex">Executive Gender</label>
+            <input type="text" class="form-control" name="exec_sex" placeholder="Gender">
+        </div>
+        <div class="form-group col-md-6">
+        <label for="exec_birthday">Birth date</label>
+        <input type="date" class="form-control" name="exec_birthday" placeholder="Birth date">
+        </div
+        <div class="form-group my-4">
+            <button type="submit" class="btn btn-primary"> Update Executive birthday or gender</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

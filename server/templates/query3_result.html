@@ -1,1 +1,26 @@
-
+{% extends "base.html" %}
+{% block content %}
+<div class="projects_and_researchers_per_field">
+    <h3>Projects and researchers working for that scientific field</h3>
+    <table class="table table-sm table-borderless">
+        <thead>
+        <tr>
+            <td>Scientific Field</td>
+            <td>Project Tile</td>
+            <td>Researcher Name</td>
+            <td>Researcher Surname</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for projects per researcher %}
+        <tr class="customer-row">
+            <td>{{ scientific_field }}</td>
+            <td>{{ project.title }}</td>
+            <td>{{ researcher.name }}</td>
+            <td>{{ researcher.surname }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

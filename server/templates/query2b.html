@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="projects_per_researcher">
-    <h3>Projects per Researcher</h3>
+<div class="organization_info">
+    <h3>Information for Organizations</h3>
     <table class="table table-sm table-borderless">
         <thead>
         <tr>
-            <td>Researcher Name</td>
-            <td>Researcher Surname</td>
-            <td>Project</td>
+            <td>Organization Name</td>
+            <td>Organization Abbreviation</td>
+            <td>Phone</td>
         </tr>
         </thead>
         <tbody>
         {% for projects per researcher %}
         <tr class="customer-row">
-            <td>{{ researcher_name }}</td>
-            <td>{{ researcher_surname }}</td>
-            <td>{{ project_title }}</td>
+            <td>{{ organization_name }}</td>
+            <td>{{ organization_abbreviation }}</td>
+            <td>{{ phone }}</td>
           </tr>
         {% endfor %}
         </tbody>

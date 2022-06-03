@@ -13,9 +13,9 @@
         <tbody>
         {% for projects per researcher %}
         <tr class="customer-row">
-            <td>{{ organization_name }}</td>
-            <td>{{ organization_abbreviation }}</td>
-            <td>{{ phone }}</td>
+            <td>{{ organization.name }}</td>
+            <td>{{ organization.abbreviation }}</td>
+            <td>{{ organization.phone }}</td>
           </tr>
         {% endfor %}
         </tbody>

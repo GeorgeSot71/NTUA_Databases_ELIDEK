@@ -379,7 +379,7 @@ INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`)
 INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (297, 'Skye', 'Cobon', '1990-04-05', 'Male');
 INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (298, 'Alfi', 'Strangman', '1985-06-03', 'Female');
 INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (299, 'Dorena', 'Kebell', '1967-12-09', 'Female');
-INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (300, 'Bogey', 'Sanson', '1972-07-01', 'Male');
+INSERT INTO `researcher` (`researcher_id`, `name`, `surname`, `birthday`, `sex`) VALUES (300, 'Bogey', 'Sanson', '1983-07-01', 'Male');
 
 
 INSERT INTO `organization` (`abbreviation`, `name`, `post_code`, `road`, `town`) VALUES ('AaS', 'Adams and Sons', 81479, '122 Schultz Spurs', 'South Dudley');

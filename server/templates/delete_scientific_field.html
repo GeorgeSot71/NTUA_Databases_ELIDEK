@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="delete-scientific_field">
+    <form class="p-2" class="form" method='POST' action= "/delete/delete_scientific_field">
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="title">Project Title</label>
+            <input type="text" class="form-control" name="title" placeholder="Title">
+        </div>
+
+      <label for="type">Choose the scientific field you want to remove from the project:</label>
+      <select name="type" id="type">
+        <option value="Physics">Physics</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Engineering Sciences">Engineering Sciences</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Environment">Environment</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Medicine">Medicine</option>
+        <option value="Art">Art</option>
+        <option value="Sociology">Sociology</option>
+        <option value="Economics">Economics</option>
+      </select>
+        </div>
+        <div class="form-group my-4">
+            <button type="submit" class="btn btn-primary"> Remove Scientific Field from a Project </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

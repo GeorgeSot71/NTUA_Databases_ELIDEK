@@ -13,9 +13,9 @@
         <tbody>
         {% for projects per researcher %}
         <tr class="customer-row">
-            <td>{{ researcher_name }}</td>
-            <td>{{ researcher_surname }}</td>
-            <td>{{ project_title }}</td>
+            <td>{{ researcher.name }}</td>
+            <td>{{ researcher.surname }}</td>
+            <td>{{ project.title }}</td>
           </tr>
         {% endfor %}
         </tbody>

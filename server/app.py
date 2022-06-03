@@ -275,21 +275,132 @@ def insert_delivered():
     return render_template('insert_delivered.html')
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-@app.route("/insert/insert_works_on_project")
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/insert/insert_works_on_project", methods=["GET", "POST"])
 def insert_works_on_project():
+    rs = connection.cursor()
+
+    project_name = str(request.form.get('project_name'))
+    researcher_name = str(request.form.get('researcher_name'))
+    researcher_surname = str(request.form.get('researcher_surname'))
+
+    if(project_name == "None" or researcher_name == "None" or researcher_surname == "None"):
+        return render_template('insert_works_on_project.html')
+    if(project_name == "" or researcher_name == "" or researcher_surname == ""):
+        return render_template('insert_works_on_project.html')
+
+    #get project_id using project_name
+    select = "SELECT project_id FROM project WHERE title='"+project_name+"';"
+    rs.execute(select)
+    project_id = rs.fetchall()
+    if(len(project_id)>1):
+        return "There seems to be more than one project the that title, please conantact database administrators"
+    if(len(project_id)<1):
+        return "There doesn't exist a project with the title you specified"
+
+    #get researcher_id using researcher name
+    select2 = "SELECT researcher_id FROM researcher WHERE name='"+researcher_name+"' AND surname='"+researcher_surname+"';"
+    rs.execute(select2)
+    researcher_results = rs.fetchall()
+    if (len(researcher_results) >1):
+        return "There seems to be more than one researcher with the name you specified, please contant database administrators"
+    if (len(researcher_results) <1):
+        return "A researcher with the name you specified does not exist in the database, please contant database administrators"
+
+    insert = "INSERT INTO `works_on_project`(`project_id`, `researcher_id`) VALUES ("+str(project_id[0][0])+", "+str(researcher_results[0][0])+");"
+    try:
+        rs.execute(insert)
+        connection.commit()
+    except mysql.connector.errors.DatabaseError as e:
+        return str(e)
     return render_template('insert_works_on_project.html')
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-@app.route("/insert/insert_scientific_field")
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/insert/insert_scientific_field", methods=["GET", "POST"])
 def insert_scientific_field():
+    rs = connection.cursor()
+    proj_title = str(request.form.get('title'))
+    scf_field = str(request.form.get('type'))
+    if(proj_title == "None" or scf_field == "None"):
+        return render_template('insert_scientific_field.html')
+    if(proj_title == "" or scf_field == ""):
+        return render_template('insert_scientific_field.html')
+
+    #project title -> project_id
+    select1 = "SELECT project_id FROM project WHERE title='"+proj_title+"';"
+    rs.execute(select1)
+    project_id = rs.fetchall()
+    if (len(project_id) >1):
+        return "There seems to be more than one projects with the title you specified, please contant database administrators"
+    if (len(project_id) <  1):
+        return "There is not a project with the title you specified, please contact database administrators"
+
+    queryString = "INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES ("+str(project_id[0][0])+", '"+scf_field+"');"
+    try:
+        rs.execute(queryString)
+        connection.commit()
+    except mysql.connector.errors.IntegrityError:
+        return "<h1>This project does not exist, go back and input an existing project</h1>"
     return render_template('insert_scientific_field.html')
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-@app.route("/insert/insert_researcher")
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/insert/insert_researcher", methods=["GET", "POST"])
 def insert_researcher():
-    return render_template('insert_researcher.html')
+    rs = connection.cursor()
 
-@app.route("/insert/insert_employee_relation")
+    researcher_name = str(request.form.get('name'))
+    researcher_surname = str(request.form.get('surname'))
+    birthday = str(request.form.get('birthday'))
+    sex = str(request.form.get('sex'))
+
+    if(researcher_name == "" or researcher_surname == "" or birthday == "" or sex == ""):
+        return render_template('insert_researcher.html')
+    if(researcher_name == "None" or researcher_surname == "None" or birthday == "None" or sex == "None"):
+        return render_template('insert_researcher.html')
+
+
+    insert = "INSERT INTO `researcher` (`name`, `surname`, `birthday`, `sex`) VALUES ('"+researcher_name+"', '"+researcher_surname+"', '"+birthday+"', '"+sex+"');"
+    rs.execute(insert)
+    connection.commit()
+
+    return render_template('insert_researcher.html')
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/insert/insert_employee_relation", methods=["GET", "POST"])
 def insert_employee_relation():
+    rs = connection.cursor()
+
+    researcherName = str(request.form.get('researcher_name'))
+    researcherSurname = str(request.form.get('researcher_surname'))
+    abbr = str(request.form.get('abbreviation'))
+    startWorkingDay = str(request.form.get('start_working_date'))
+
+    if(researcherName == "None" or researcherSurname == "" or abbr == "None" or startWorkingDay== "None"):
+        return render_template('insert_employee_relation.html')
+    if(researcherName == "" or researcherSurname == "" or abbr == "" or startWorkingDay == ""):
+        return render_template('insert_employee_relation.html')
+
+    #researcher_fullname -> researcher_id
+    select1 = "SELECT researcher_id FROM researcher WHERE name='"+researcherName+"' AND surname='"+researcherSurname+"';"
+    rs.execute(select1)
+    researcher_id = rs.fetchall()
+    if (len(researcher_id) >1):
+        return "There seems to be more than one researchers with the name you specified, please contant database administrators"
+    if (len(researcher_id) <  1):
+        return "There is not a researcher with the name you specified, please contact database administrators"
+
+    queryString = "INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES ("+str(researcher_id[0][0])+", '"+abbr+"', '"+startWorkingDay+"');"
+    try:
+        rs.execute(queryString)
+        connection.commit()
+    except mysql.connector.errors.IntegrityError:
+        return "<h1>The organization with the specified abbreviation does not exist, go back and input an existing abbreviation</h1>"
+
     return render_template('insert_employee_relation.html')
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
 # George added the following just to render the websites
 

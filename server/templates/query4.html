@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="organization_info">
+<div class="query4">
     <h3>Organizations that have the same number of projects annualy (more than 10)</h3>
     <table class="table table-sm table-borderless">
         <thead>
@@ -10,7 +10,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for organizations per organization %}
+        {% for organizations in organization %}
         <tr class="organization-row">
             <td>{{ organization.name }}</td>
             <td>{{ organization.abbreviation }}</td>

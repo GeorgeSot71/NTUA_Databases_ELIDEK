@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="query2">
+    <form action = "http://localhost:5000/query2/query2_result" method='POST'">
+        <div class="form-row">
+      <label for="type">Choose the scientific field:</label>
+      <select name="type" id="type">
+        <option value="Physics">Physics</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Engineering Sciences">Engineering Sciences</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Environment">Environment</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Medicine">Medicine</option>
+        <option value="Art">Art</option>
+        <option value="Sociology">Sociology</option>
+        <option value="Economics">Economics</option>
+      </select>
+        </div>
+        <div class="form-group my-4">
+            <button type="submit" class="btn btn-primary"> Enter Scientific Field to show projects and researchers </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

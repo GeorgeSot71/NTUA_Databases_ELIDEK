@@ -32,17 +32,17 @@ def delete():
 def query1():
     return render_template('query1.html')
 
-@app.route("/queries/query2")
-def query2():
-    return render_template('query2.html')
+@app.route("/queries/query2a")
+def query2a():
+    return render_template('query2a.html')
 
-@app.route("/queries/query3a")
-def query3a():
-    return render_template('query3a.html')
+@app.route("/queries/query2b")
+def query2b():
+    return render_template('query2b.html')
 
-@app.route("/queries/query3b")
-def query3b():
-    return render_template('query3b.html')
+@app.route("/queries/query3")
+def query3():
+    return render_template('query3.html')
 
 @app.route("/queries/query4")
 def query4():

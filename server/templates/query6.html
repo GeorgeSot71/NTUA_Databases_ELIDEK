@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="query6">
+    <h3>Young researchers that work in the most projects</h3>
+    <table class="table table-sm table-borderless">
+        <thead>
+        <tr>
+            <td>Researcher Name</td>
+            <td>Researcher Surname</td>
+            <td>Researcher Birthdate</td>
+            <td>Project</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for researchers per researcher %}
+        <tr class="researcher-row">
+            <td>{{ researcher.name }}</td>
+            <td>{{ researcher.surname }}</td>
+            <td>{{ researcher.birthday }}</td>
+            <td>{{ project.title }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

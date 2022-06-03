@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="projects_per_researcher">
+<div class="query1">
     <h3>Projects per Researcher</h3>
     <table class="table table-sm table-borderless">
         <thead>
@@ -11,7 +11,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for projects per researcher %}
+        {% for projects in researcher %}
         <tr class="researcher-row">
             <td>{{ researcher.name }}</td>
             <td>{{ researcher.surname }}</td>

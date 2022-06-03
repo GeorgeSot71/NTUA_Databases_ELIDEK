@@ -27,6 +27,5 @@ pip install flask
 python3 -m flask run
 ```
 - Στην συνέχεια ανοίγουμε έναν browser και πληκτρολογούμε: 
-- ```
-- http://localhost:5000/
-- ```
+`http://localhost:5000/ `
+

@@ -61,7 +61,7 @@ WHERE scf1.project_id =scf2.project_id
     AND p.project_id = scf1.project_id 
 GROUP BY scf1.scientific_field_name,  scf2.scientific_field_name
 ORDER BY SUM(p.funding) DESC , scf1.scientific_field_name, scf2.scientific_field_name
-LIMIT 5;
+LIMIT 3;
 
 /*QUERY 3.6*/
 SELECT r.researcher_id, COUNT(wop.researcher_id)
@@ -78,7 +78,8 @@ WHERE  ex.executive_id = p.executive_id
 	AND org.abbreviation = p.abbreviation
     AND org.abbreviation IN (SELECT abbreviation FROM company)
 GROUP BY ex.name, org.name
-ORDER BY SUM(p.funding) DESC;
+ORDER BY SUM(p.funding) DESC
+LIMIT 5;
 
 /*QUERY 3.8*/
 SELECT r.researcher_id, COUNT(wop.researcher_id)

@@ -166,8 +166,8 @@ CREATE TRIGGER same_evaluator_researcher BEFORE INSERT ON evaluate_project
     BEGIN
 		IF NEW.researcher_id IN (SELECT researcher_id
 				FROM works_on_project
-                                WHERE works_on_project.project_id = NEW.project_id) 
-                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'This operation is not allowed. You cannot add an evaluator that almost works on project ' ;
+                                WHERE works_on_project.project_id = NEW.project_id)
+                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot add an evaluator that already works on project ' ;
 		END IF;
 	END;$$
 
@@ -176,19 +176,19 @@ CREATE TRIGGER same_researcher_evaluator BEFORE INSERT ON works_on_project
     BEGIN
 		IF NEW.researcher_id IN (SELECT researcher_id
 				FROM evaluate_project
-                                WHERE evaluate_project.project_id = NEW.project_id) 
-                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'This operation is not allowed.You cannot add a researcher that is almost evaluator in the same project ' ;
+                                WHERE evaluate_project.project_id = NEW.project_id)
+                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot add a researcher that is almost evaluator in the same project ' ;
 		END IF;
 	END;$$
-    
+
     CREATE TRIGGER researcher_in_project_and_not_in_organisation BEFORE INSERT ON works_on_project
 		FOR EACH ROW
         BEGIN
 			IF NEW.researcher_id NOT IN (SELECT researcher_id
 					FROM employee_relation INNER JOIN project p ON p.abbreviation = employee_relation.abbreviation
                                         WHERE p.project_id = NEW.project_id )
-					THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'This operation is not allowed. You cannot assign a researcher as working on a project if the researcher is not working for the organization that manages the project';
+					THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot assign a researcher as working on a project if he/she is not working for the organization that manages the project';
 			END IF;
 		END;$$
-																
+
 DELIMITER ;

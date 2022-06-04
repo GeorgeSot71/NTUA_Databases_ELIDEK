@@ -491,9 +491,33 @@ def delete_works_on_project():
 def delete_evaluate_project():
     return render_template('delete_evaluate_project.html')
 
-@app.route("/delete/delete_scientific_field")
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/delete/delete_scientific_field", methods=["GET", "POST"])
 def delete_scientific_field():
+    rs = connection.cursor()
+
+    project_title = str(request.form.get('title'))
+    scientific_field = str(request.form.get('type'))
+
+    if(scientific_field == "None" or scientific_field == ""):
+        return render_template('delete_scientific_field.html')
+    if(project_title == "" or project_title == ""):
+        return render_template('delete_scientific_field.html')
+
+    select = "SELECT project_id FROM project WHERE title='"+project_title+"';"
+    rs.execute(select)
+    project_id = rs.fetchall()
+
+    if (len(project_id) >1):
+        return "There seems to be more than one projects with the name you specified, please contant database administrators"
+    if (len(project_id) <  1):
+        return "There is not a project with the name you specified, please contact database administrators"
+
+    delete = "DELETE FROM scientific_field WHERE project_id="+str(project_id[0][0])+" AND scientific_field_name='"+scientific_field+"';"
+    rs.execute(delete)
+    connection.commit()
     return render_template('delete_scientific_field.html')
+
 
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_researcher", methods=["GET", "POST"])

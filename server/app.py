@@ -48,9 +48,32 @@ def query2b():
     organization_info = rs.fetchall()
     return render_template('query2b.html', query2b = organization_info)
 
-@app.route("/queries/query3")
+@app.route("/queries/query3", methods=["GET", "POST"])
 def query3():
-    return render_template('query3.html')
+    rs = connection.cursor()
+    scientificField = str(request.form.get('Scientific_field'))
+
+    if(scf_field == "None"):
+        return render_template('query3.html')
+    if(scf_field == ""):
+        return render_template('query3.html')
+
+    scientific_field = (
+        "AND sf.scientific_field_name = {}".format(scientificField)
+        if (scientificField!= "")
+        else ""
+    )
+
+everything = " SELECT sf.scientific_field_name, r.researcher_id,r.name, r.surname, p.project_id, p.title FROM scientific_field sf, researcher r, project p WHERE p.project_id = sf.project_id "
+my_query3 = (
+    everything
+    + scientific_field
+    + "AND YEAR(p.end_date) >= YEAR('2022-06-10') AND MONTH(p.end_date) > MONTH('2022-06-10') AND r.researcher_id IN (SELECT researcher_id FROM works_on_project WHERE project_id = p.project_id) LIMIT 10;"
+)
+
+rs.execute(my_query3)
+result3 = cur.fetchall()
+return render_template('query3.html', query3 = result3)
 
 @app.route("/queries/query4")
 def query4():

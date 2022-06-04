@@ -456,8 +456,27 @@ def insert_employee_relation():
 def delete_employee_relation():
     return render_template('delete_employee_relation.html')
 
-@app.route("/delete/delete_project")
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/delete/delete_project", methods=["GET", "POST"])
 def delete_project():
+    rs = connection.cursor()
+    project_title = str(request.form.get('title'))
+    if(project_title == "None" or project_title == ""):
+        return render_template('delete_project.html')
+
+    select = "SELECT project_id FROM project WHERE title='"+project_title+"';"
+    rs.execute(select)
+    project_id = rs.fetchall()
+
+    if (len(project_id) >1):
+        return "There seems to be more than one project with the title you specified, please contant database administrators"
+    if (len(project_id) <  1):
+        return "There is not a project with the name you specified, please contact database administrators"
+
+
+    delete = "DELETE FROM project WHERE project_id='"+str(project_id[0][0])+"';"
+    rs.execute(delete)
+    connection.commit()
     return render_template('delete_project.html')
 
 @app.route("/delete/delete_delivered")

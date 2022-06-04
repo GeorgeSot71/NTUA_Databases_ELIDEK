@@ -229,9 +229,9 @@ CREATE TRIGGER same_researcher_evaluator_update BEFORE UPDATE ON works_on_projec
 		FOR EACH ROW
         BEGIN
 			IF NEW.researcher_id  NOT IN (SELECT researcher_id
-																FROM employee_relation INNER JOIN project p ON p.abbreviation = employee_relation.abbreviation
-                                                                WHERE p.project_id = NEW.project_id )
-																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a researcher work on a project if he/she is not working for the organization that manages the project' ;
+										FROM employee_relation INNER JOIN project p ON p.abbreviation = employee_relation.abbreviation
+                                        WHERE p.project_id = NEW.project_id )
+										THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a researcher work on a project if he/she is not working for the organization that manages the project' ;
 			END IF;
 		END;$$
 
@@ -240,9 +240,9 @@ CREATE TRIGGER same_researcher_evaluator_update BEFORE UPDATE ON works_on_projec
 		FOR EACH ROW
         BEGIN
 			IF NEW.scientific_inspector_id  NOT IN (SELECT er.researcher_id
-																FROM employee_relation er
-                                                                WHERE NEW.abbreviation = er.abbreviation)
-																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a scientific inspector on a project if he/she is not working for the organization that manages the project';
+													FROM employee_relation er
+                                                    WHERE NEW.abbreviation = er.abbreviation)
+													THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a scientific inspector on a project if he/she is not working for the organization that manages the project';
 			END IF;
 	END;$$
 
@@ -251,8 +251,8 @@ CREATE TRIGGER researcher_in_two_different_organisation_update BEFORE UPDATE ON 
 		FOR EACH ROW
         BEGIN
 			IF NEW.researcher_id IN (SELECT researcher_id
-																FROM employee_relation)
-																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make researcher to work on two different organizations' ;
+									FROM employee_relation)
+									THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make researcher to work on two different organizations' ;
 			END IF;
 	END;$$
 DELIMITER ;

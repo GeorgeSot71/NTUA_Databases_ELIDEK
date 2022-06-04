@@ -11,11 +11,11 @@
         </tr>
         </thead>
         <tbody>
-        {% for projects in researcher %}
+        {% for print in researchers %}
         <tr class="researcher-row">
-            <td>{{ researcher.name }}</td>
-            <td>{{ researcher.surname }}</td>
-            <td>{{ project.title }}</td>
+            <td>{{ print([0]) }}</td>
+            <td>{{ print([1]) }}</td>
+            <td>{{ print([2]) }}</td>
           </tr>
         {% endfor %}
         </tbody>

@@ -30,7 +30,7 @@ SELECT * FROM organization_info;
 
 
 /*QUERY 3.3*/
-SELECT sf.scientific_field_name, r.researcher_id,r.name, r.surname, p.project_id, p.title
+SELECT sf.scientific_field_name,p.title , r.name, r.surname
 FROM scientific_field sf, researcher r, project p
 WHERE
      p.project_id = sf.project_id

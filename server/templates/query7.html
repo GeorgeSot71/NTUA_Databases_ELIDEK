@@ -12,12 +12,12 @@
         </tr>
         </thead>
         <tbody>
-        {% for best_executives in best_executive %}
+        {% for print in query7 %}
         <tr class="best_executive-row">
-            <td>{{  }}</td>
-            <td>{{  }}</td>
-            <td>{{  }}</td>
-            <td>{{  }}</td>
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+            <td>{{ print[2] }}</td>
+            <td>{{ print[3] }}</td>
           </tr>
         {% endfor %}
         </tbody>

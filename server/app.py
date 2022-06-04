@@ -495,8 +495,30 @@ def delete_evaluate_project():
 def delete_scientific_field():
     return render_template('delete_scientific_field.html')
 
-@app.route("/delete/delete_researcher")
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/delete/delete_researcher", methods=["GET", "POST"])
 def delete_researcher():
+    rs = connection.cursor()
+
+    researcherName = str(request.form.get('name'))
+    researcherSurname = str(request.form.get('surname'))
+
+    if(researcherName == "None" or researcherSurname == ""):
+        return render_template('delete_researcher.html')
+    if(researcherName == "" or researcherSurname == ""):
+        return render_template('delete_researcher.html')
+
+    select = "SELECT researcher_id FROM researcher WHERE name='"+researcherName+"' AND surname='"+researcherSurname+"';"
+    rs.execute(select)
+    researcher_id = rs.fetchall()
+    if (len(researcher_id) >1):
+        return "There seems to be more than one researchers with the name you specified, please contant database administrators"
+    if (len(researcher_id) <  1):
+        return "There is not a researcher with the name you specified, please contact database administrators"
+
+    delete = "DELETE FROM researcher WHERE researcher_id="+str(researcher_id[0][0])+";"
+    rs.execute(delete)
+    connection.commit()
     return render_template('delete_researcher.html')
 
 @app.route("/delete/delete_phone", methods=["GET", "POST"])

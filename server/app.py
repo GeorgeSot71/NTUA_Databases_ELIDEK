@@ -487,8 +487,42 @@ def delete_delivered():
 def delete_works_on_project():
     return render_template('delete_works_on_project.html')
 
-@app.route("/delete/delete_evaluate_project")
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/delete/delete_evaluate_project", methods=["GET", "POST"])
 def delete_evaluate_project():
+    rs = connection.cursor()
+
+    project_title = str(request.form.get('title'))
+    researcherName = str(request.form.get('researcher_name'))
+    researcherSurname = str(request.form.get('researcher_surname'))
+
+    if(project_title == "None" or project_title == ""):
+        return render_template('delete_evaluate_project.html')
+    if(researcherName == "" or researcherName == ""):
+        return render_template('delete_evaluate_project.html')
+    if(researcherSurname == "" or researcherSurname == ""):
+        return render_template('delete_evaluate_project.html')
+
+    select = "SELECT project_id FROM project WHERE title='"+project_title+"';"
+    rs.execute(select)
+    project_id = rs.fetchall()
+
+    select = "SELECT researcher_id FROM researcher WHERE name='"+researcherName+"' AND surname='"+researcherSurname+"';"
+    rs.execute(select)
+    researcher_id = rs.fetchall()
+
+    if (len(project_id) >1):
+        return "There seems to be more than one projects with the name you specified, please contant database administrators"
+    if (len(project_id) <  1):
+        return "There is not a project with the name you specified, please contact database administrators"
+    if (len(researcher_id) >1):
+        return "There seems to be more than one researchers with the name you specified, please contant database administrators"
+    if (len(researcher_id) <  1):
+        return "There is not a researcher with the name you specified, please contact database administrators"
+
+    delete = "DELETE FROM evaluate_project WHERE project_id="+str(project_id[0][0])+" AND researcher_id="+str(researcher_id[0][0])+";"
+    rs.execute(delete)
+    connection.commit()
     return render_template('delete_evaluate_project.html')
 
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE

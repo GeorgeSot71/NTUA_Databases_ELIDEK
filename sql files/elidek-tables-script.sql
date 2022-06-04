@@ -147,55 +147,120 @@ CREATE TABLE scientific_field (
         REFERENCES project(project_id) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=INNODB;
 
-CREATE INDEX  idx_scientific_field_name
-ON scientific_field (scientific_field_name);
-
-CREATE INDEX  idx_project_name
-ON project (title);
-
-CREATE INDEX  idx_researcher_fullname
-ON researcher (name,surname);
-
-CREATE INDEX  idx_program_name
-ON program (program_name);
-
 DELIMITER $$
-
-CREATE TRIGGER same_evaluator_researcher BEFORE INSERT ON evaluate_project
+/* 1 */
+CREATE TRIGGER same_evaluator_researcher_insert BEFORE INSERT ON evaluate_project
     FOR EACH ROW
     BEGIN
 		IF NEW.researcher_id IN (SELECT researcher_id
-				FROM works_on_project
-                                WHERE works_on_project.project_id = NEW.project_id)
-                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot add an evaluator that already works on project ' ;
+											    FROM works_on_project
+                                                WHERE works_on_project.project_id = NEW.project_id)
+                                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot add an evaluator that already works on project' ;
 		END IF;
 	END;$$
 
-CREATE TRIGGER same_researcher_evaluator BEFORE INSERT ON works_on_project
+/* 2 */
+CREATE TRIGGER same_researcher_evaluator_insert BEFORE INSERT ON works_on_project
     FOR EACH ROW
     BEGIN
 		IF NEW.researcher_id IN (SELECT researcher_id
-				FROM evaluate_project
-                                WHERE evaluate_project.project_id = NEW.project_id)
-                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot add a researcher that is almost evaluator in the same project ' ;
-		END IF;
+											    FROM evaluate_project
+                                                WHERE evaluate_project.project_id = NEW.project_id)
+                                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot add a researcher that is already evaluator in the same project' ;
+        END IF;
 	END;$$
 
-    CREATE TRIGGER researcher_in_project_and_not_in_organisation BEFORE INSERT ON works_on_project
+    /* 3 */
+    CREATE TRIGGER researcher_in_project_and_not_in_organisation_insert BEFORE INSERT ON works_on_project
 		FOR EACH ROW
         BEGIN
-			IF NEW.researcher_id NOT IN (SELECT researcher_id
-					FROM employee_relation INNER JOIN project p ON p.abbreviation = employee_relation.abbreviation
-                                        WHERE p.project_id = NEW.project_id )
-					THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot assign a researcher as working on a project if he/she is not working for the organization that manages the project';
+			IF NEW.researcher_id  NOT IN (SELECT researcher_id
+																FROM employee_relation INNER JOIN project p ON p.abbreviation = employee_relation.abbreviation
+                                                                WHERE p.project_id = NEW.project_id )
+																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot assign a researcher as working on a project if he/she is not working for the organization that manages the project' ;
 			END IF;
 		END;$$
 
+	/* 4 */
+    CREATE TRIGGER scientific_inspector_in_project_and_not_in_organisation_insert BEFORE INSERT ON project
+		FOR EACH ROW
+        BEGIN
+			IF NEW.scientific_inspector_id  NOT IN (SELECT researcher_id
+																FROM employee_relation
+                                                                WHERE abbreviation = NEW.abbreviation)
+																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot assign a scientific inspector on a project if he/she is not working for the organization that manages the project' ;
+			END IF;
+	END;$$
+
+    /* 5 */
+	CREATE TRIGGER researcher_in_two_different_organisation_insert BEFORE INSERT ON employee_relation
+		FOR EACH ROW
+        BEGIN
+			IF NEW.researcher_id IN (SELECT researcher_id
+																FROM employee_relation )
+																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot assign a researcher to work on two different organizations' ;
+			END IF;
+	END;$$
+
+	/* 6 */
+    CREATE TRIGGER same_evaluator_researcher_update BEFORE UPDATE ON evaluate_project
+    FOR EACH ROW
+    BEGIN
+		IF NEW.researcher_id IN (SELECT researcher_id
+											    FROM works_on_project
+                                                WHERE works_on_project.project_id = NEW.project_id)
+                                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a researcher evaluate a project if he/she already works on it' ;
+		END IF;
+	END;$$
+
+/* 7 */
+CREATE TRIGGER same_researcher_evaluator_update BEFORE UPDATE ON works_on_project
+    FOR EACH ROW
+    BEGIN
+		IF NEW.researcher_id IN (SELECT researcher_id
+											    FROM evaluate_project
+                                                WHERE evaluate_project.project_id = NEW.project_id)
+                                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a researcher work on a project in which he/she is already evaluator';
+		END IF;
+	END;$$
+
+   /* 8*/
+    CREATE TRIGGER researcher_in_project_and_not_in_organisation_update BEFORE UPDATE ON works_on_project
+		FOR EACH ROW
+        BEGIN
+			IF NEW.researcher_id  NOT IN (SELECT researcher_id
+																FROM employee_relation INNER JOIN project p ON p.abbreviation = employee_relation.abbreviation
+                                                                WHERE p.project_id = NEW.project_id )
+																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a researcher work on a project if he/she is not working for the organization that manages the project' ;
+			END IF;
+		END;$$
+
+	/* 9 */
+    CREATE TRIGGER scientific_inspector_in_project_and_not_in_organisation_update BEFORE UPDATE ON project
+		FOR EACH ROW
+        BEGIN
+			IF NEW.scientific_inspector_id  NOT IN (SELECT er.researcher_id
+																FROM employee_relation er
+                                                                WHERE NEW.abbreviation = er.abbreviation)
+																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a scientific inspector on a project if he/she is not working for the organization that manages the project';
+			END IF;
+	END;$$
+
+/* 10 */
+CREATE TRIGGER researcher_in_two_different_organisation_update BEFORE UPDATE ON employee_relation
+		FOR EACH ROW
+        BEGIN
+			IF NEW.researcher_id IN (SELECT researcher_id
+																FROM employee_relation)
+																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make researcher to work on two different organizations' ;
+			END IF;
+	END;$$
 DELIMITER ;
+
 
 CREATE VIEW projects_per_researcher
 AS
-SELECT r.name,r.surname, p.title
+SELECT r.researcher_id, p.project_id, p.title
 FROM researcher r, project p
 WHERE r.researcher_id IN (SELECT researcher_id FROM works_on_project WHERE project_id = p.project_id)
 ORDER BY r.researcher_id;
@@ -207,3 +272,15 @@ FROM organization org
 LEFT JOIN
 phone ph
 ON ph.abbreviation = org.abbreviation;
+
+CREATE INDEX  idx_scientific_field_name
+ON scientific_field (scientific_field_name);
+
+CREATE INDEX  idx_project_title
+ON project (title);
+
+CREATE INDEX  idx_researcher_fullname
+ON researcher (name,surname);
+
+CREATE INDEX  idx_program_name
+ON program (program_name);

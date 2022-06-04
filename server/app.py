@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import mysql.connector, re
-from datetime import datetime
 
 app = Flask(__name__)
 
@@ -10,8 +9,6 @@ user='root',password='rootroot')
 #global variables
 available_ids = [] #for query1
 
-
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/")
 def main():
     return render_template('about.html')
@@ -143,12 +140,8 @@ def update():
 @app.route("/delete")
 def delete():
     return render_template('delete.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
-
 
 #queries
-
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query1")
 def query1():
     return render_template('query1.html')
@@ -207,7 +200,7 @@ def query1_result():
         + executive_id
         + " ORDER BY p.project_id ASC;"
     )
-    #return my_query1_2
+
     rs.execute(my_query1_1)
     result1 = rs.fetchall()
     #tsekare mono to my_query1_2 gia arxh kai an doulevei
@@ -241,9 +234,7 @@ def query1_result2():
     researchers = rs.fetchall()
 
     return render_template("query1_resul2.html", title = ret_title, table = researchers)
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query2a", methods=["GET", "POST"])
 def query2a():
     rs = connection.cursor()
@@ -251,9 +242,7 @@ def query2a():
     rs.execute(select1)
     projects_per_researcher = rs.fetchall()
     return render_template('query2a.html', query2a = projects_per_researcher)
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query2b", methods=["GET", "POST"])
 def query2b():
     rs = connection.cursor()
@@ -261,14 +250,11 @@ def query2b():
     rs.execute(select1)
     organization_info = rs.fetchall()
     return render_template('query2b.html', query2b = organization_info)
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query3")
 def query3():
     return render_template('query3.html')
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query3_result", methods=["GET", "POST"])
 def query3_result():
     rs = connection.cursor()
@@ -291,9 +277,7 @@ def query3_result():
     rs.execute(my_query3)
     result3 = rs.fetchall()
     return render_template('query3_result.html', query3 = result3)
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query4")
 def query4():
     rs = connection.cursor()
@@ -301,9 +285,7 @@ def query4():
     rs.execute(query)
     returned_values = rs.fetchall()
     return render_template('query4.html', query4 = returned_values)
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query5", methods=["GET", "POST"])
 def query5():
     rs = connection.cursor()
@@ -311,9 +293,7 @@ def query5():
     rs.execute(query)
     results = rs.fetchall()
     return render_template('query5.html', query5 = results)
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query6")
 def query6():
     rs = connection.cursor()
@@ -321,9 +301,7 @@ def query6():
     rs.execute(query)
     returned_values = rs.fetchall()
     return render_template('query6.html', query6 = returned_values)
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query7", methods=["GET", "POST"])
 def query7():
     rs = connection.cursor()
@@ -331,9 +309,7 @@ def query7():
     rs.execute(query)
     results = rs.fetchall()
     return render_template('query7.html', query7 = results)
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query8", methods=["GET", "POST"])
 def query8():
     rs = connection.cursor()
@@ -341,10 +317,8 @@ def query8():
     rs.execute(query)
     results = rs.fetchall()
     return render_template('query8.html', query8 = results)
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
 #insert
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_program", methods=["GET", "POST"])
 def insert_program():
     rs = connection.cursor()
@@ -359,9 +333,7 @@ def insert_program():
     connection.commit()
 
     return render_template('insert_program.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_executive", methods=["GET", "POST"])
 def insert_executive():
     rs = connection.cursor()
@@ -378,9 +350,7 @@ def insert_executive():
     connection.commit()
 
     return render_template('insert_executive.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_organization", methods=["GET", "POST"]  )
 def insert_organization():
     rs = connection.cursor()
@@ -413,9 +383,7 @@ def insert_organization():
     except mysql.connector.errors.IntegrityError:
         return "This abbreviation already exist and there CANNOT be 2 distinct organizations with the same abbreviation"
     return render_template('insert_organization.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_phone", methods=["GET", "POST"])
 def insert_phone():
     rs = connection.cursor()
@@ -432,9 +400,7 @@ def insert_phone():
     except mysql.connector.errors.IntegrityError:
         return "<h1>This organization abbreviation does not exist, go back and input an existing abbreviation</h1>"
     return render_template('insert_phone.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_project", methods=["GET", "POST"])
 def insert_project():
     rs = connection.cursor()
@@ -521,9 +487,7 @@ def insert_project():
     connection.commit()
 
     return render_template('insert_project.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_delivered", methods=["GET", "POST"])
 def insert_delivered():
     rs = connection.cursor()
@@ -552,9 +516,7 @@ def insert_delivered():
     connection.commit()
 
     return render_template('insert_delivered.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_works_on_project", methods=["GET", "POST"])
 def insert_works_on_project():
     rs = connection.cursor()
@@ -593,9 +555,7 @@ def insert_works_on_project():
     except mysql.connector.errors.DatabaseError as e:
         return str(e)
     return render_template('insert_works_on_project.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_scientific_field", methods=["GET", "POST"])
 def insert_scientific_field():
     rs = connection.cursor()
@@ -622,9 +582,7 @@ def insert_scientific_field():
     except mysql.connector.errors.IntegrityError:
         return "<h1>This project does not exist, go back and input an existing project</h1>"
     return render_template('insert_scientific_field.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_researcher", methods=["GET", "POST"])
 def insert_researcher():
     rs = connection.cursor()
@@ -645,9 +603,7 @@ def insert_researcher():
     connection.commit()
 
     return render_template('insert_researcher.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/insert/insert_employee_relation", methods=["GET", "POST"])
 def insert_employee_relation():
     rs = connection.cursor()
@@ -679,12 +635,10 @@ def insert_employee_relation():
         return "<h1>The organization with the specified abbreviation does not exist, go back and input an existing abbreviation</h1>"
 
     return render_template('insert_employee_relation.html')
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
 # George added the following just to render the websites
 
 #delete
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_employee_relation", methods=["GET", "POST"])
 def delete_employee_relation():
     rs = connection.cursor()
@@ -695,9 +649,9 @@ def delete_employee_relation():
 
     if(abbreviation == "None" or abbreviation == ""):
         return render_template('delete_employee_relation.html')
-    if(researcherName == "" or researcherName == ""):
+    if(researcherName == "" or researcherName == "None"):
         return render_template('delete_employee_relation.html')
-    if(researcherSurname == "" or researcherSurname == ""):
+    if(researcherSurname == "" or researcherSurname == "None"):
         return render_template('delete_employee_relation.html')
 
     select = "SELECT researcher_id FROM researcher WHERE name='"+researcherName+"' AND surname='"+researcherSurname+"';"
@@ -707,18 +661,17 @@ def delete_employee_relation():
     if (len(researcher_id) >1):
         return "There seems to be more than one researchers with the name you specified, please contant database administrators"
     if (len(researcher_id) <  1):
-        return "There is not a researcher with the name you specified, please contact database administrators"
+        return "There is not a researcher with the name you specified"
 
     delete = "DELETE FROM employee_relation WHERE abbreviation='"+abbreviation+"' AND researcher_id="+str(researcher_id[0][0])+";"
     rs.execute(delete)
     connection.commit()
     return render_template('delete_employee_relation.html')
 
-
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_project", methods=["GET", "POST"])
 def delete_project():
     rs = connection.cursor()
+
     project_title = str(request.form.get('title'))
     if(project_title == "None" or project_title == ""):
         return render_template('delete_project.html')
@@ -730,18 +683,17 @@ def delete_project():
     if (len(project_id) >1):
         return "There seems to be more than one project with the title you specified, please contant database administrators"
     if (len(project_id) <  1):
-        return "There is not a project with the name you specified, please contact database administrators"
-
+        return "There is not a project with the name you specified"
 
     delete = "DELETE FROM project WHERE project_id='"+str(project_id[0][0])+"';"
     rs.execute(delete)
     connection.commit()
     return render_template('delete_project.html')
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_delivered", methods=["GET", "POST"])
 def delete_delivered():
     rs = connection.cursor()
+
     delivered_title = str(request.form.get('delivered_title'))
     project_title = str(request.form.get('title'))
     if(delivered_title == "None" or delivered_title == "" or project_title == "None" or project_title == ""):
@@ -754,14 +706,13 @@ def delete_delivered():
     if (len(project_id) >1):
         return "There seems to be more than one project with the title you specified, please contant database administrators"
     if (len(project_id) <  1):
-        return "There is not a project with the name you specified, please contact database administrators"
+        return "There is not a project with the name you specified"
 
     delete = "DELETE FROM delivered WHERE title='"+delivered_title+"' AND project_id='"+str(project_id[0][0])+"';"
     rs.execute(delete)
     connection.commit()
     return render_template('delete_delivered.html')
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_works_on_project", methods=["GET", "POST"])
 def delete_works_on_project():
     rs = connection.cursor()
@@ -772,9 +723,9 @@ def delete_works_on_project():
 
     if(project_title == "None" or project_title == ""):
         return render_template('delete_works_on_project.html')
-    if(researcherName == "" or researcherName == ""):
+    if(researcherName == "None" or researcherName == ""):
         return render_template('delete_works_on_project.html')
-    if(researcherSurname == "" or researcherSurname == ""):
+    if(researcherSurname == "None" or researcherSurname == ""):
         return render_template('delete_works_on_project.html')
 
     select = "SELECT project_id FROM project WHERE title='"+project_title+"';"
@@ -788,18 +739,17 @@ def delete_works_on_project():
     if (len(project_id) >1):
         return "There seems to be more than one projects with the name you specified, please contant database administrators"
     if (len(project_id) <  1):
-        return "There is not a project with the name you specified, please contact database administrators"
+        return "There is not a project with the name you specified"
     if (len(researcher_id) >1):
         return "There seems to be more than one researchers with the name you specified, please contant database administrators"
     if (len(researcher_id) <  1):
-        return "There is not a researcher with the name you specified, please contact database administrators"
+        return "There is not a researcher with the name you specified"
 
     delete = "DELETE FROM works_on_project WHERE project_id="+str(project_id[0][0])+" AND researcher_id="+str(researcher_id[0][0])+";"
     rs.execute(delete)
     connection.commit()
     return render_template('delete_works_on_project.html')
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_evaluate_project", methods=["GET", "POST"])
 def delete_evaluate_project():
     rs = connection.cursor()
@@ -810,9 +760,9 @@ def delete_evaluate_project():
 
     if(project_title == "None" or project_title == ""):
         return render_template('delete_evaluate_project.html')
-    if(researcherName == "" or researcherName == ""):
+    if(researcherName == "None" or researcherName == ""):
         return render_template('delete_evaluate_project.html')
-    if(researcherSurname == "" or researcherSurname == ""):
+    if(researcherSurname == "None" or researcherSurname == ""):
         return render_template('delete_evaluate_project.html')
 
     select = "SELECT project_id FROM project WHERE title='"+project_title+"';"
@@ -826,18 +776,17 @@ def delete_evaluate_project():
     if (len(project_id) >1):
         return "There seems to be more than one projects with the name you specified, please contant database administrators"
     if (len(project_id) <  1):
-        return "There is not a project with the name you specified, please contact database administrators"
+        return "There is not a project with the name you specified"
     if (len(researcher_id) >1):
         return "There seems to be more than one researchers with the name you specified, please contant database administrators"
     if (len(researcher_id) <  1):
-        return "There is not a researcher with the name you specified, please contact database administrators"
+        return "There is not a researcher with the name you specified"
 
     delete = "DELETE FROM evaluate_project WHERE project_id="+str(project_id[0][0])+" AND researcher_id="+str(researcher_id[0][0])+";"
     rs.execute(delete)
     connection.commit()
     return render_template('delete_evaluate_project.html')
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_scientific_field", methods=["GET", "POST"])
 def delete_scientific_field():
     rs = connection.cursor()
@@ -847,7 +796,7 @@ def delete_scientific_field():
 
     if(scientific_field == "None" or scientific_field == ""):
         return render_template('delete_scientific_field.html')
-    if(project_title == "" or project_title == ""):
+    if(project_title == "None" or project_title == ""):
         return render_template('delete_scientific_field.html')
 
     select = "SELECT project_id FROM project WHERE title='"+project_title+"';"
@@ -857,15 +806,13 @@ def delete_scientific_field():
     if (len(project_id) >1):
         return "There seems to be more than one projects with the name you specified, please contant database administrators"
     if (len(project_id) <  1):
-        return "There is not a project with the name you specified, please contact database administrators"
+        return "There is not a project with the name you specified"
 
     delete = "DELETE FROM scientific_field WHERE project_id="+str(project_id[0][0])+" AND scientific_field_name='"+scientific_field+"';"
     rs.execute(delete)
     connection.commit()
     return render_template('delete_scientific_field.html')
 
-
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_researcher", methods=["GET", "POST"])
 def delete_researcher():
     rs = connection.cursor()
@@ -875,7 +822,7 @@ def delete_researcher():
 
     if(researcherName == "None" or researcherSurname == ""):
         return render_template('delete_researcher.html')
-    if(researcherName == "" or researcherSurname == ""):
+    if(researcherName == "None" or researcherSurname == ""):
         return render_template('delete_researcher.html')
 
     select = "SELECT researcher_id FROM researcher WHERE name='"+researcherName+"' AND surname='"+researcherSurname+"';"
@@ -884,14 +831,16 @@ def delete_researcher():
     if (len(researcher_id) >1):
         return "There seems to be more than one researchers with the name you specified, please contant database administrators"
     if (len(researcher_id) <  1):
-        return "There is not a researcher with the name you specified, please contact database administrators"
+        return "There is not a researcher with the name you specified"
 
     delete = "DELETE FROM researcher WHERE researcher_id="+str(researcher_id[0][0])+";"
-    rs.execute(delete)
+    try:
+        rs.execute(delete)
+    except:
+        return "It seems like this researcher is a scientific inspector or evaluator to some project, and thus cannot be deleted"
     connection.commit()
     return render_template('delete_researcher.html')
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_phone", methods=["GET", "POST"])
 def delete_phone():
     rs = connection.cursor()
@@ -909,7 +858,6 @@ def delete_phone():
     connection.commit()
     return render_template('delete_phone.html')
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_organization", methods=["GET", "POST"]  )
 def delete_organization():
     rs = connection.cursor()
@@ -924,7 +872,6 @@ def delete_organization():
     connection.commit()
     return render_template('delete_organization.html')
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_program", methods=["GET", "POST"])
 def delete_program():
     rs = connection.cursor()
@@ -939,14 +886,13 @@ def delete_program():
     if (len(program_id) > 1):
         return "There seems to be more than one program with the title you specified, please contant database administrators"
     if (len(program_id) <  1):
-        return "There is not a program with the name you specified, please contact database administrators"
+        return "There is not a program with the name you specified"
 
     delete = "DELETE FROM program WHERE program_id="+str(program_id[0][0])+";"
     rs.execute(delete)
     connection.commit()
     return render_template('delete_program.html')
 
-#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_executive", methods=["GET", "POST"])
 def delete_executive():
     rs = connection.cursor()
@@ -956,7 +902,7 @@ def delete_executive():
 
     if(executiveName == "None" or executiveSurname == ""):
         return render_template('delete_executive.html')
-    if(executiveName == "" or executiveSurname == ""):
+    if(executiveName == "None" or executiveSurname == ""):
         return render_template('delete_executive.html')
 
     select = "SELECT executive_id FROM executive WHERE name='"+executiveName+"' AND surname='"+executiveSurname+"';"
@@ -965,7 +911,7 @@ def delete_executive():
     if (len(executive_id) > 1):
         return "There seems to be more than one executive with the name you specified, please contant database administrators"
     if (len(executive_id) <  1):
-        return "There is not a executive with the name you specified, please contact database administrators"
+        return "There is not a executive with the name you specified"
 
     delete = "DELETE FROM executive WHERE executive_id="+str(executive_id[0][0])+";"
     try:

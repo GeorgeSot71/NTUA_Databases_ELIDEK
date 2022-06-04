@@ -72,7 +72,7 @@ GROUP BY r.researcher_id
 ORDER BY COUNT(wop.researcher_id) DESC;
 
 /*QUERY 3.7*/
-SELECT ex.name,ex.surnname,org.name, SUM(p.funding)
+SELECT ex.name,ex.surname,org.name, SUM(p.funding)
 FROM executive ex, organization org, project p
 WHERE  ex.executive_id = p.executive_id 
 	AND org.abbreviation = p.abbreviation

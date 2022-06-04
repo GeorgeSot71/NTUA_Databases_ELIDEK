@@ -5,8 +5,11 @@
     <table class="table table-sm table-borderless">
         <thead>
         <tr>
-            <td>Organization Name</td>
             <td>Organization Abbreviation</td>
+            <td>Organization Name</td>
+            <td>Postcode</td>
+            <td>Adress</td>
+            <td>Town</td>
             <td>Phone</td>
         </tr>
         </thead>
@@ -16,6 +19,9 @@
             <td>{{ print[0] }}</td>
             <td>{{ print[1] }}</td>
             <td>{{ print[2] }}</td>
+            <td>{{ print[3] }}</td>
+            <td>{{ print[4] }}</td>
+            <td>{{ print[5] }}</td>
           </tr>
         {% endfor %}
         </tbody>

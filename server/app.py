@@ -7,6 +7,7 @@ app = Flask(__name__)
 connection = mysql.connector.connect(host='localhost',database='elidek',
 user='root',password='rootroot')
 
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/")
 def main():
     return render_template('about.html')
@@ -26,12 +27,15 @@ def update():
 @app.route("/delete")
 def delete():
     return render_template('delete.html')
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+
 
 #queries
 @app.route("/queries/query1")
 def query1():
     return render_template('query1.html')
 
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query2a", methods=["GET", "POST"])
 def query2a():
     rs = connection.cursor()
@@ -39,7 +43,9 @@ def query2a():
     rs.execute(select1)
     projects_per_researcher = rs.fetchall()
     return render_template('query2a.html', query2a = projects_per_researcher)
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query2b", methods=["GET", "POST"])
 def query2b():
     rs = connection.cursor()
@@ -47,11 +53,17 @@ def query2b():
     rs.execute(select1)
     organization_info = rs.fetchall()
     return render_template('query2b.html', query2b = organization_info)
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-@app.route("/queries/query3", methods=["GET", "POST"])
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/queries/query3")
 def query3():
+    return render_template('query3.html')
+
+@app.route("/queries/query3_result", methods=["GET", "POST"])
+def query3_result():
     rs = connection.cursor()
-    scientificField = str(request.form.get('Scientific_field'))
+    scf_field = str(request.form.get('type'))
 
     if(scf_field == "None"):
         return render_template('query3.html')
@@ -59,25 +71,29 @@ def query3():
         return render_template('query3.html')
 
     scientific_field = (
-        "AND sf.scientific_field_name = {}".format(scientificField)
-        if (scientificField!= "")
+        "AND sf.scientific_field_name = '{}'".format(scf_field)
+        if (scf_field!= "")
         else ""
     )
 
-everything = " SELECT sf.scientific_field_name, r.researcher_id,r.name, r.surname, p.project_id, p.title FROM scientific_field sf, researcher r, project p WHERE p.project_id = sf.project_id "
-my_query3 = (
-    everything
-    + scientific_field
-    + "AND YEAR(p.end_date) >= YEAR('2022-06-10') AND MONTH(p.end_date) > MONTH('2022-06-10') AND r.researcher_id IN (SELECT researcher_id FROM works_on_project WHERE project_id = p.project_id) LIMIT 10;"
-)
+    everything = " SELECT sf.scientific_field_name, r.researcher_id, r.name, r.surname, p.project_id, p.title FROM scientific_field sf, researcher r, project p WHERE p.project_id = sf.project_id "
+    my_query3 = (everything+scientific_field+"AND YEAR(p.end_date) >= YEAR('2022-06-10') AND MONTH(p.end_date) > MONTH('2022-06-10') AND r.researcher_id IN (SELECT researcher_id FROM works_on_project WHERE project_id = p.project_id);")
 
-rs.execute(my_query3)
-result3 = cur.fetchall()
-return render_template('query3_result.html', query3 = result3)
+    rs.execute(my_query3)
+    result3 = rs.fetchall()
+    return render_template('query3_result.html', query3 = result3)
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query4")
 def query4():
-    return render_template('query4.html')
+    rs = connection.cursor()
+    query = "SELECT COUNT(DISTINCT(p1.project_id)),  COUNT(DISTINCT(p2.project_id)), organ.abbreviation, organ.name, YEAR(p1.start_date), YEAR(p2.start_date) FROM project p1 INNER JOIN organization organ ON  p1.abbreviation = organ.abbreviation INNER JOIN project p2 ON  p2.abbreviation = organ.abbreviation AND (YEAR(p1.start_date) - YEAR(p2.start_date)) = 1 GROUP BY p1.abbreviation, YEAR(p1.start_date), YEAR(p2.start_date) HAVING COUNT(DISTINCT(p1.project_id)) =  COUNT(DISTINCT(p2.project_id)) AND COUNT(DISTINCT(p1.project_id)) >= 10;"
+    rs.execute(query)
+    returned_values = rs.fetchall()
+    return render_template('query4.html', query4 = returned_values)
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+
 
 @app.route("/queries/query5")
 def query5():

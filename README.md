@@ -21,6 +21,9 @@ sudo apt install pip
 ```
 pip install flask
 ```
+```
+pip install mysql-connector-python
+```
 - Στο αρχείο app.py αλλάζουμε το password στην αρχή (για την πρόσβαση στην βάση) ώστε να είναι το ίδιο με αυτό που έχουμε για την MySQL βάση
 - Για να ανοίξει ο server και να έχουμε πρόσβαση στο ui ανοίγουμε ένα terminal στο directory του αρχείου app.py και τρέχουμε την παρακάτω εντολή 
 ```

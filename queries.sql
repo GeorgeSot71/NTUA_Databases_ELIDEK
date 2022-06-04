@@ -30,12 +30,12 @@ SELECT * FROM organization_info;
 
 
 /*QUERY 3.3*/
-SELECT sf.scientific_field_name, r.researcher_id, p.project_id, p.title
+SELECT sf.scientific_field_name, r.researcher_id,r.name, r.surname, p.project_id, p.title
 FROM scientific_field sf, researcher r, project p
 WHERE
      p.project_id = sf.project_id
  AND sf.scientific_field_name = 'Physics'
- AND YEAR(p.start_date) = YEAR('2022-02-19')
+ AND YEAR(p.end_date) >= YEAR('2022-06-10')
  AND MONTH(p.end_date) > MONTH('2022-06-10')
  AND r.researcher_id IN (SELECT researcher_id FROM works_on_project WHERE project_id = p.project_id)
  LIMIT 10;

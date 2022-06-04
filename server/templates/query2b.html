@@ -11,11 +11,11 @@
         </tr>
         </thead>
         <tbody>
-        {% for organizations in organization %}
+        {% for print in query2b %}
         <tr class="organization-row">
-            <td>{{ organization.name }}</td>
-            <td>{{ organization.abbreviation }}</td>
-            <td>{{ organization.phone }}</td>
+            <td>{{ print([0]) }}</td>
+            <td>{{ print([1]) }}</td>
+            <td>{{ print([2]) }}</td>
           </tr>
         {% endfor %}
         </tbody>

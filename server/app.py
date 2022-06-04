@@ -32,13 +32,21 @@ def delete():
 def query1():
     return render_template('query1.html')
 
-@app.route("/queries/query2a")
+@app.route("/queries/query2a", methods=["GET", "POST"])
 def query2a():
-    return render_template('query2a.html')
+    rs = connection.cursor()
+    select1 = "SELECT * FROM projects_per_researcher;"
+    rs.execute(select1)
+    projects_per_researcher = rs.fetchall()
+    return render_template('query2a.html', query2a = projects_per_researcher)
 
-@app.route("/queries/query2b")
+@app.route("/queries/query2b", methods=["GET", "POST"])
 def query2b():
-    return render_template('query2b.html')
+    rs = connection.cursor()
+    select1 = "SELECT * FROM organization_info;"
+    rs.execute(select1)
+    organization_info = rs.fetchall()
+    return render_template('query2b.html', query2b = organization_info)
 
 @app.route("/queries/query3")
 def query3():

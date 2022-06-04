@@ -64,7 +64,7 @@ ORDER BY SUM(p.funding) DESC , scf1.scientific_field_name, scf2.scientific_field
 LIMIT 3;
 
 /*QUERY 3.6*/
-SELECT r.researcher_id, COUNT(wop.researcher_id)
+SELECT r.name,r.surname, COUNT(wop.researcher_id)
 FROM researcher r, works_on_project wop
 WHERE r.researcher_id = wop.researcher_id
 	AND YEAR(r.birthday) > YEAR('1982-06-10')

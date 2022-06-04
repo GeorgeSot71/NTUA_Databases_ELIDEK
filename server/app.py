@@ -529,9 +529,28 @@ def delete_phone():
 def delete_organization():
     return render_template('delete_organization.html')
 
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_program", methods=["GET", "POST"])
 def delete_program():
+    rs = connection.cursor()
+    program_name = str(request.form.get('program_name'))
+    if(program_name == "None" or program_name == ""):
         return render_template('delete_program.html')
+
+    select = "SELECT program_id FROM program WHERE program_name='"+program_name+"';"
+    rs.execute(select)
+    program_id = rs.fetchall()
+
+    if (len(program_id) > 1):
+        return "There seems to be more than one program with the title you specified, please contant database administrators"
+    if (len(program_id) <  1):
+        return "There is not a program with the name you specified, please contact database administrators"
+
+    delete = "DELETE FROM program WHERE program_id="+str(program_id[0][0])+";"
+    rs.execute(delete)
+    connection.commit()
+    return render_template('delete_program.html')
+
 
 @app.route("/delete/delete_executive", methods=["GET", "POST"])
 def delete_executive():

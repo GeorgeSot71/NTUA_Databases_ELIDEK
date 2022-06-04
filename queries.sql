@@ -82,7 +82,7 @@ ORDER BY SUM(p.funding) DESC
 LIMIT 5;
 
 /*QUERY 3.8*/
-SELECT r.researcher_id, COUNT(wop.researcher_id)
+SELECT r.name, r.surname, COUNT(wop.researcher_id)
 FROM researcher r, works_on_project wop
 WHERE r.researcher_id = wop.researcher_id
     AND wop.project_id NOT IN (SELECT project_id FROM delivered)

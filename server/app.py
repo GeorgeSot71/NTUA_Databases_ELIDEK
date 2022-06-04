@@ -525,8 +525,19 @@ def delete_researcher():
 def delete_phone():
     return render_template('delete_phone.html')
 
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_organization", methods=["GET", "POST"]  )
 def delete_organization():
+    rs = connection.cursor()
+
+    abbreviation = str(request.form.get('abbreviation'))
+
+    if(abbreviation == "None" or abbreviation == ""):
+        return render_template('delete_organization.html')
+
+    delete = "DELETE FROM organization WHERE abbreviation='"+abbreviation+"';"
+    rs.execute(delete)
+    connection.commit()
     return render_template('delete_organization.html')
 
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE

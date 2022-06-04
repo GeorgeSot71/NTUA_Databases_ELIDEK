@@ -73,7 +73,7 @@ my_query3 = (
 
 rs.execute(my_query3)
 result3 = cur.fetchall()
-return render_template('query3.html', query3 = result3)
+return render_template('query3_result.html', query3 = result3)
 
 @app.route("/queries/query4")
 def query4():

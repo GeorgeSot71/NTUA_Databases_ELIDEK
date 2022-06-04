@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+</head>
 <div class="query2a">
     <h3>Projects per Researcher</h3>
-    <table class="table table-sm table-borderless">
+    <table>
         <thead>
         <tr>
             <th>Researcher Name</th>

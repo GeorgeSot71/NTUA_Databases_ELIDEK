@@ -10,10 +10,10 @@
         </tr>
         </thead>
         <tbody>
-        {% for organizations in organization %}
+        {% for print in query4 %}
         <tr class="organization-row">
-            <td>{{ organization.name }}</td>
-            <td>{{ organization.abbreviation }}</td>
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
           </tr>
         {% endfor %}
         </tbody>

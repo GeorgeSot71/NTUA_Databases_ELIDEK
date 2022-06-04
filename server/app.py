@@ -7,10 +7,126 @@ app = Flask(__name__)
 connection = mysql.connector.connect(host='localhost',database='elidek',
 user='root',password='rootroot')
 
+#global variables
+available_ids = [] #for query1
+
+
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/")
 def main():
     return render_template('about.html')
+
+@app.route("/read", methods=["GET", "POST"])
+def read():
+
+    table_name = str(request.form.get('type'))
+    if(table_name == "" or table_name == "None"):
+        return render_template('read.html')
+
+    if(table_name == "researcher"):
+        rs = connection.cursor()
+        query = "SELECT * FROM researcher;"
+        rs.execute(query)
+        results = rs.fetchall()
+        return render_template("read_researcher.html", table = results)
+    elif(table_name == "organization_info"):
+        rs = connection.cursor()
+        query = "SELECT * FROM organization_info;"
+        rs.execute(query)
+        results = rs.fetchall()
+        return render_template("read_organization_info.html", table = results)
+    elif(table_name == "project"):
+        rs = connection.cursor()
+        query = "SELECT * FROM project;"
+        rs.execute(query)
+        results = rs.fetchall()
+        return render_template("read_project.html", table = results)
+    elif(table_name == "delivered"):
+        rs = connection.cursor()
+        query = "SELECT * FROM delivered;"
+        rs.execute(query)
+        results = rs.fetchall()
+        return render_template("read_delivered.html", table = results)
+    elif(table_name == "executive"):
+        rs = connection.cursor()
+        query = "SELECT * FROM executive;"
+        rs.execute(query)
+        results = rs.fetchall()
+        return render_template("read_executive.html", table = results)
+    elif(table_name == "program"):
+        rs = connection.cursor()
+        query = "SELECT * FROM program;"
+        rs.execute(query)
+        results = rs.fetchall()
+        return render_template("read_program.html", table = results)
+    elif(table_name == "employee_relation"):
+        rs = connection.cursor()
+        query = "SELECT * FROM employee_relation;"
+        rs.execute(query)
+        results = rs.fetchall()
+        return render_template("read_employee_relation.html", table = results)
+    elif(table_name == "scientific_field"):
+        rs = connection.cursor()
+        query = "SELECT * FROM scientific_field;"
+        rs.execute(query)
+        results = rs.fetchall()
+        return render_template("read_scientific_field.html", table = results)
+    elif(table_name == "works_on_project"):
+        rs = connection.cursor()
+        query = "SELECT * FROM works_on_project;"
+        rs.execute(query)
+        results = rs.fetchall()
+        return render_template("read_works_on_project.html", table = results)
+    elif(table_name == "evaluate_project"):
+        rs = connection.cursor()
+        query = "SELECT * FROM evaluate_project;"
+        rs.execute(query)
+        results = rs.fetchall()
+        return render_template("read_evaluate_project.html", table = results)
+
+
+    return render_template('read.html')
+
+@app.route("/read_researcher", methods=["GET", "POST"])
+def read_researcher():
+    return render_template("read_researcher.html", table = results)
+
+@app.route("/read_organization_info", methods=["GET", "POST"])
+def read_organization_info():
+    return render_template("read_researcher.html", table = results)
+
+@app.route("/read_project", methods=["GET", "POST"])
+def read_project():
+    return render_template("read_researcher.html", table = results)
+
+@app.route("/read_delivered", methods=["GET", "POST"])
+def read_delivered():
+    return render_template("read_researcher.html", table = results)
+
+@app.route("/read_executive", methods=["GET", "POST"])
+def read_executive():
+    return render_template("read_researcher.html", table = results)
+
+@app.route("/read_program", methods=["GET", "POST"])
+def read_program():
+    return render_template("read_researcher.html", table = results)
+
+@app.route("/read_employee_relation", methods=["GET", "POST"])
+def read_employee_relation():
+    return render_template("read_researcher.html", table = results)
+
+@app.route("/read_scientific_field", methods=["GET", "POST"])
+def read_scientific_field():
+    return render_template("read_researcher.html", table = results)
+
+@app.route("/read_works_on_project", methods=["GET", "POST"])
+def read_works_on_project():
+    return render_template("read_researcher.html", table = results)
+
+@app.route("/read_evaluate_project", methods=["GET", "POST"])
+def read_evaluate_project():
+    return render_template("read_researcher.html", table = results)
+
 
 @app.route("/queries")
 def queries():
@@ -31,9 +147,101 @@ def delete():
 
 
 #queries
+
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query1")
 def query1():
     return render_template('query1.html')
+
+@app.route("/queries/query1_result", methods=["GET", "POST"])
+def query1_result():
+    global available_ids
+    rs = connection.cursor()
+
+    startDate = str(request.form.get('start_date'))
+    dur = str(request.form.get('duration'))
+    executiveName = str(request.form.get('executive_name'))
+    executiveSurname = str(request.form.get('executive_surname'))
+
+    if(startDate == "None" or dur == "None" or executiveName == "None" or executiveSurname == "None"):
+        return render_template('query1_result.html')
+
+    if(executiveName !="" and executiveSurname!=""):
+   #executive_fullname -> executive_id
+        select1 = "SELECT executive_id FROM executive WHERE name ='"+executiveName+"' AND surname='"+executiveSurname+"';"
+        rs.execute(select1)
+        executiveID = rs.fetchall()
+        if (len(executiveID) >1):
+            return "There seems to be more than one executive with the fullname you specified, please contant database administrators"
+        if (len(executiveID) <  1):
+            return "There is not an executive with the fullname you specified, please contact database administrators"
+
+            executive_id = (
+            " AND p.executive_id = {}".format(executiveID)
+            if (executiveID != "")
+            else ""
+            )
+    else:
+        executive_id = " AND 1"
+
+
+
+    start_date = (
+        " AND MONTH(p.start_date) = MONTH('{0}') AND YEAR(p.start_date) = YEAR('{0}')".format(startDate)
+        if (startDate != "")
+        else ""
+    )
+
+    duration = (
+        " AND YEAR(p.end_date)- YEAR(p.start_date) ={0}".format(dur)
+        if (dur != "")
+        else ""
+    )
+
+    my_query1_1 = "SELECT  * FROM program;"
+    everything = " SELECT p.project_id, p.title, p.start_date, p.end_date, ex.name, ex.surname, ex.executive_id FROM project p, executive ex WHERE ex.executive_id=p.executive_id "
+    my_query1_2 = (
+        everything
+        + start_date
+        + duration
+        + executive_id
+        + " ORDER BY p.project_id ASC;"
+    )
+    #return my_query1_2
+    rs.execute(my_query1_1)
+    result1 = rs.fetchall()
+    #tsekare mono to my_query1_2 gia arxh kai an doulevei
+    #tha doume pos tha to kanoume kai gia ta dio
+    rs.execute(my_query1_2)
+    result2 = rs.fetchall()
+    available_ids = []
+    for i in range(len(result2)):
+        available_ids.append(int(result2[i][0]))
+
+    return render_template('query1_result.html', query1_1 = result1,query1_2 = result2)
+
+@app.route("/queries/query1_result2", methods=["GET", "POST"])
+def query1_result2():
+    global available_ids
+    rs = connection.cursor()
+    #return str(available_ids)
+    project_id = str(request.form.get('project_id'))
+    if(project_id == ""):
+        return "Please specify a project_id."
+    if(int(project_id) not in available_ids):
+        return "The project_id you specified was not in the list of available IDs."
+
+    select_query2 = "SELECT p.title FROM project p WHERE project_id="+project_id+";"
+    project_title_ret = rs.execute(select_query2)
+    ret_title = rs.fetchall()
+    ret_title = ret_title[0][0]
+
+    select_query = "SELECT r.name, r.surname FROM researcher r WHERE r.researcher_id IN (SELECT researcher_id FROM works_on_project WHERE project_id = "+project_id+") "
+    project_title_ret = rs.execute(select_query)
+    researchers = rs.fetchall()
+
+    return render_template("query1_resul2.html", title = ret_title, table = researchers)
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query2a", methods=["GET", "POST"])
@@ -60,6 +268,7 @@ def query2b():
 def query3():
     return render_template('query3.html')
 
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query3_result", methods=["GET", "POST"])
 def query3_result():
     rs = connection.cursor()
@@ -76,7 +285,7 @@ def query3_result():
         else ""
     )
 
-    everything = " SELECT sf.scientific_field_name, r.researcher_id, r.name, r.surname, p.project_id, p.title FROM scientific_field sf, researcher r, project p WHERE p.project_id = sf.project_id "
+    everything = " SELECT sf.scientific_field_name, p.title, r.name, r.surname FROM scientific_field sf, researcher r, project p WHERE p.project_id = sf.project_id "
     my_query3 = (everything+scientific_field+"AND YEAR(p.end_date) >= YEAR('2022-06-10') AND MONTH(p.end_date) > MONTH('2022-06-10') AND r.researcher_id IN (SELECT researcher_id FROM works_on_project WHERE project_id = p.project_id);")
 
     rs.execute(my_query3)
@@ -94,22 +303,45 @@ def query4():
     return render_template('query4.html', query4 = returned_values)
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-
-@app.route("/queries/query5")
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/queries/query5", methods=["GET", "POST"])
 def query5():
-    return render_template('query5.html')
+    rs = connection.cursor()
+    query = "SELECT scf1.scientific_field_name, scf2.scientific_field_name,SUM(p.funding) FROM project p, scientific_field scf1, scientific_field scf2 WHERE scf1.project_id =scf2.project_id AND scf1.scientific_field_name > scf2.scientific_field_name AND p.project_id = scf1.project_id GROUP BY scf1.scientific_field_name,  scf2.scientific_field_name ORDER BY SUM(p.funding) DESC , scf1.scientific_field_name, scf2.scientific_field_name LIMIT 3;"
+    rs.execute(query)
+    results = rs.fetchall()
+    return render_template('query5.html', query5 = results)
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/queries/query6")
 def query6():
-    return render_template('query6.html')
+    rs = connection.cursor()
+    query = "SELECT r.name,r.surname, r.birthday,COUNT(wop.researcher_id) FROM researcher r, works_on_project wop WHERE r.researcher_id = wop.researcher_id AND YEAR(r.birthday) > YEAR('1982-06-10') GROUP BY r.researcher_id ORDER BY COUNT(wop.researcher_id) DESC;"
+    rs.execute(query)
+    returned_values = rs.fetchall()
+    return render_template('query6.html', query6 = returned_values)
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-@app.route("/queries/query7")
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/queries/query7", methods=["GET", "POST"])
 def query7():
-    return render_template('query7.html')
+    rs = connection.cursor()
+    query = "SELECT ex.name, ex.surname, org.name, SUM(p.funding) FROM executive ex, organization org, project p WHERE  ex.executive_id = p.executive_id AND org.abbreviation = p.abbreviation AND org.abbreviation IN (SELECT abbreviation FROM company) GROUP BY ex.name, ex.surname, org.name ORDER BY SUM(p.funding) DESC LIMIT 5;"
+    rs.execute(query)
+    results = rs.fetchall()
+    return render_template('query7.html', query7 = results)
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
-@app.route("/queries/query8")
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/queries/query8", methods=["GET", "POST"])
 def query8():
-    return render_template('query8.html')
+    rs = connection.cursor()
+    query = "SELECT r.name, r.surname, COUNT(wop.researcher_id) FROM researcher r, works_on_project wop WHERE r.researcher_id = wop.researcher_id AND wop.project_id NOT IN (SELECT project_id FROM delivered) GROUP BY r.researcher_id HAVING COUNT(wop.researcher_id) >= 5"
+    rs.execute(query)
+    results = rs.fetchall()
+    return render_template('query8.html', query8 = results)
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 
 #insert
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
@@ -452,7 +684,6 @@ def insert_employee_relation():
 # George added the following just to render the websites
 
 #delete
-
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_employee_relation", methods=["GET", "POST"])
 def delete_employee_relation():

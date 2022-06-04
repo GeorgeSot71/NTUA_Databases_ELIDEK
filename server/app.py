@@ -551,10 +551,34 @@ def delete_program():
     connection.commit()
     return render_template('delete_program.html')
 
-
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_executive", methods=["GET", "POST"])
 def delete_executive():
+    rs = connection.cursor()
+
+    executiveName = str(request.form.get('exec_name'))
+    executiveSurname = str(request.form.get('exec_surname'))
+
+    if(executiveName == "None" or executiveSurname == ""):
         return render_template('delete_executive.html')
+    if(executiveName == "" or executiveSurname == ""):
+        return render_template('delete_executive.html')
+
+    select = "SELECT executive_id FROM executive WHERE name='"+executiveName+"' AND surname='"+executiveSurname+"';"
+    rs.execute(select)
+    executive_id = rs.fetchall()
+    if (len(executive_id) > 1):
+        return "There seems to be more than one executive with the name you specified, please contant database administrators"
+    if (len(executive_id) <  1):
+        return "There is not a executive with the name you specified, please contact database administrators"
+
+    delete = "DELETE FROM executive WHERE executive_id="+str(executive_id[0][0])+";"
+    try:
+        rs.execute(delete)
+    except:
+        return "This executive manages a project so he/her can not be removed. To remove him/her, please remove the project/s, he/she manages, first."
+    connection.commit()
+    return render_template('delete_executive.html')
 
 #update (some of the following may not be needed)
 @app.route("/update/update_employee_relation")

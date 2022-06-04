@@ -12,12 +12,12 @@
         </tr>
         </thead>
         <tbody>
-        {% for researchers in researcher %}
+        {% for print in query6%}
         <tr class="researcher-row">
-            <td>{{ researcher.name }}</td>
-            <td>{{ researcher.surname }}</td>
-            <td>{{ researcher.birthday }}</td>
-            <td>{{ project.title }}</td>
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+            <td>{{ print[2] }}</td>
+            <td>{{ print[3] }}</td>
           </tr>
         {% endfor %}
         </tbody>

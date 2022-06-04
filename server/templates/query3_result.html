@@ -14,10 +14,10 @@
         <tbody>
         {% for print in query3_result %}
         <tr class="project-row">
-            <td>{{ scientific_field }}</td>
-            <td>{{ project.title }}</td>
-            <td>{{ researcher.name }}</td>
-            <td>{{ researcher.surname }}</td>
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+            <td>{{ print[2] }}</td>
+            <td>{{ print[3] }}</td>
           </tr>
         {% endfor %}
         </tbody>

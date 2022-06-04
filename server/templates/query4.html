@@ -5,8 +5,12 @@
     <table class="table table-sm table-borderless">
         <thead>
         <tr>
-            <th>Organization Name</th>
+            <th>Number of projects (1st Year)</th>
+            <th>Number of projects (2nd Year)</th>
             <th>Organization Abbreviation</th>
+            <th>Organization Name</th>
+            <th>Second Year</th>
+            <th>First Year</th>
         </tr>
         </thead>
         <tbody>
@@ -14,7 +18,11 @@
         <tr class="organization-row">
             <td>{{ print[0] }}</td>
             <td>{{ print[1] }}</td>
-          </tr>
+            <td>{{ print[2] }}</td>
+            <td>{{ print[3] }}</td>
+            <td>{{ print[4] }}</td>
+            <td>{{ print[5] }}</td>
+        </tr>
         {% endfor %}
         </tbody>
     </table>

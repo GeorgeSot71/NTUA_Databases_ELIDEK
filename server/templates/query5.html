@@ -12,11 +12,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>{{ print[0] }}</td>
-            <td>{{ common_scientific_field[1] }}</td>
-            <td>{{ common_scientific_field[2] }}</td>
-          </tr>
+            {% for print in query5 %}
+            <tr class="organization-row">
+                <td>{{ print[0] }}</td>
+                <td>{{ print[1] }}</td>
+                <td>{{ print[2] }}</td>
+                <td>{{ print[3] }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

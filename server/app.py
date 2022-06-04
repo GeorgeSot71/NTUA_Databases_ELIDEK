@@ -452,9 +452,37 @@ def insert_employee_relation():
 # George added the following just to render the websites
 
 #delete
-@app.route("/delete/delete_employee_relation")
+
+#DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
+@app.route("/delete/delete_employee_relation", methods=["GET", "POST"])
 def delete_employee_relation():
+    rs = connection.cursor()
+
+    abbreviation = str(request.form.get('abbreviation'))
+    researcherName = str(request.form.get('name'))
+    researcherSurname = str(request.form.get('surname'))
+
+    if(abbreviation == "None" or abbreviation == ""):
+        return render_template('delete_employee_relation.html')
+    if(researcherName == "" or researcherName == ""):
+        return render_template('delete_employee_relation.html')
+    if(researcherSurname == "" or researcherSurname == ""):
+        return render_template('delete_employee_relation.html')
+
+    select = "SELECT researcher_id FROM researcher WHERE name='"+researcherName+"' AND surname='"+researcherSurname+"';"
+    rs.execute(select)
+    researcher_id = rs.fetchall()
+
+    if (len(researcher_id) >1):
+        return "There seems to be more than one researchers with the name you specified, please contant database administrators"
+    if (len(researcher_id) <  1):
+        return "There is not a researcher with the name you specified, please contact database administrators"
+
+    delete = "DELETE FROM employee_relation WHERE abbreviation='"+abbreviation+"' AND researcher_id="+str(researcher_id[0][0])+";"
+    rs.execute(delete)
+    connection.commit()
     return render_template('delete_employee_relation.html')
+
 
 #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE #DONE
 @app.route("/delete/delete_project", methods=["GET", "POST"])

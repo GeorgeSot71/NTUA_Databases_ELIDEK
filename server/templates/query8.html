@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="query7">
+    <h3>Executives working for ELIDEK that have given the most amount of money to a company</h3>
+    <table class="table table-sm table-borderless">
+        <thead>
+        <tr>
+            <th>Executive Name</th>
+            <th>Executive Surname</th>
+            <th>Company Name</th>
+            <th>Total funding</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for print in query7 %}
+        <tr class="best_executive-row">
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+            <td>{{ print[2] }}</td>
+            <td>{{ print[3] }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

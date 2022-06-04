@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<div class="read_projects">
+    <h3>Project Table</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Project ID</th>
+            <th>Project Title</th>
+            <th>Project Summary</th>
+            <th>Funding</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Abbreviation</th>
+            <th>Executive ID</th>
+            <th>Program ID</th>
+            <th>Scientific Inspector ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for print in table %}
+        <tr class="project-row">
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+            <td>{{ print[2] }}</td>
+            <td>{{ print[3] }}</td>
+            <td>{{ print[4] }}</td>
+            <td>{{ print[5] }}</td>
+            <td>{{ print[6] }}</td>
+            <td>{{ print[7] }}</td>
+            <td>{{ print[8] }}</td>
+            <td>{{ print[9] }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

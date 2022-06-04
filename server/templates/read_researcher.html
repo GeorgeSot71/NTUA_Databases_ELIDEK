@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<div class="read_researchers">
+    <h3>Researcher Table</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Researcher ID</th>
+            <th>Researcher Name</th>
+            <th>Researcher Surname</th>
+            <th>Researcher birthdate</th>
+            <th>Researcher sex</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for print in table %}
+        <tr class="researcher-row">
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+            <td>{{ print[2] }}</td>
+            <td>{{ print[3] }}</td>
+            <td>{{ print[4] }}</td>
+
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

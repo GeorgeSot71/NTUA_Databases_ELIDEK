@@ -1,24 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 <div id="read">
-    <form action = "/read/read_result" method='POST'">
+    <form action = "/read" method='POST'>
         <div class="form-row">
-      <label for="table">Select the table you want to read: </label>
-      <select name="table" id="table">
-        <option value="Physics">Physics</option>
-        <option value="Computer Science">Computer Science</option>
-        <option value="Engineering Sciences">Engineering Sciences</option>
-        <option value="Mathematics">Mathematics</option>
-        <option value="Environment">Environment</option>
-        <option value="Chemistry">Chemistry</option>
-        <option value="Medicine">Medicine</option>
-        <option value="Art">Art</option>
-        <option value="Sociology">Sociology</option>
-        <option value="Economics">Economics</option>
+      <label for="type">Choose the table of your choice:</label>
+      <select name="type" id="type">
+        <option value="researcher">Researchers</option>
+        <option value="organization_info">Organization</option>
+        <option value="project">Projects</option>
+        <option value="delivered">Deliverables</option>
+        <option value="executive">Executives</option>
+        <option value="program">Programs</option>
+        <option value="employee_relation">Employee relation</option>
+        <option value="scientific_field">Scientific Fields</option>
+        <option value="works_on_project">Working Relations</option>
+        <option value="evaluate_project">Evaluations</option>
       </select>
         </div>
         <div class="form-group my-4">
-            <button type="submit" class="btn btn-primary"> Read Table  </button>
+            <button type="submit" class="btn btn-primary"> Enter a Table </button>
         </div>
     </form>
 </div>

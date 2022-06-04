@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<div class="read_scientific_field">
+    <h3>Scientific Field Table</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Project ID</th>
+            <th>Scientific Field Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for print in table %}
+        <tr class="scientific_field-row">
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

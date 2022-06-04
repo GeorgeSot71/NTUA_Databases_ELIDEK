@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<div class="read_evaluate">
+    <h3>Evaluate Table</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Project ID</th>
+            <th>Researcher ID</th>
+            <th>Evaluation Grade</th>
+            <th>Evaluation Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for print in table %}
+        <tr class="evaluate-row">
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+            <td>{{ print[2] }}</td>
+            <td>{{ print[3] }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

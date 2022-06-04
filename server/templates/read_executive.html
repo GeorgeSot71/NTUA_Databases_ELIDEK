@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<div class="read_executives">
+    <h3>Executive Table</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Executive ID</th>
+            <th>Executive Name</th>
+            <th>Executive Surname</th>
+            <th>Executive birthdate</th>
+            <th>Executive sex</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for print in table %}
+        <tr class="executive-row">
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+            <td>{{ print[2] }}</td>
+            <td>{{ print[3] }}</td>
+            <td>{{ print[4] }}</td>
+
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

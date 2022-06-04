@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<div class="read_program">
+    <h3>Program Table</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Program ID</th>
+            <th>Program Name</th>
+            <th>Program Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for print in table %}
+        <tr class="program-row">
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+            <td>{{ print[2] }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

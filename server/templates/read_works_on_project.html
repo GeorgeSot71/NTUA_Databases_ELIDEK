@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<div class="read_works_on_project">
+    <h3>Working Relations Table</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Project ID</th>
+            <th>Researcher ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for print in table %}
+        <tr class="works_on_project-row">
+            <td>{{ print[0] }}</td>
+            <td>{{ print[1] }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

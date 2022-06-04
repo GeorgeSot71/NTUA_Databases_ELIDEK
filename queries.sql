@@ -77,7 +77,7 @@ FROM executive ex, organization org, project p
 WHERE  ex.executive_id = p.executive_id 
 	AND org.abbreviation = p.abbreviation
     AND org.abbreviation IN (SELECT abbreviation FROM company)
-GROUP BY ex.name, org.name
+GROUP BY ex.name,ex.surname,org.name
 ORDER BY SUM(p.funding) DESC
 LIMIT 5;
 

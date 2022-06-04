@@ -1,27 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
 <div id="query1">
-    <form class="p-2" class="form" method='POST' action= "/insert/insert_project">
+    <form method='POST' action= "/queries/query1_result">
         <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="duration">Duration</label>
-            <input type="text" class="form-control" name="duration" placeholder="Number of Years">
+            <label for="start_date">Project Start Date</label>
+            <input type="date" class="form-control" name="start_date" placeholder="Start Date">
         </div>
-      </div>
-      <div class="form-group col-md-6">
-          <label for="start_date">Start Date</label>
-          <input type="date" class="form-control" name="start_date" placeholder="Date">
-      </div>
- 
-      <div class="form-group col-md-6">
-          <label for="executive_name">Executive Name</label>
-          <input type="text" class="form-control" name="executive_name" placeholder="Name">
-      </div><div class="form-group col-md-6">
-          <label for="executive_surname">Executive Surname</label>
-          <input type="text" class="form-control" name="executive_surname" placeholder="Surname">
-      </div>
+        <div class="form-group col-md-6">
+            <label for="duration">Enter project duration</label>
+            <input type="tel" class="form-control" name="duration" placeholder="Duration"
+            pattern="[1-4]{0,1}">
+            <small> Duration: 1-4 </small>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="executive_name">Enter executive name of project:</label>
+            <input type="text" class="form-control" name="executive_name" placeholder="Name">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="executive_surname">Enter executive surname of project:</label>
+            <input type="text" class="form-control" name="executive_surname" placeholder="Surname">
+        </div>
         <div class="form-group my-4">
-            <button type="submit" class="btn btn-primary"> Register Criteria </button>
+            <button type="submit" class="btn btn-primary"> Select Project </button>
         </div>
     </form>
 </div>

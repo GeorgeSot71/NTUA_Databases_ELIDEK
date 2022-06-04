@@ -1,15 +1,10 @@
 /* QUERY 1 */
 SELECT  * FROM program;
 
-SELECT r.researcher_id,r.name,r.surname,p.project_id
+SELECT r.researcher_id,r.name,r.surname,p.project_id, p.title
 FROM researcher r, project p
 WHERE 
-      p.project_id = 1 
-  AND MONTH(p.start_date) =MONTH('2021-10-17')
-  AND YEAR(p.start_date) =YEAR('2021-10-14') 
- AND (YEAR(p.end_date) - YEAR(p.start_date)) = 2 
- AND  p.executive_id = 1 
- AND  r.researcher_id IN (SELECT researcher_id 
+	r.researcher_id IN (SELECT researcher_id 
 										  FROM works_on_project 
                                           WHERE project_id  IN 
 															(SELECT project_id 
@@ -18,7 +13,12 @@ WHERE
 																AND executive_id= p.executive_id
                                                                 AND MONTH(start_date) = MONTH(p.start_date) 
 																AND YEAR(start_date) = YEAR(p.start_date) 
-																AND (YEAR(end_date) - YEAR(start_date))=(YEAR(p.end_date) - YEAR(p.start_date)))); 
+																AND (YEAR(end_date) - YEAR(start_date))=(YEAR(p.end_date) - YEAR(p.start_date))))
+/*AND p.project_id = 1 
+AND MONTH(p.start_date) =MONTH('2021-10-17')
+AND YEAR(p.start_date) =YEAR('2021-10-14') 
+AND (YEAR(p.end_date) - YEAR(p.start_date)) = 2 */
+AND  p.executive_id = 1;
  
  
   

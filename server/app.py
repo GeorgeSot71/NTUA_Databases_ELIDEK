@@ -463,8 +463,8 @@ def insert_project():
     rs.execute(get_project_id)
     project_id = rs.fetchall()
     project_id = project_id[0][0]
-    #insert into works_on_project
-    insert2 = "INSERT INTO `works_on_project`(`project_id`, `researcher_id`) VALUES ("+str(project_id)+", "+str(inspector_results[0][0])+");"
+    #insert into employee relation
+    insert2 = "INSERT INTO `employee_relation`(`researcher_id`, `abbreviation`, `start_working_date`) VALUES ("+str(inspector_results[0][0])+", '"+org_abr+"', '"+start_date+"');"
     rs.execute(insert2)
     connection.commit()
 
@@ -483,7 +483,11 @@ def insert_project():
         return "An evaluator (researcher) with the name you specified does not exist in the database, please contant database administrators"
 
     insert4 = "INSERT INTO `evaluate_project` (`project_id`, `researcher_id`, `grade`, `evaluation_date`) VALUES ("+str(project_id)+", "+str(evaluator_results[0][0])+", '"+eval_grade+"', '"+eval_date+"');"
-    rs.execute(insert4)
+    try:
+        rs.execute(insert4)
+    except mysql.connector.errors.IntegrityError as e:
+        return e
+
     connection.commit()
 
     return render_template('insert_project.html')

@@ -1,7 +1,7 @@
 # NTUA Databases ΕΛΙΔΕΚ
 ## Το User Interface
 
-!(https://imgur.com/a/7u1pWzm)
+![](https://imgur.com/a/7u1pWzm)
 
 
 ## Οδηγός Εγκατάστασης

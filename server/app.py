@@ -978,7 +978,6 @@ def update_project():
     projectFunding = str(request.form.get('funding'))
     startDate = str(request.form.get('start_date'))
     endDate = str(request.form.get('end_date'))
-    orgAbbr = str(request.form.get('abbreviation'))
     executiveName = str(request.form.get('executive_name'))
     executiveSurname = str(request.form.get('executive_surname'))
     inspectorName = str(request.form.get('scientific_inspector_name'))
@@ -989,7 +988,7 @@ def update_project():
         #return "check1"
         return render_template('update_project.html')
 
-    if(newTitle == "" and projectSummary == "" and projectFunding == "" and startDate == "" and endDate == "" and orgAbbr == "" and executiveName=="" and executiveSurname == "" and inspectorName == "" and inspectorSurname==""  and programName==""):
+    if(newTitle == "" and projectSummary == "" and projectFunding == "" and startDate == "" and endDate == "" and executiveName=="" and executiveSurname == "" and inspectorName == "" and inspectorSurname==""  and programName==""):
         #return "check2"
         return render_template('update_project.html')
 
@@ -1024,7 +1023,7 @@ def update_project():
             return "There is not a researcher with the inspector name you specified, please contact database administrators"
 
     #program_name -> program_id
-    if(inspectorName != ""):
+    if(programName != ""):
         select4 = "SELECT program_id FROM program WHERE program_name='"+programName+"';"
         rs.execute(select4)
         program_id = rs.fetchall()
@@ -1093,20 +1092,21 @@ def update_project():
 
 
     #1st queryUpdate
-    queryUpdate1 = "UPDATE `project` SET "+new_title+" "+project_summary+" "+project_funding+" "+start_date+" "+end_date+" WHERE project_id ="+str(project_id[0][0])+";"
-    try:
-        rs.execute(queryUpdate1)
-        connection.commit()
-    except mysql.connector.errors.IntegrityError as e:
-        return e
-    #return queryUpdate1
+    if(newTitle != "" or projectSummary != "" or projectFunding != "" or startDate != "" or endDate != ""):
+        queryUpdate1 = "UPDATE `project` SET "+new_title+" "+project_summary+" "+project_funding+" "+start_date+" "+end_date+" WHERE project_id ="+str(project_id[0][0])+";"
+        try:
+            rs.execute(queryUpdate1)
+            connection.commit()
+        except mysql.connector.errors.IntegrityError as e:
+            return e
+        #return queryUpdate1
     #2nd queryUpdate
     if(executiveName != "" and executiveSurname !=""):
         executiveID = (
             "executive_id = '{}'".format(str(executive_id[0][0]))
         )
         queryUpdate2 = "UPDATE `project` SET "+executiveID+" WHERE project_id ="+str(project_id[0][0])+";"
-        #return queryUpdate
+        #return queryUpdate2
         try:
             rs.execute(queryUpdate2)
         except mysql.connector.errors.IntegrityError as e:
@@ -1131,16 +1131,15 @@ def update_project():
             "program_id = '{}'".format(str(program_id[0][0]))
         )
 
-        queryUpdate4 = "UPDATE `project` SET "+programID+" WHERE program_id ="+str(project_id[0][0])+";"
+        queryUpdate4 = "UPDATE `project` SET "+programID+" WHERE project_id ="+str(project_id[0][0])+";"
         #return queryUpdate
         try:
-            rs.execute(queryUpdate3)
+            rs.execute(queryUpdate4)
             connection.commit()
         except mysql.connector.errors.IntegrityError as e:
             return e
 
     return render_template('update_project.html')
-
         
     
 @app.route("/update/update_delivered", methods=["GET", "POST"])

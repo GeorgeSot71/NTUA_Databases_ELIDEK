@@ -942,7 +942,7 @@ def update_employee_relation():
     if(startWorkingDate == ""):
         return render_template('update_employee_relation.html')
 
-    
+
     #researcher_fullname -> researcher_id
     select1 = "SELECT researcher_id FROM researcher WHERE name='"+researcherName+"' AND surname='"+researcherSurname+"';"
     rs.execute(select1)
@@ -959,9 +959,9 @@ def update_employee_relation():
         else ""
     )
 
-    
-    queryUpdate = "UPDATE `employee_relation` SET "+start_working_date+" WHERE abbreviation ="+orgAbbr+" AND researcher_id ="+str(researcher_id[0][0])+";"
-    #return queryUpdate
+
+    queryUpdate = "UPDATE `employee_relation` SET "+start_working_date+" WHERE abbreviation ='"+orgAbbr+"' AND researcher_id ="+str(researcher_id[0][0])+";"
+
     try:
         rs.execute(queryUpdate)
         connection.commit()

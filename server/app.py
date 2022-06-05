@@ -969,10 +969,190 @@ def update_employee_relation():
         return "<h1>This organization abbreviation does not exist, go back and input an existing abbreviation</h1>"
     return render_template('update_employee_relation.html')
 
-@app.route("/update/update_project")
+@app.route("/update/update_project", methods=["GET", "POST"])
 def update_project():
-    return render_template('update_project.html')
+    rs = connection.cursor()
+    oldTitle = str(request.form.get('old_title'))
+    newTitle = str(request.form.get('new_title'))
+    projectSummary = str(request.form.get('summary'))
+    projectFunding = str(request.form.get('funding'))
+    startDate = str(request.form.get('start_date'))
+    endDate = str(request.form.get('end_date'))
+    orgAbbr = str(request.form.get('abbreviation'))
+    executiveName = str(request.form.get('executive_name'))
+    executiveSurname = str(request.form.get('executive_surname'))
+    inspectorName = str(request.form.get('scientific_inspector_name'))
+    inspectorSurname = str(request.form.get('scientific_inspector_surname'))
+    programName = str(request.form.get('program_name'))
 
+    if(oldTitle == "None" or oldTitle == ""):
+        return render_template('update_project.html')
+
+    if(newTitle == "" and projectSummary == "" and projectFunding == "" and startDate == "" and endDate == "" and orgAbbr == "" and executiveName=="" and executiveSurname == "" and inspectorName == "" and inspectorSurname==""  and programName==""):
+        return render_template('update_project.html')
+
+    #old_title -> project_id
+    select1 = "SELECT project_id FROM project WHERE title='"+oldTitle+"';"
+    rs.execute(select1)
+    project_id = rs.fetchall()
+    if (len(project_id) >1):
+        return "There seems to be more than one projects with the name you specified, please contant database administrators"
+    if (len(project_id) <  1):
+        return "There is not a project with the name you specified, please contact database administrators"
+
+
+    #executive_fullname -> executive_id
+    if(executiveName != "" and executiveSurname !=""):
+        select2 = "SELECT executive_id FROM executive WHERE name='"+executiveName+"' AND surname='"+executiveSurname+"';"
+        rs.execute(select2)
+        executive_id = rs.fetchall()
+        if (len(executive_id) >1):
+            return "There seems to be more than one executive with the name you specified, please contant database administrators"
+        if (len(executive_id) <  1):
+            return "There is not a executive with the name you specified, please contact database administrators"
+
+    #inspector_fullname -> inspector(researcher)_id
+    if(inspectorName != "" and inspectorSurname !=""):
+        select3 = "SELECT researcher_id FROM researcher WHERE name='"+inspectorName+"' AND surname='"+inspectorSurname+"';"
+        rs.execute(select3)
+        inspector_id = rs.fetchall()
+        if (len(inspector_id) >1):
+            return "There seems to be more than one researcher with the inspector name you specified, please contant database administrators"
+        if (len(inspector_id) <  1):
+            return "There is not a researcher with the inspector name you specified, please contact database administrators"
+
+    #program_name -> program_id
+    if(inspectorName != ""):
+        select4 = "SELECT program_id FROM program WHERE program_name='"+programName+"';"
+        rs.execute(select4)
+        program_id = rs.fetchall()
+        if (len(program_id) >1):
+            return "There seems to be more than one programs with the name you specified, please contant database administrators"
+        if (len(program_id) <  1):
+            return "There is not a program with the name you specified, please contact database administrators"
+
+    #1st queryUpdate
+    new_title = (
+        "title = '{}'".format(newTitle)
+        if (newTitle!= "")
+        else ""
+    )
+
+    if(newTitle != ""):
+        project_summary = (
+            ", summary = '{}'".format(projectSummary)
+            if (projectSummary != "")
+            else ""
+        )
+    else:
+        project_summary = (
+            "summary = '{}'".format(projectSummary)
+            if (projectSummary != "")
+            else ""
+        )
+    
+    if(newTitle != "" or projectSummary!= ""):
+        project_funding = (
+            ", funding = '{}'".format(projectFunding)
+            if (projectFunding != "")
+            else ""
+        )
+    else:
+        project_funding = (
+            "funding = '{}'".format(projectFunding)
+            if (projectFunding != "")
+            else ""
+        )
+    if(newTitle != "" or projectSummary!= "" or projectFunding != ""):
+        start_date = (
+            ", start_date = '{}'".format(startDate)
+            if (startDate != "")
+            else ""
+        )
+    else:
+        start_date = (
+            "start_date = '{}'".format(startDate)
+            if (startDate != "")
+            else ""
+        )
+    
+    if(newTitle != "" or projectSummary!= "" or projectFunding != "" or startDate !=""):
+        end_date = (
+            ", end_date = '{}'".format(endDate)
+            if (endDate != "")
+            else ""
+        )
+    else:
+        end_date = (
+            "end_date = '{}'".format(endDate)
+            if (endDate != "")
+            else ""
+        )
+
+    if(newTitle != "" or projectSummary!= "" or projectFunding != "" or startDate !="" or endDate !=""):
+        org_abbr = (
+            ", abbreviation = '{}'".format(orgAbbr)
+            if (orgAbbr != "")
+            else ""
+        )
+    else:
+        org_abbr = (
+            "abbreviation = '{}'".format(orgAbbr)
+            if (orgAbbr != "")
+            else ""
+        )
+    
+    #1st queryUpdate
+    queryUpdate1 = "UPDATE `project` SET "+new_title+" "+project_summary+" "+project_funding+" "+start_date+" "+end_date+" "+org_abbr+" WHERE project_id ="+str(project_id[0][0])+";"
+    try:
+        rs.execute(queryUpdate1)
+        connection.commit()
+    except mysql.connector.errors.IntegrityError as e:
+        return e
+
+    #2nd queryUpdate
+    if(executiveName != "" and executiveSurname !=""):
+        executiveID = (
+            "executive_id = '{}'".format(str(executive_id[0][0]))
+        )
+        queryUpdate2 = "UPDATE `project` SET "+executiveID+" WHERE project_id ="+str(project_id[0][0])+";"
+        #return queryUpdate
+        try:
+            rs.execute(queryUpdate2)
+            connection.commit()
+        except mysql.connector.errors.IntegrityError as e:
+            return e
+    
+    #3rd queryUpdate
+    if(inspectorName != "" and inspectorSurname !=""):
+        inspectorID = (
+            "scientific_inspector_id = '{}'".format(str(inspector_id[0][0]))
+        )
+        queryUpdate3 = "UPDATE `project` SET "+inspectorID+" WHERE project_id ="+str(project_id[0][0])+";"
+        #return queryUpdate
+        try:
+            rs.execute(queryUpdate3)
+            connection.commit()
+        except mysql.connector.errors.IntegrityError as e:
+            return e
+
+    #4th queryUpdate
+    if(programName != ""):
+        programID = (
+            "program_id = '{}'".format(str(program_id[0][0]))
+        )
+
+        queryUpdate4 = "UPDATE `project` SET "+programID+" WHERE program_id ="+str(project_id[0][0])+";"
+        #return queryUpdate
+        try:
+            rs.execute(queryUpdate3)
+            connection.commit()
+        except mysql.connector.errors.IntegrityError as e:
+            return e
+        
+    return render_template('update_project.html')
+        
+    
 @app.route("/update/update_delivered", methods=["GET", "POST"])
 def update_delivered():
     rs = connection.cursor()

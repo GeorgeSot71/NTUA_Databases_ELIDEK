@@ -640,7 +640,6 @@ def insert_employee_relation():
 
     return render_template('insert_employee_relation.html')
 
-# George added the following just to render the websites
 
 #delete
 @app.route("/delete/delete_employee_relation", methods=["GET", "POST"])
@@ -965,8 +964,67 @@ def update_delivered():
 
     return render_template('update_delivered.html')
 
-@app.route("/update/update_evaluate_project")
+
+@app.route("/update/update_evaluate_project", methods=["GET", "POST"])
 def update_evaluate_project():
+    rs = connection.cursor()
+    projectTitle = str(request.form.get('project_title'))
+    researcherName = str(request.form.get('researcher_name'))
+    researcherSurname = str(request.form.get('researcher_surname'))
+    evalDate = str(request.form.get('evaluation_date'))
+    evalGrade = str(request.form.get('grade'))
+
+    if(projectTitle == "None" or researcherName == "None" or researcherSurname == "None"):
+        return render_template('update_evaluate_project.html')
+    if(projectTitle == "" or researcherName == "" or researcherSurname == ""):
+        return render_template('update_evaluate_project.html')
+
+    if(evalDate == "" and evalGrade == ""):
+        return render_template('update_evaluate_project.html')
+
+    #projectTitle -> project_id
+    select1 = "SELECT project_id FROM project WHERE title='"+projectTitle+"';"
+    rs.execute(select1)
+    project_id = rs.fetchall()
+    if (len(project_id) >1):
+        return "There seems to be more than one projects with the name you specified, please contant database administrators"
+    if (len(project_id) <  1):
+        return "There is not a project with the name you specified, please contact database administrators"
+
+    #researcher_fullname -> researcher_id
+    select2 = "SELECT researcher_id FROM researcher WHERE name='"+researcherName+"' AND surname='"+researcherSurname+"';"
+    rs.execute(select2)
+    researcher_id = rs.fetchall()
+    if (len(researcher_id) >1):
+        return "There seems to be more than one researchers with the name you specified, please contant database administrators"
+    if (len(researcher_id) <  1):
+        return "There is not a researcher with the name you specified, please contact database administrators"
+
+    evaluation_date = (
+        "evaluation_date = '{}'".format(evalDate)
+        if (evalDate!= "")
+        else ""
+    )
+
+    if(evalDate != ""):
+        evaluation_grade = (
+            ", grade = '{}'".format(evalGrade)
+            if (evalGrade != "")
+            else ""
+        )
+    else:
+        evaluation_grade = (
+            "grade = '{}'".format(evalGrade)
+            if (evalGrade != "")
+            else ""
+        )
+    queryUpdate = "UPDATE `evaluate_project` SET "+evaluation_date+" "+evaluation_grade+" WHERE project_id ="+str(project_id[0][0])+" AND researcher_id ="+str(researcher_id[0][0])+";"
+    #return queryUpdate
+    try:
+        rs.execute(queryUpdate)
+        connection.commit()
+    except mysql.connector.errors.IntegrityError as e:
+        return e
     return render_template('update_evaluate_project.html')
 
 #DONE

@@ -960,7 +960,7 @@ def update_employee_relation():
     )
 
     
-    queryUpdate = "UPDATE `employee_relation` SET "+evaluation_date+" WHERE abbreviation ="+orgAbbr+" AND researcher_id ="+str(researcher_id[0][0])+";"
+    queryUpdate = "UPDATE `employee_relation` SET "+start_working_date+" WHERE abbreviation ="+orgAbbr+" AND researcher_id ="+str(researcher_id[0][0])+";"
     #return queryUpdate
     try:
         rs.execute(queryUpdate)

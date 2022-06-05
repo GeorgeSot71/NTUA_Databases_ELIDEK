@@ -986,9 +986,11 @@ def update_project():
     programName = str(request.form.get('program_name'))
 
     if(oldTitle == "None" or oldTitle == ""):
+        #return "check1"
         return render_template('update_project.html')
 
     if(newTitle == "" and projectSummary == "" and projectFunding == "" and startDate == "" and endDate == "" and orgAbbr == "" and executiveName=="" and executiveSurname == "" and inspectorName == "" and inspectorSurname==""  and programName==""):
+        #return "check2"
         return render_template('update_project.html')
 
     #old_title -> project_id
@@ -1050,7 +1052,7 @@ def update_project():
             if (projectSummary != "")
             else ""
         )
-    
+
     if(newTitle != "" or projectSummary!= ""):
         project_funding = (
             ", funding = '{}'".format(projectFunding)
@@ -1075,7 +1077,7 @@ def update_project():
             if (startDate != "")
             else ""
         )
-    
+
     if(newTitle != "" or projectSummary!= "" or projectFunding != "" or startDate !=""):
         end_date = (
             ", end_date = '{}'".format(endDate)
@@ -1089,27 +1091,15 @@ def update_project():
             else ""
         )
 
-    if(newTitle != "" or projectSummary!= "" or projectFunding != "" or startDate !="" or endDate !=""):
-        org_abbr = (
-            ", abbreviation = '{}'".format(orgAbbr)
-            if (orgAbbr != "")
-            else ""
-        )
-    else:
-        org_abbr = (
-            "abbreviation = '{}'".format(orgAbbr)
-            if (orgAbbr != "")
-            else ""
-        )
-    
+
     #1st queryUpdate
-    queryUpdate1 = "UPDATE `project` SET "+new_title+" "+project_summary+" "+project_funding+" "+start_date+" "+end_date+" "+org_abbr+" WHERE project_id ="+str(project_id[0][0])+";"
+    queryUpdate1 = "UPDATE `project` SET "+new_title+" "+project_summary+" "+project_funding+" "+start_date+" "+end_date+" WHERE project_id ="+str(project_id[0][0])+";"
     try:
         rs.execute(queryUpdate1)
         connection.commit()
     except mysql.connector.errors.IntegrityError as e:
         return e
-
+    #return queryUpdate1
     #2nd queryUpdate
     if(executiveName != "" and executiveSurname !=""):
         executiveID = (
@@ -1119,10 +1109,10 @@ def update_project():
         #return queryUpdate
         try:
             rs.execute(queryUpdate2)
-            connection.commit()
         except mysql.connector.errors.IntegrityError as e:
             return e
-    
+        connection.commit()
+
     #3rd queryUpdate
     if(inspectorName != "" and inspectorSurname !=""):
         inspectorID = (
@@ -1132,10 +1122,9 @@ def update_project():
         #return queryUpdate
         try:
             rs.execute(queryUpdate3)
-            connection.commit()
         except mysql.connector.errors.IntegrityError as e:
             return e
-
+        connection.commit()
     #4th queryUpdate
     if(programName != ""):
         programID = (
@@ -1149,8 +1138,9 @@ def update_project():
             connection.commit()
         except mysql.connector.errors.IntegrityError as e:
             return e
-        
+
     return render_template('update_project.html')
+
         
     
 @app.route("/update/update_delivered", methods=["GET", "POST"])

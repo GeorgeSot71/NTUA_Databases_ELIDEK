@@ -936,14 +936,90 @@ def update_project():
 
 @app.route("/update/update_delivered")
 def update_delivered():
+    rs = connecion.cursor()
+
+    project_title = str(request.form.get('title1'))
+    del_title = str(request.form.get('title2'))
+    delivery_date = str(request.form.get('delivery_date'))
+    summary = str(request.form.get('summary'))
+
+    if(project_title == "None" and del_title == "None" and delivery_date == "None" and summary == "None"):
+        return render_template('update_delivered.html')
+
+    if(project_title == "" or del_title == "" or (delivery_date == "" and summary == "")):
+        return render_template('update_delivered.html')
+
+
+    select1 = "SLEECT p.project_id FROM project p WHERE  p.title = '"+project_title+"';"
+    rs.execute(select1)
+    select_result = rs.fetchall()
+
+    if(len(select_result) > 1):
+        return "There are more than 1 projects with the same title"
+    if(len(select_result) < 1):
+        return "There is no project with the specified title"
+
+
+    update = "UPDATE delivered SET "
+
+
     return render_template('update_delivered.html')
 
 @app.route("/update/update_evaluate_project")
 def update_evaluate_project():
     return render_template('update_evaluate_project.html')
 
-@app.route("/update/update_researcher")
+#DONE
+@app.route("/update/update_researcher", methods=["GET", "POST"])
 def update_researcher():
+    rs = connection.cursor()
+    researcherName = str(request.form.get('name'))
+    researcherSurname = str(request.form.get('surname'))
+    birthDate = str(request.form.get('birthday'))
+    researcherGender = str(request.form.get('sex'))
+
+    if(researcherName == "None" or researcherSurname == "None"):
+        return render_template('update_researcher.html')
+    if(researcherName == "" or researcherSurname == ""):
+        return render_template('update_researcher.html')
+
+    if(birthDate == "" and researcherGender == ""):
+        return render_template('update_researcher.html')
+
+    #researcher_fullname -> researcher_id
+    select1 = "SELECT researcher_id FROM researcher WHERE name='"+researcherName+"' AND surname='"+researcherSurname+"';"
+    rs.execute(select1)
+    researcher_id = rs.fetchall()
+    if (len(researcher_id) >1):
+        return "There seems to be more than one researchers with the name you specified, please contant database administrators"
+    if (len(researcher_id) <  1):
+        return "There is not a researcher with the name you specified, please contact database administrators"
+
+    birth_date = (
+        "birthday = '{}'".format(birthDate)
+        if (birthDate!= "")
+        else ""
+    )
+
+    if(birthDate != ""):
+        gender = (
+            ", sex = '{}'".format(researcherGender)
+            if (researcherGender != "")
+            else ""
+        )
+    else:
+        gender = (
+            "sex = '{}'".format(researcherGender)
+            if (researcherGender != "")
+            else ""
+        )
+    queryUpdate = "UPDATE `researcher` SET "+birth_date+" "+gender+" WHERE researcher_id ="+str(researcher_id[0][0])+";"
+    #return queryUpdate
+    try:
+        rs.execute(queryUpdate)
+        connection.commit()
+    except mysql.connector.errors.IntegrityError as e:
+        return e
     return render_template('update_researcher.html')
 
 @app.route("/update/update_organization", methods=["GET", "POST"]  )

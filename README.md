@@ -2,7 +2,7 @@
 ## Το User Interface
 
 
-file:///home/george/Desktop/site.png
+![UI](/site.png)
 
 
 ## Οδηγός Εγκατάστασης

@@ -169,13 +169,15 @@ def query1_result():
         if (len(executiveID) <  1):
             return "There is not an executive with the fullname you specified, please contact database administrators"
 
-            executive_id = (
-            " AND p.executive_id = {}".format(executiveID)
-            if (executiveID != "")
-            else ""
-            )
+        executive_id = (
+        " AND p.executive_id = {}".format(str(executiveID[0][0]))
+        if (str(executiveID[0][0]) != "")
+        else ""
+        )
+        #return str(executive_id)
     else:
         executive_id = " AND 1"
+
 
 
 
@@ -423,9 +425,9 @@ def insert_project():
 
     #return eval_date+eval_name+eval_surname+eval_grade+project_title+project_summary+project_funds+start_date+end_date+org_abr +exec_name+ exec_surname +project_field + program_name + scientific_inspector_name + scientific_inspector_surname
     #null input check
-    if(eval_date == '' or eval_name == '' or eval_surname == '' or eval_grade == '' or project_title == '' or project_summary == '' or project_funds == '' or start_date == '' or end_date == "" or org_abr == "" or exec_name == "" or exec_surname == "" or project_field == "" or program_name == "" or scientific_inspector_name == "" or scientific_inspector_surname == ""):
+    if(eval_date == "" or eval_name == '' or eval_surname == '' or eval_grade == '' or project_title == '' or project_summary == '' or project_funds == '' or start_date == '' or end_date == "" or org_abr == "" or exec_name == "" or exec_surname == "" or project_field == "" or program_name == "" or scientific_inspector_name == "" or scientific_inspector_surname == ""):
         return render_template('insert_project.html')
-    if(eval_date == 'None' or eval_name == 'None' or eval_surname == 'None' or eval_grade == 'None' or project_title == 'None' or project_summary == 'None' or project_funds == 'None' or start_date == 'None' or end_date == "None" or org_abr == "None" or exec_name == "None" or exec_surname == "None" or project_field == "None" or program_name == "None" or scientific_inspector_name == "None" or scientific_inspector_surname == "None"):
+    if(eval_date == 'None' or eval_name == 'None' or eval_surname == 'None' or eval_grade == 'None' or project_title == 'None' or project_summary == 'None' or project_funds == 'None' or start_date == 'None' or end_date == "None" or org_abr == "None" or exec_name == "None" or exec_name == "None" or project_field == "None" or program_name == "None" or scientific_inspector_name == "None" or scientific_inspector_surname == "None"):
         return render_template('insert_project.html')
 
     #executive -> executive_id
@@ -455,23 +457,22 @@ def insert_project():
 
     #insert into project
     insert1 = "INSERT INTO `project` ( `title`, `summary`, `funding`, `start_date`, `end_date`, `abbreviation`, `executive_id`, `program_id`, `scientific_inspector_id`) VALUES ('"+project_title+"', '"+project_summary+"', '"+project_funds+"', '"+start_date+"', '"+end_date+"', '"+org_abr+"', "+str(exec_results[0][0])+", "+str(program_id[0][0])+", "+str(inspector_results[0][0])+");"
-    rs.execute(insert1)
+    #return insert1
+    try:
+        rs.execute(insert1)
+    except Exception as e:
+        return str(e)
     connection.commit()
 
-    #get inserted project_id
-    get_project_id = "SELECT LAST_INSERT_ID();"
-    rs.execute(get_project_id)
+    get_pm = "SELECT LAST_INSERT_ID();"
+    rs.execute(get_pm)
     project_id = rs.fetchall()
-    project_id = project_id[0][0]
-    #insert into employee relation
-    insert2 = "INSERT INTO `employee_relation`(`researcher_id`, `abbreviation`, `start_working_date`) VALUES ("+str(inspector_results[0][0])+", '"+org_abr+"', '"+start_date+"');"
-    rs.execute(insert2)
-    connection.commit()
 
     #inser into scientific field
-    insert3 = "INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES ("+str(project_id)+", '"+project_field+"');"
+    insert3 = "INSERT INTO `scientific_field` (`project_id`, `scientific_field_name`) VALUES ("+str(project_id[0][0])+", '"+project_field+"');"
     rs.execute(insert3)
     connection.commit()
+
 
     #evaluation, get evaluator_id, insert into table
     select4 = "SELECT researcher_id FROM researcher WHERE name='"+eval_name+"' AND surname='"+eval_surname+"';"
@@ -482,10 +483,10 @@ def insert_project():
     if (len(evaluator_results) <1):
         return "An evaluator (researcher) with the name you specified does not exist in the database, please contant database administrators"
 
-    insert4 = "INSERT INTO `evaluate_project` (`project_id`, `researcher_id`, `grade`, `evaluation_date`) VALUES ("+str(project_id)+", "+str(evaluator_results[0][0])+", '"+eval_grade+"', '"+eval_date+"');"
+    insert4 = "INSERT INTO `evaluate_project` (`project_id`, `researcher_id`, `grade`, `evaluation_date`) VALUES ("+str(project_id[0][0])+", "+str(evaluator_results[0][0])+", '"+eval_grade+"', '"+eval_date+"');"
     try:
         rs.execute(insert4)
-    except mysql.connector.errors.IntegrityError as e:
+    except Exception as e:
         return str(e)
 
     connection.commit()
@@ -632,12 +633,13 @@ def insert_employee_relation():
         return "There is not a researcher with the name you specified, please contact database administrators"
 
     queryString = "INSERT INTO `employee_relation` (`researcher_id`, `abbreviation`, `start_working_date`) VALUES ("+str(researcher_id[0][0])+", '"+abbr+"', '"+startWorkingDay+"');"
+
     try:
         rs.execute(queryString)
-        connection.commit()
-    except mysql.connector.errors.IntegrityError:
-        return "<h1>The organization with the specified abbreviation does not exist, go back and input an existing abbreviation</h1>"
+    except Exception as e:
+        return str(e)
 
+    connection.commit()
     return render_template('insert_employee_relation.html')
 
 # George added the following just to render the websites
@@ -968,9 +970,10 @@ def update_employee_relation():
     #return queryUpdate
     try:
         rs.execute(queryUpdate)
-        connection.commit()
     except Exception as e:
         return str(e)
+
+    connection.commit()
     return render_template('update_employee_relation.html')
 
 @app.route("/update/update_project", methods=["GET", "POST"])
@@ -1175,8 +1178,13 @@ def update_delivered():
         update_q = "UPDATE delivered SET summary = '"+summary+"' WHERE title = '"+del_title+"' AND project_id = '"+str(select_result[0][0])+"';"
     elif(delivery_date != "" and summary == ""):
         update_q = "UPDATE delivered SET delivery_date = '"+delivery_date+"' WHERE title = '"+del_title+"' AND project_id = '"+str(select_result[0][0])+"';"
-
-    rs.execute(update_q)
+    else:
+        update_q = "UPDATE delivered SET delivery_date = '"+delivery_date+"', summary = '"+summary+"' WHERE title = '"+del_title+"' AND project_id = '"+str(select_result[0][0])+"';"
+    #return update_q
+    try:
+        rs.execute(update_q)
+    except Exception as e:
+        return str(e)
     connection.commit()
     return render_template('update_delivered.html')
 

@@ -925,8 +925,48 @@ def delete_executive():
     return render_template('delete_executive.html')
 
 #update (some of the following may not be needed)
-@app.route("/update/update_employee_relation")
+
+@app.route("/update/update_employee_relation", methods=["GET", "POST"])
 def update_employee_relation():
+    rs = connection.cursor()
+    researcherName = str(request.form.get('researcher_name'))
+    researcherSurname = str(request.form.get('researcher_surname'))
+    orgAbbr = str(request.form.get('abbreviation'))
+    startWorkingDate = str(request.form.get('start_working_date'))
+
+    if(orgAbbr == "None" or researcherName == "None" or researcherSurname == "None"):
+        return render_template('update_employee_relation.html')
+    if(orgAbbr == "" or researcherName == "" or researcherSurname == ""):
+        return render_template('update_employee_relation.html')
+
+    if(startWorkingDate == ""):
+        return render_template('update_employee_relation.html')
+
+    
+    #researcher_fullname -> researcher_id
+    select1 = "SELECT researcher_id FROM researcher WHERE name='"+researcherName+"' AND surname='"+researcherSurname+"';"
+    rs.execute(select1)
+    researcher_id = rs.fetchall()
+    if (len(researcher_id) >1):
+        return "There seems to be more than one researchers with the name you specified, please contant database administrators"
+    if (len(researcher_id) <  1):
+        return "There is not a researcher with the name you specified, please contact database administrators"
+
+
+    start_working_date = (
+        "start_working_date = '{}'".format(startWorkingDate)
+        if (startWorkingDate!= "")
+        else ""
+    )
+
+    
+    queryUpdate = "UPDATE `employee_relation` SET "+evaluation_date+" WHERE abbreviation ="+orgAbbr+" AND researcher_id ="+str(researcher_id[0][0])+";"
+    #return queryUpdate
+    try:
+        rs.execute(queryUpdate)
+        connection.commit()
+    except mysql.connector.errors.IntegrityError:
+        return "<h1>This organization abbreviation does not exist, go back and input an existing abbreviation</h1>"
     return render_template('update_employee_relation.html')
 
 @app.route("/update/update_project")

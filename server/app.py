@@ -486,7 +486,7 @@ def insert_project():
     try:
         rs.execute(insert4)
     except mysql.connector.errors.IntegrityError as e:
-        return e
+        return str(e)
 
     connection.commit()
 
@@ -640,6 +640,7 @@ def insert_employee_relation():
 
     return render_template('insert_employee_relation.html')
 
+# George added the following just to render the websites
 
 #delete
 @app.route("/delete/delete_employee_relation", methods=["GET", "POST"])
@@ -925,7 +926,6 @@ def delete_executive():
     return render_template('delete_executive.html')
 
 #update (some of the following may not be needed)
-
 @app.route("/update/update_employee_relation", methods=["GET", "POST"])
 def update_employee_relation():
     rs = connection.cursor()
@@ -952,6 +952,11 @@ def update_employee_relation():
     if (len(researcher_id) <  1):
         return "There is not a researcher with the name you specified, please contact database administrators"
 
+    select = "SELECT name FROM organization WHERE abbreviation='"+orgAbbr+"';"
+    rs.execute(select)
+    number_org = rs.fetchall()
+    if (len(number_org) <  1):
+        return "There is not an organization with the abbreviation you specified, please contact database administrators"
 
     start_working_date = (
         "start_working_date = '{}'".format(startWorkingDate)
@@ -959,14 +964,13 @@ def update_employee_relation():
         else ""
     )
 
-
     queryUpdate = "UPDATE `employee_relation` SET "+start_working_date+" WHERE abbreviation ='"+orgAbbr+"' AND researcher_id ="+str(researcher_id[0][0])+";"
-
+    #return queryUpdate
     try:
         rs.execute(queryUpdate)
         connection.commit()
-    except mysql.connector.errors.IntegrityError:
-        return "<h1>This organization abbreviation does not exist, go back and input an existing abbreviation</h1>"
+    except Exception as e:
+        return str(e)
     return render_template('update_employee_relation.html')
 
 @app.route("/update/update_project", methods=["GET", "POST"])
@@ -1098,7 +1102,7 @@ def update_project():
             rs.execute(queryUpdate1)
             connection.commit()
         except mysql.connector.errors.IntegrityError as e:
-            return e
+            return str(e)
         #return queryUpdate1
     #2nd queryUpdate
     if(executiveName != "" and executiveSurname !=""):
@@ -1110,7 +1114,7 @@ def update_project():
         try:
             rs.execute(queryUpdate2)
         except mysql.connector.errors.IntegrityError as e:
-            return e
+            return str(e)
         connection.commit()
 
     #3rd queryUpdate
@@ -1123,7 +1127,7 @@ def update_project():
         try:
             rs.execute(queryUpdate3)
         except mysql.connector.errors.IntegrityError as e:
-            return e
+            return str(e)
         connection.commit()
     #4th queryUpdate
     if(programName != ""):
@@ -1137,11 +1141,10 @@ def update_project():
             rs.execute(queryUpdate4)
             connection.commit()
         except mysql.connector.errors.IntegrityError as e:
-            return e
+            return str(e)
 
     return render_template('update_project.html')
-        
-    
+
 @app.route("/update/update_delivered", methods=["GET", "POST"])
 def update_delivered():
     rs = connection.cursor()
@@ -1172,11 +1175,10 @@ def update_delivered():
         update_q = "UPDATE delivered SET summary = '"+summary+"' WHERE title = '"+del_title+"' AND project_id = '"+str(select_result[0][0])+"';"
     elif(delivery_date != "" and summary == ""):
         update_q = "UPDATE delivered SET delivery_date = '"+delivery_date+"' WHERE title = '"+del_title+"' AND project_id = '"+str(select_result[0][0])+"';"
-    
+
     rs.execute(update_q)
     connection.commit()
     return render_template('update_delivered.html')
-
 
 @app.route("/update/update_evaluate_project", methods=["GET", "POST"])
 def update_evaluate_project():
@@ -1235,12 +1237,12 @@ def update_evaluate_project():
     #return queryUpdate
     try:
         rs.execute(queryUpdate)
-        connection.commit()
     except mysql.connector.errors.IntegrityError as e:
-        return e
+        return str(e)
+    connection.commit()
     return render_template('update_evaluate_project.html')
 
-#DONE
+
 @app.route("/update/update_researcher", methods=["GET", "POST"])
 def update_researcher():
     rs = connection.cursor()
@@ -1288,27 +1290,32 @@ def update_researcher():
     #return queryUpdate
     try:
         rs.execute(queryUpdate)
-        connection.commit()
-    except mysql.connector.errors.IntegrityError as e:
-        return e
-    return render_template('update_researcher.html')
+    except Exception as e:
+        return str(e)
+    connection.commit()
 
+    return render_template('update_researcher.html')
 
 @app.route("/update/update_organization", methods=["GET", "POST"])
 def update_organization():
     rs = connection.cursor()
+
     orgAbbr = str(request.form.get('abbreviation'))
+
     orgName = str(request.form.get('name'))
+    org_type = str(request.form.get('type'))
     orgPC = str(request.form.get('postcode'))
-    orgAddress = str(request.form.get('address'))
+    orgAddress = str(request.form.get('road'))
     orgCity = str(request.form.get('town'))
+    org_budget1 = str(request.form.get('budget1'))
+    org_budget2 = str(request.form.get('budget2'))
 
     if(orgAbbr == "None"):
         return render_template('update_organization.html')
     if(orgAbbr == ""):
         return render_template('update_organization.html')
 
-    if(orgName == "" and orgPC== "" and orgAddress== "" and orgCity== ""):
+    if(orgName == "" and orgPC == "" and orgAddress == "" and orgCity == "" and org_budget1 == "" and org_budget2 == ""):
         return render_template('update_organization.html')
 
     #abbreviation
@@ -1365,14 +1372,35 @@ def update_organization():
             else ""
         )
 
+    queryUpdate = "UPDATE organization SET "+org_name+" "+str(org_postcode)+" "+org_address+" "+org_town+" WHERE abbreviation = '"+orgAbbr+"';"
 
-    queryUpdate = "UPDATE `organization` SET "+org_name+" "+str(org_postcode)+" "+org_road+" "+org_town+" WHERE researcher_id ="+orgAbbr+";"
-    #return queryUpdate
     try:
         rs.execute(queryUpdate)
+    except Exception as e:
+        return str(e)
+    connection.commit()
+
+    if((org_budget1 == "" and org_budget2 == "") or (org_budget1 == "None" and org_budget2 == "None")):
+        return render_template('update_organization.html')
+    else:
+        if(org_type == "university" and org_budget1 != ""):
+            updateQ = "UPDATE university SET budget = '"+org_budget1+"' WHERE abbreviation = '"+orgAbbr+"';"
+
+        elif(org_type == "company" and org_budget1 != ""):
+            updateQ = "UPDATE company SET private_funding = '"+org_budget1+"' WHERE abbreviation = '"+orgAbbr+"';"
+
+        elif(org_type == "scientific_center" and org_budget1 != "" and org_budget2 != ""):
+            updateQ = "UPDATE scientific_center SET budget_ministry = '"+org_budget1+"', budget_private = '"+org_budget2+"' WHERE abbreviation = '"+orgAbbr+"';"
+
+        elif(org_type == "scientific_center" and org_budget1 != "" and org_budget2 == ""):
+            updateQ = "UPDATE scientific_center SET budget_ministry = '"+org_budget1+"' WHERE abbreviation = '"+orgAbbr+"';"
+
+        elif(org_type == "scientific_center" and org_budget1 == "" and org_budget2 != ""):
+            updateQ = "UPDATE scientific_center SET budget_private = '"+org_budget2+"' WHERE abbreviation = '"+orgAbbr+"';"
+
+        rs.execute(updateQ)
         connection.commit()
-    except mysql.connector.errors.IntegrityError as e:
-        return e
+
     return render_template('update_organization.html')
 
 @app.route("/update/update_program", methods=["GET", "POST"])
@@ -1422,10 +1450,9 @@ def update_program():
     try:
         rs.execute(queryUpdate)
         connection.commit()
-    except mysql.connector.errors.IntegrityError as e:
-        return e
+    except Exception as e:
+        return str(e)
     return render_template('update_program.html')
-
 
 @app.route("/update/update_executive", methods=["GET", "POST"])
 def update_executive():
@@ -1475,6 +1502,6 @@ def update_executive():
     try:
         rs.execute(queryUpdate)
         connection.commit()
-    except mysql.connector.errors.IntegrityError as e:
-        return e
+    except Exception as e:
+        return str(e)
     return render_template('update_executive.html')

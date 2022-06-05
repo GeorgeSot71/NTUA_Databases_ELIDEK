@@ -64,7 +64,7 @@ def read():
         return render_template("read_employee_relation.html", table = results)
     elif(table_name == "scientific_field"):
         rs = connection.cursor()
-        query = "SELECT * FROM scientific_field;"
+        query = "SELECT * FROM scientific_field order by project_id asc;"
         rs.execute(query)
         results = rs.fetchall()
         return render_template("read_scientific_field.html", table = results)

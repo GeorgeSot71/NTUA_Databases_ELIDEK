@@ -1022,8 +1022,86 @@ def update_researcher():
         return e
     return render_template('update_researcher.html')
 
-@app.route("/update/update_organization", methods=["GET", "POST"]  )
+
+@app.route("/update/update_organization", methods=["GET", "POST"])
 def update_organization():
+    rs = connection.cursor()
+    orgAbbr = str(request.form.get('abbreviation'))
+    orgName = str(request.form.get('name'))
+    orgPC = str(request.form.get('postcode'))
+    orgAddress = str(request.form.get('address'))
+    orgCity = str(request.form.get('town'))
+
+    if(orgAbbr == "None"):
+        return render_template('update_organization.html')
+    if(orgAbbr == ""):
+        return render_template('update_organization.html')
+
+    if(orgName == "" and orgPC== "" and orgAddress== "" and orgCity== ""):
+        return render_template('update_organization.html')
+
+    #abbreviation
+    select = "SELECT name FROM organization WHERE abbreviation='"+orgAbbr+"';"
+    rs.execute(select)
+    number_org = rs.fetchall()
+    if (len(number_org) <  1):
+        return "There is not an organization with the abbreviation you specified, please contact database administrators"
+
+    #name =================
+    org_name = (
+        "name = '{}'".format(orgName)
+        if (orgName!= "")
+        else ""
+    )
+    #postcode ==============
+    if(org_name != ""):
+        org_postcode = (
+            ", post_code = {}".format(orgPC)
+            if (orgPC != "")
+            else ""
+        )
+    else:
+        org_postcode = (
+            "post_code = '{}'".format(orgPC)
+            if (orgPC != "")
+            else ""
+        )
+    #road =================
+    if(org_name != "" or org_postcode !=""):
+        org_address = (
+            ", road = '{}'".format(orgAddress)
+            if (orgAddress != "")
+            else ""
+        )
+    else:
+        org_address = (
+            "road = '{}'".format(orgAddress)
+            if (orgAddress != "")
+            else ""
+        )
+
+    #town ==================
+    if(org_name != "" or org_postcode !="" or org_address !=""):
+        org_town = (
+            ", town = '{}'".format(orgCity)
+            if (orgCity != "")
+            else ""
+        )
+    else:
+        org_town = (
+            "town = '{}'".format(orgCity)
+            if (orgCity != "")
+            else ""
+        )
+
+
+    queryUpdate = "UPDATE `organization` SET "+org_name+" "+str(org_postcode)+" "+org_road+" "+org_town+" WHERE researcher_id ="+orgAbbr+";"
+    #return queryUpdate
+    try:
+        rs.execute(queryUpdate)
+        connection.commit()
+    except mysql.connector.errors.IntegrityError as e:
+        return e
     return render_template('update_organization.html')
 
 @app.route("/update/update_program", methods=["GET", "POST"])

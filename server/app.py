@@ -1155,6 +1155,55 @@ def update_program():
         return e
     return render_template('update_program.html')
 
+
 @app.route("/update/update_executive", methods=["GET", "POST"])
 def update_executive():
+    rs = connection.cursor()
+    executiveName = str(request.form.get('exec_name'))
+    executiveSurname = str(request.form.get('exec_surname'))
+    birthDate = str(request.form.get('exec_birthday'))
+    executiveGender = str(request.form.get('exec_sex'))
+
+    if(executiveName == "None" or executiveSurname == "None"):
         return render_template('update_executive.html')
+    if(executiveName == "" or executiveSurname == ""):
+        return render_template('update_executive.html')
+
+    if(birthDate == "" and executiveGender == ""):
+        return render_template('update_executive.html')
+
+    #executive_fullname -> executive_id
+    select = "SELECT executive_id FROM executive WHERE name='"+executiveName+"' AND surname='"+executiveSurname+"';"
+    rs.execute(select)
+    executive_id = rs.fetchall()
+    if (len(executive_id) >1):
+        return "There seems to be more than one executives with the name you specified, please contant database administrators"
+    if (len(executive_id) <  1):
+        return "There is not an executive with the name you specified, please contact database administrators"
+
+    birth_date = (
+        "birthday = '{}'".format(birthDate)
+        if (birthDate!= "")
+        else ""
+    )
+
+    if(birthDate != ""):
+        gender = (
+            ", sex = '{}'".format(executiveGender)
+            if (executiveGender != "")
+            else ""
+        )
+    else:
+        gender = (
+            "sex = '{}'".format(executiveGender)
+            if (executiveGender != "")
+            else ""
+        )
+    queryUpdate = "UPDATE `executive` SET "+birth_date+" "+gender+" WHERE executive_id ="+str(executive_id[0][0])+";"
+    #return queryUpdate
+    try:
+        rs.execute(queryUpdate)
+        connection.commit()
+    except mysql.connector.errors.IntegrityError as e:
+        return e
+    return render_template('update_executive.html')

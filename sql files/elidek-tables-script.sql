@@ -197,8 +197,8 @@ CREATE TRIGGER same_researcher_evaluator_insert BEFORE INSERT ON works_on_projec
 		FOR EACH ROW
         BEGIN
 			IF NEW.researcher_id IN (SELECT researcher_id
-																FROM employee_relation )
-																THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot assign a researcher to work on two different organizations' ;
+									FROM employee_relation )
+									THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot assign a researcher to work on two different organizations' ;
 			END IF;
 	END;$$
 
@@ -207,9 +207,9 @@ CREATE TRIGGER same_researcher_evaluator_insert BEFORE INSERT ON works_on_projec
     FOR EACH ROW
     BEGIN
 		IF NEW.researcher_id IN (SELECT researcher_id
-											    FROM works_on_project
-                                                WHERE works_on_project.project_id = NEW.project_id)
-                                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a researcher evaluate a project if he/she already works on it' ;
+							    FROM works_on_project
+                                WHERE works_on_project.project_id = NEW.project_id)
+                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a researcher evaluate a project if he/she already works on it' ;
 		END IF;
 	END;$$
 
@@ -218,9 +218,9 @@ CREATE TRIGGER same_researcher_evaluator_update BEFORE UPDATE ON works_on_projec
     FOR EACH ROW
     BEGIN
 		IF NEW.researcher_id IN (SELECT researcher_id
-											    FROM evaluate_project
-                                                WHERE evaluate_project.project_id = NEW.project_id)
-                                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a researcher work on a project in which he/she is already evaluator';
+							    FROM evaluate_project
+                                WHERE evaluate_project.project_id = NEW.project_id)
+                                THEN SIGNAL SQLSTATE '45000'  SET MESSAGE_TEXT = 'You cannot make a researcher work on a project in which he/she is already evaluator';
 		END IF;
 	END;$$
 
@@ -284,3 +284,6 @@ ON researcher (name,surname);
 
 CREATE INDEX  idx_program_name
 ON program (program_name);
+
+CREATE INDEX  idx_project_start_date
+ON project (start_date);

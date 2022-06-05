@@ -1,7 +1,9 @@
 # NTUA Databases ΕΛΙΔΕΚ
 ## Το User Interface
 
-![User Interface](https://imgur.com/a/7u1pWzm)
+x-special/nautilus-clipboard
+copy
+file:///home/george/Desktop/site.png
 
 
 ## Οδηγός Εγκατάστασης

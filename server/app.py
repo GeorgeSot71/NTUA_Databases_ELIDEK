@@ -40,7 +40,7 @@ def read():
         return render_template("read_project.html", table = results)
     elif(table_name == "delivered"):
         rs = connection.cursor()
-        query = "SELECT * FROM delivered;"
+        query = "SELECT * FROM delivered order by project_id asc;"
         rs.execute(query)
         results = rs.fetchall()
         return render_template("read_delivered.html", table = results)

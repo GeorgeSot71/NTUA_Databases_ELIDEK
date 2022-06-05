@@ -29,6 +29,10 @@ pip install flask
 ```
 pip install mysql-connector-python
 ```
+-Στην συνέχεια τρέχουμε τα αρχεία elidek_tables_script.sql και
+all_insert.sql (είτε από terminal κάνοντας πρώτα login με την εντολή
+mysql -u root -p είτε από DBMS client) ώστε να δημιουργηθεί η
+βάση και να εισάγουμε τα απαραίτητα δοκιμαστικά δεδομένα.
 - Στο αρχείο app.py αλλάζουμε το password στην αρχή (για την πρόσβαση στην βάση) ώστε να είναι το ίδιο με αυτό που έχουμε για την MySQL βάση.
 - Για να ανοίξει ο server και να έχουμε πρόσβαση στο ui ανοίγουμε ένα terminal στο directory του αρχείου app.py και τρέχουμε την παρακάτω εντολή.
 ```

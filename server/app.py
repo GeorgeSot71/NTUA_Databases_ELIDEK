@@ -973,12 +973,12 @@ def update_employee_relation():
 def update_project():
     return render_template('update_project.html')
 
-@app.route("/update/update_delivered")
+@app.route("/update/update_delivered", methods=["GET", "POST"])
 def update_delivered():
-    rs = connecion.cursor()
+    rs = connection.cursor()
 
-    project_title = str(request.form.get('title1'))
-    del_title = str(request.form.get('title2'))
+    project_title = str(request.form.get('title2'))
+    del_title = str(request.form.get('title1'))
     delivery_date = str(request.form.get('delivery_date'))
     summary = str(request.form.get('summary'))
 
@@ -986,22 +986,26 @@ def update_delivered():
         return render_template('update_delivered.html')
 
     if(project_title == "" or del_title == "" or (delivery_date == "" and summary == "")):
+        return "test2"
         return render_template('update_delivered.html')
 
-
-    select1 = "SLEECT p.project_id FROM project p WHERE  p.title = '"+project_title+"';"
+    select1 = "SELECT p.project_id FROM project p WHERE  p.title = '"+project_title+"';"
     rs.execute(select1)
     select_result = rs.fetchall()
-
+    #return str(select_result)
     if(len(select_result) > 1):
         return "There are more than 1 projects with the same title"
     if(len(select_result) < 1):
         return "There is no project with the specified title"
 
-
-    update = "UPDATE delivered SET "
-
-
+    update_q = ";"
+    if(delivery_date == "" and summary != ""):
+        update_q = "UPDATE delivered SET summary = '"+summary+"' WHERE title = '"+del_title+"' AND project_id = '"+str(select_result[0][0])+"';"
+    elif(delivery_date != "" and summary == ""):
+        update_q = "UPDATE delivered SET delivery_date = '"+delivery_date+"' WHERE title = '"+del_title+"' AND project_id = '"+str(select_result[0][0])+"';"
+    
+    rs.execute(update_q)
+    connection.commit()
     return render_template('update_delivered.html')
 
 

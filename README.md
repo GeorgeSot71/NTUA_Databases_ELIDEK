@@ -1,6 +1,10 @@
 # NTUA Databases ΕΛΙΔΕΚ
+## Το User Interface
 
-## Dependencies
+!(https://imgur.com/a/7u1pWzm)
+
+
+## Οδηγός Εγκατάστασης
 - Αρχικά πρέπει να έχουμε εγκατεστημένο τον mysql-server (παρακάτω φαίνεται ένας σύντομος οδηγός εγκατάστασης)
 Αρχικά εγκαθιστούμε τον mysql server
 ```

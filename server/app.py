@@ -1106,7 +1106,54 @@ def update_organization():
 
 @app.route("/update/update_program", methods=["GET", "POST"])
 def update_program():
+    rs = connection.cursor()
+    OldProgramName = str(request.form.get('old_program_name'))
+    NewProgramName = str(request.form.get('new_program_name'))
+    programAddress = str(request.form.get('program_address'))
+
+    if(OldProgramName == "None"):
         return render_template('update_program.html')
+    if(OldProgramName == ""):
+        return render_template('update_program.html')
+
+    if(NewProgramName == "" and programAddress == ""):
+        return render_template('update_program.html')
+
+    #old_program_name -> program_id
+    select = "SELECT program_id FROM program WHERE program_name='"+OldProgramName+"';"
+    rs.execute(select)
+    program_id = rs.fetchall()
+    if (len(program_id) >1):
+        return "There seems to be more than one programs with the name you specified, please contant database administrators"
+    if (len(program_id) <  1):
+        return "There is not a program with the name you specified, please contact database administrators"
+
+    new_program_name = (
+        "program_name = '{}'".format(NewProgramName)
+        if (NewProgramName!= "")
+        else ""
+    )
+
+    if(new_program_name != ""):
+        program_address = (
+            ", address = '{}'".format(programAddress)
+            if (programAddress != "")
+            else ""
+        )
+    else:
+        program_address = (
+            "address = '{}'".format(programAddress)
+            if (programAddress != "")
+            else ""
+        )
+    queryUpdate = "UPDATE `program` SET "+new_program_name+" "+program_address+" WHERE program_id ="+str(program_id[0][0])+";"
+    #return queryUpdate
+    try:
+        rs.execute(queryUpdate)
+        connection.commit()
+    except mysql.connector.errors.IntegrityError as e:
+        return e
+    return render_template('update_program.html')
 
 @app.route("/update/update_executive", methods=["GET", "POST"])
 def update_executive():

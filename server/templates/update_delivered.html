@@ -1,23 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="update-delivered">
-    <form class="p-2" class="form" method='POST' action= "/update/update_delivered">
+<div id="update-researcher">
+    <form class="p-2" class="form" method='POST' action= "/update/update_researcher">
         <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="title">Title of the deliverable</label>
-            <input type="text" class="form-control" name="title" placeholder="Title">
+            <h3>Select Deliverable -based on its title and project tilte- to update</h3>
+            <label for="title1">Deliverable Title</label>
+            <input type="text" class="form-control" name="title1" placeholder="Title">
         </div>
         <div class="form-group col-md-6">
-            <label for="<summary>">Summary of the deliverable</label>
-            <input type="text" class="form-control" name="summary" placeholder="Summary">
+            <label for="title2">Project Title</label>
+            <input type="text" class="form-control" name="title2" placeholder="Title">
+        </div>
+        <h3>Fill the new values</h3>
+        <div class="form-group col-md-6">
+            <label for="delivery_date">Delivery date</label>
+            <input type="date" class="form-control" name="delivery_date" placeholder="Birth date">
         </div>
         <div class="form-group col-md-6">
-            <label for="delivery_date">Delivery Date</label>
-            <input type="date" class="form-control" name="delivery_date" placeholder="Date">
-        </div>
+            <label for="summary">Summary</label>
+            <input type="text" class="form-control" name="summary">
         </div>
         <div class="form-group my-4">
-            <button type="submit" class="btn btn-primary"> Update Deliverable </button>
+            <button type="submit" class="btn btn-primary"> Update deliverable's Delivery date or Summary</button>
         </div>
     </form>
 </div>

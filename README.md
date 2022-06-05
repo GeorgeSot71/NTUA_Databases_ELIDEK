@@ -1,8 +1,7 @@
 # NTUA Databases ΕΛΙΔΕΚ
 ## Το User Interface
 
-x-special/nautilus-clipboard
-copy
+
 file:///home/george/Desktop/site.png
 
 
